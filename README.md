@@ -1,4 +1,4 @@
-# spmbasics
+# spmbasics, a reproduction attempt
 
 
 [![DOI](https://zenodo.org/badge/784344321.svg)](https://zenodo.org/doi/10.5281/zenodo.10953222)
