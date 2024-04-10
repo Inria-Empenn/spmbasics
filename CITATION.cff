@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "Information to cite this repo"
+authors: 
+  - given-names: Melvin S.
+    family-names: Atay
+    orcid: https://orcid.org/0000-0003-4985-2362
+title: "My reproduction attempt to SPM fMRI preprocessing"
+version: 1.0.0
+identifiers:
+  - type:
+    value:
+date-released: 2024-04-10
+
+
+    
