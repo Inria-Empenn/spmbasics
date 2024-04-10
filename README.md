@@ -2,6 +2,7 @@
 
 This repo contains my reproduction of the SPM12 tutorial with MATLAB.
 
+[![DOI](https://zenodo.org/badge/784344321.svg)](https://zenodo.org/doi/10.5281/zenodo.10953222)
 ### My attempt to understand and reproduce SPM Tutorials.
 
 <Project description>
