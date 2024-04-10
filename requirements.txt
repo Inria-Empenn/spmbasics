@@ -1,0 +1,4 @@
+# The softwares Matlab and SPM12 needs to be downloaded separately.
+
+SPM12
+MATLAB-R2020b #to be able to run the scripts and call SPM12
