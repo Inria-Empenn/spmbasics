@@ -15,6 +15,7 @@ This repo contains my reproduction of the SPM12 tutorial with MATLAB.
    * [How to reproduce each step](#How-to-reproduce-each-step)
 
  ## How to Reproduce Each Step
+ TODO - add details and links
 Follow the guideline below for each process:
  *   First GUI interface
  *   Second Batch interface
