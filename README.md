@@ -65,7 +65,10 @@ This way it only contains the hash values.
 should not be producing output.
 That means there is no difference between hash values and all your nifti files are the same.
 
+Note: 
+```sha256sum ./path/*.nii > file.sha256```
 
+where path being your desired folder should produce the same results.
 
 If you notice anything needs to be edited or fixed, feel free to open an issue. 
 Thanks for your time and attention. :smile: 
