@@ -63,7 +63,7 @@ This way it only contains the hash values.
 
 3. ```diff3 hasfile1 hashfile2 hashfile3``` 
 should not be producing output.
-That means all your nifti files are same.
+That means there is no difference between hash values and all your nifti files are the same.
 
 
 
