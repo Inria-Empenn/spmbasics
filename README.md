@@ -19,7 +19,7 @@
 
    * [How to reproduce each step](#How-to-reproduce-each-step)
 
-   * [Further on reproducibility](#Further on reproducilibility)
+   * [Further on reproducibility](#Further-on-reproducibility)
 
 ## Overview
 
@@ -47,6 +47,7 @@ Version of the software used:```MATLAB R2020b``` & ```SPM12```.
  Make sure to indicate correct file paths for these files.
 
 ## Further on reproducibility
+
 SPM has a display and check reg features to visually inspect the outputs.
 Visual inspection does not guarantee that all the results are the same.
 To ensure about all of the steps producing same results after the same preprocessing steps, you can use this tiny bash script TODO add file and link on your results folders to compare if they are identical or not based on their unique hash values. 
