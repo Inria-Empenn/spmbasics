@@ -32,9 +32,17 @@ Version of the software used:```MATLAB R2020b``` & ```SPM12```.
  ## How to Reproduce Each Step
  TODO - add details and links
 Follow the guideline below for each process:
- *   First GUI interface
- *   Second Batch interface
- *   Third Scripting 
+ *   For GUI interface, .mat files in the ```src/spm_mat``` must be loaded subsequently 
+      1. Load [realignment](src/spm_mat/realignment_batch.mat) first. Select your data from the menu by specifiying  ```Data> Session```
+      2. Then load [slice timing](src/spm_mat/slice_timing_batch.mat)
+      3. Follow by [coregistration](src/spm_mat/coregistration_batch.mat)
+      4. Continue by loading [segmentation](src/spm_mat/segmentation_batch.mat)
+      5. Load [normalization](src/spm_mat/normalisation_batch.mat)
+      6. Lastly [smoothing](src/spm_mat/smoothing_batch.mat)
+ *   For Batch interface
+     * Load [batch interface GUI mat](src/spm_mat/batch_preprocessing_batch.mat) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```
+ *   For Scripting 
+ [preprocessing m ](src/preprocessing_dep.m)
 
 If you notice anything needs to be edited or fixed, feel free to open an issue. 
 Thanks for your time and attention. :smile: 

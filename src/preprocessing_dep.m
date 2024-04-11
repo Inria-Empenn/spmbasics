@@ -5,9 +5,9 @@
 % - Matlab R2020b (on Fedora 39 readily compiled)
 % - SPM12 neuroimage processing toolbox: https://www.fil.ion.ucl.ac.uk/spm/software/spm12/
 % - Single subject fMRI data: https://www.fil.ion.ucl.ac.uk/spm/data/auditory/
-
+% PAThs are not full, edit according to batch file location of yours.
 nrun = 1; % enter the number of runs here
-jobfile = {'/home/matay/spm_batches/preprocessing_dep_job.m'};
+jobfile = {'./spm_batches/preprocessing_dep_job.m'};
 jobs = repmat(jobfile, 1, nrun);
 inputs = cell(0, nrun);
 for crun = 1:nrun
