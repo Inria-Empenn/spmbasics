@@ -19,6 +19,8 @@
 
    * [How to reproduce each step](#How-to-reproduce-each-step)
 
+   * [Further on reproducibility](#Further on reproducilibility)
+
 ## Overview
 
 This repo contains my reproduction of the SPM12 tutorials with MATLAB. 
@@ -30,8 +32,7 @@ Version of the software used:```MATLAB R2020b``` & ```SPM12```.
 
  
  ## How to Reproduce Each Step
- TODO - add details and links
-Follow the guideline below for each process:
+
  *   For GUI interface, .mat files in the ```src/spm_mat``` must be loaded subsequently 
       1. Load [realignment](src/spm_mat/realignment_batch.mat) first. Select your data from the menu by specifiying  ```Data> Session```
       2. Then load [slice timing](src/spm_mat/slice_timing_batch.mat)
@@ -42,7 +43,14 @@ Follow the guideline below for each process:
  *   For Batch interface
      * Load [batch interface GUI mat](src/spm_mat/batch_preprocessing_batch.mat) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```
  *   For Scripting 
- [preprocessing m ](src/preprocessing_dep.m)
+ [preprocessing_dep.m ](src/preprocessing_dep.m) controls the job of [preprocessing_dep_job.m](src/preprocessing_dep_job.m) it is also possible to run the ```_job.m``` file separately.
+ Make sure to indicate correct file paths for these files.
+
+## Further on reproducibility
+SPM has a display and check reg features to visually inspect the outputs.
+Visual inspection does not guarantee that all the results are the same.
+To ensure about all of the steps producing same results after the same preprocessing steps, you can use this tiny bash script TODO add file and link on your results folders to compare if they are identical or not based on their unique hash values. 
+
 
 If you notice anything needs to be edited or fixed, feel free to open an issue. 
 Thanks for your time and attention. :smile: 
