@@ -50,7 +50,7 @@ Version of the software used:```MATLAB R2020b``` & ```SPM12```.
 
 SPM has a display and check reg features to visually inspect the outputs.
 Visual inspection does not guarantee that all the results are the same.
-To ensure about all of the steps producing same results after the same preprocessing steps, you can use this tiny bash script TODO add file and link on your results folders to compare if they are identical or not based on their unique hash values. 
+To ensure about all of the steps producing same results after the same preprocessing steps, you can use this tiny bash script (to be adjusted without manual interaction --soon) add file and link on your results folders to compare if they are identical or not based on their unique hash values. 
 
 Instructions in checking hash values using bash script or one liner:
 
