@@ -1,12 +1,10 @@
 %-----------------------------------------------------------------------
-% Job saved on 09-Apr-2024 15:20:49 by cfg_util (rev $Rev: 7345 $)
-% Edited on 10-Apr-2024 03:30:37 by mel 
+% Job saved on 12-Apr-2024 17:51:02 by cfg_util (rev $Rev: 7345 $)
 % spm SPM - SPM12 (7771)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
-% Below paths are not full edit accordinly to your path file and SPM setup 
-%---
-root = './MoAEpilot.bids_script/'; % specify the directory where your data lives
+%%
+root = '/home/matay/spmbasics/data/output/MoAEpilot.bids_script/'; % specify the directory where your data lives
 sub = {'sub-01'}; % specify a list of subjects you want to process
 
 for i = 1:numel(sub)
@@ -16,14 +14,15 @@ for i = 1:numel(sub)
    func_dir = fullfile(root, sub{i}, 'func');
    
    anat = spm_select('FPList', anat_dir, '^sub-*.*_T1w.nii$'); % setting NaN to select all slices
-   func = spm_select('ExtFPList', func_dir, '^sub-*.*_task-auditory_bold.nii$', NaN); % setting NaN to select all slices
+   func = spm_select('ExtFPList', func_dir, '^sub-*.*_task-auditory_bold.nii$',1:84); % setting NaN to select all slices
    
    cd(func_dir)
    matlabbatch{1}.spm.spatial.realign.estwrite.data {1} = cellstr(func);
+   
    matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.quality = 0.9;
    matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.sep = 4;
    matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.fwhm = 5;
-   matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.rtm = 0;
+   matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.rtm = 1;
    matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.interp = 2;
    matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.wrap = [0 0 0];
    matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.weight = '';
@@ -40,37 +39,37 @@ for i = 1:numel(sub)
    matlabbatch{2}.spm.temporal.st.refslice = 32;
    matlabbatch{2}.spm.temporal.st.prefix = 'a';
    matlabbatch{3}.spm.spatial.coreg.estimate.ref(1) = cfg_dep('Realign: Estimate & Reslice: Mean Image', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','rmean'));
-   matlabbatch{3}.spm.spatial.coreg.estimate.source = {'.MoAEpilot.bids_script/sub-01/anat/sub-01_T1w.nii'};
+   matlabbatch{3}.spm.spatial.coreg.estimate.source = {'/home/matay/spmbasics/data/output/MoAEpilot.bids_script/sub-01/anat/sub-01_T1w.nii,1'};
    matlabbatch{3}.spm.spatial.coreg.estimate.other = {''};
    matlabbatch{3}.spm.spatial.coreg.estimate.eoptions.cost_fun = 'nmi';
    matlabbatch{3}.spm.spatial.coreg.estimate.eoptions.sep = [4 2];
    matlabbatch{3}.spm.spatial.coreg.estimate.eoptions.tol = [0.02 0.02 0.02 0.001 0.001 0.001 0.01 0.01 0.01 0.001 0.001 0.001];
-   matlabbatch{3}.spm.spatial.coreg.estimate.eoptions.fwhm = [5 5];
+   matlabbatch{3}.spm.spatial.coreg.estimate.eoptions.fwhm = [7 7];
    matlabbatch{4}.spm.spatial.preproc.channel.vols(1) = cfg_dep('Coregister: Estimate: Coregistered Images', substruct('.','val', '{}',{3}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','cfiles'));
    matlabbatch{4}.spm.spatial.preproc.channel.biasreg = 0.001;
    matlabbatch{4}.spm.spatial.preproc.channel.biasfwhm = 60;
    matlabbatch{4}.spm.spatial.preproc.channel.write = [0 1];
-   matlabbatch{4}.spm.spatial.preproc.tissue(1).tpm = {'./spm12/tpm/TPM.nii,1'};
+   matlabbatch{4}.spm.spatial.preproc.tissue(1).tpm = {'/home/matay/Downloads/spm12/tpm/TPM.nii,1'};
    matlabbatch{4}.spm.spatial.preproc.tissue(1).ngaus = 1;
    matlabbatch{4}.spm.spatial.preproc.tissue(1).native = [1 0];
    matlabbatch{4}.spm.spatial.preproc.tissue(1).warped = [0 0];
-   matlabbatch{4}.spm.spatial.preproc.tissue(2).tpm = {'./spm12/tpm/TPM.nii,2'};
+   matlabbatch{4}.spm.spatial.preproc.tissue(2).tpm = {'/home/matay/Downloads/spm12/tpm/TPM.nii,2'};
    matlabbatch{4}.spm.spatial.preproc.tissue(2).ngaus = 1;
    matlabbatch{4}.spm.spatial.preproc.tissue(2).native = [1 0];
    matlabbatch{4}.spm.spatial.preproc.tissue(2).warped = [0 0];
-   matlabbatch{4}.spm.spatial.preproc.tissue(3).tpm = {'./spm12/tpm/TPM.nii,3'};
+   matlabbatch{4}.spm.spatial.preproc.tissue(3).tpm = {'/home/matay/Downloads/spm12/tpm/TPM.nii,3'};
    matlabbatch{4}.spm.spatial.preproc.tissue(3).ngaus = 2;
    matlabbatch{4}.spm.spatial.preproc.tissue(3).native = [1 0];
    matlabbatch{4}.spm.spatial.preproc.tissue(3).warped = [0 0];
-   matlabbatch{4}.spm.spatial.preproc.tissue(4).tpm = {'./spm12/tpm/TPM.nii,4'};
+   matlabbatch{4}.spm.spatial.preproc.tissue(4).tpm = {'/home/matay/Downloads/spm12/tpm/TPM.nii,4'};
    matlabbatch{4}.spm.spatial.preproc.tissue(4).ngaus = 3;
    matlabbatch{4}.spm.spatial.preproc.tissue(4).native = [1 0];
    matlabbatch{4}.spm.spatial.preproc.tissue(4).warped = [0 0];
-   matlabbatch{4}.spm.spatial.preproc.tissue(5).tpm = {'./spm12/tpm/TPM.nii,5'};
+   matlabbatch{4}.spm.spatial.preproc.tissue(5).tpm = {'/home/matay/Downloads/spm12/tpm/TPM.nii,5'};
    matlabbatch{4}.spm.spatial.preproc.tissue(5).ngaus = 4;
    matlabbatch{4}.spm.spatial.preproc.tissue(5).native = [1 0];
    matlabbatch{4}.spm.spatial.preproc.tissue(5).warped = [0 0];
-   matlabbatch{4}.spm.spatial.preproc.tissue(6).tpm = {'./spm12/tpm/TPM.nii,6'};
+   matlabbatch{4}.spm.spatial.preproc.tissue(6).tpm = {'/home/matay/Downloads/spm12/tpm/TPM.nii,6'};
    matlabbatch{4}.spm.spatial.preproc.tissue(6).ngaus = 2;
    matlabbatch{4}.spm.spatial.preproc.tissue(6).native = [0 0];
    matlabbatch{4}.spm.spatial.preproc.tissue(6).warped = [0 0];
