@@ -52,9 +52,13 @@ SPM has a display and check reg features to visually inspect the outputs.
 Visual inspection does not guarantee that all the results are the same.
 To ensure about all of the steps producing same results after the same preprocessing steps, you can use this tiny bash script TODO add file and link on your results folders to compare if they are identical or not based on their unique hash values. 
 
-Instructions in checking hash values using bash script or one liner
+Instructions in checking hash values using bash script or one liner:
 
-1. In order to compare functional files for example, place ```checksummer.sh``` in  ```GUI/sub-01/func/``` folder. 
+First and foremost keep in mind that every  instruction in this repo can change and serves the purpose of  my learning and testing. 
+
+
+1. In order to compare functional files for example, place ```checksummer.sh``` in  ```GUI/sub-01/func/``` folder. It is also possible to add sub directories to bash, it is currently ommited.
+
 It will create an output and you can change output name accordingly.
 Repeat this process for the copies of your SCRIPT and BATCH folders.
 
@@ -66,9 +70,7 @@ should not be producing output.
 That means there is no difference between hash values and all your nifti files are the same.
 
 Note: 
-```sha256sum ./path/*.nii > file.sha256```
-
-where path being your desired folder should produce the same results.
+```sha256sum ./path/*.nii > file.sha256``` where path being your desired folder should produce the same results.
 
 If you notice anything needs to be edited or fixed, feel free to open an issue. 
 Thanks for your time and attention. :smile: 
