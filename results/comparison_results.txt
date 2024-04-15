@@ -1,0 +1,10 @@
+SHA256 sums are identical for /spmbasics/data/output/MoAEpilot_bids_batch and /spmbasics/data/output/MoAEpilot_bids_script
+SHA256 sums are different for /spmbasics/data/output/MoAEpilot_bids_batch and /spmbasics/data/MoAEpilot/MoAEpilot_shasums.txt
+SHA256 sums are different for /spmbasics/data/output/MoAEpilot_bids_script and /spmbasics/data/MoAEpilot/MoAEpilot_shasums.txt
+SHA256 sums are identical for /spmbasics/data/output/MoAEpilot_bids_batch and /spmbasics/data/output/MoAEpilot_bids_script
+SHA256 sums are different for /spmbasics/data/output/MoAEpilot_bids_batch and /spmbasics/data/MoAEpilot/MoAEpilot_shasums.txt
+SHA256 sums are different for /spmbasics/data/output/MoAEpilot_bids_script and /spmbasics/data/MoAEpilot/MoAEpilot_shasums.txt
+SHA256 sums are identical for /spmbasics/data/output/MoAEpilot_bids_batch and /spmbasics/data/output/MoAEpilot_bids_script
+SHA256 sums are different for /spmbasics/data/output/MoAEpilot_bids_batch and /spmbasics/data/MoAEpilot/MoAEpilot_shasums.txt
+SHA256 sums are different for /spmbasics/data/output/MoAEpilot_bids_script and /spmbasics/data/MoAEpilot/MoAEpilot_shasums.txt
+SHA256 sums are identical for /spmbasics/data/output/MoAEpilot_bids_batch and /spmbasics/data/output/MoAEpilot_bids_script
