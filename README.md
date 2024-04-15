@@ -50,21 +50,21 @@ Version of the software used:```MATLAB R2020b``` & ```SPM12```.
 
 SPM has a display and check reg features to visually inspect the outputs.
 Visual inspection does not guarantee that all the results are the same.
-To ensure about all of the steps producing same results after the same preprocessing steps, you can use this tiny (just *122* lines) bash script add file and link on your results folders to compare if they are identical or not based on their unique hash values. 
+To ensure about all of the steps producing same results after the same preprocessing steps, you can use this tiny (just *122* lines) bash script.
+This script basically lists and compares the ```sha25sum``` values of the designated folders containing nifti files.  
 
-Instructions in checking hash values using the provided bash script
+    Instructions in checking hash values using the provided bash script:
 
-The script is in ```/src``` folder, named as ```shasum_checker.sh``` 
+* The script is in ```/src``` folder, named as ```shasum_checker.sh``` 
 
-Important note regarding to the base folder: Base folder should contain the results from the [batch_step](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/introduction/) interface. It is recommended to run the ```shasum_checker.sh``` on it once it is finished and then lock the writing access using ``` chmod a=rx -R filename ``` for linux. 
-
-First and foremost keep in mind that every  instruction in this repo can change and serves the purpose of  my learning and testing. 
+* Important note regarding to the base folder: Base folder should contain the results from the [batch_step](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/introduction/) interface. It is recommended to run the ```shasum_checker.sh``` on it once it is finished and then lock the writing access using ``` chmod a=rx -R filename ``` for linux. 
 
 
-Make sure to save your results of preprocessing into different folders and direct their paths accordingly.
+* Make sure to save your results of preprocessing into different folders and direct their paths accordingly.
 
-For example, for results which obtained from  interface create a ```BATCH``` folder with the input data and make SPM run from there so it will create results of the  batch interface.
+* For example, for results which obtained from  interface create a ```BATCH``` folder with the input data and make SPM run from there so it will create results of the  batch interface.
 
+Lastly keep in mind that every  instruction in this repo can change and serves the purpose of  my learning and testing. 
 
 If you notice anything needs to be edited or fixed, feel free to open an issue. 
 Thanks for your time and attention. :smile: 
