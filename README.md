@@ -53,7 +53,7 @@ Visual inspection does not guarantee that all the results are the same.
 To ensure about all of the steps producing same results after the same preprocessing steps, you can use this tiny (just *122* lines) bash script.
 This script basically lists and compares the ```sha25sum``` values of the designated folders containing nifti files.  
 
-    Instructions in checking hash values using the provided bash script:
+Instructions to check hash values using the provided bash script:
 
 * The script is in ```/src``` folder, named as ```shasum_checker.sh``` 
 
