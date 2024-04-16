@@ -34,16 +34,16 @@ Version of the software used:```MATLAB R2020b``` & ```SPM12```.
  ## How to Reproduce Each Step
 
  *   For GUI interface, .mat files in the ```src/spm_mat``` must be loaded subsequently 
-      1. Load [realignment](src/spm_mat/realignment_batch.mat) first. Select your data from the menu by specifiying  ```Data> Session```
-      2. Then load [slice timing](src/spm_mat/slice_timing_batch.mat)
-      3. Follow by [coregistration](src/spm_mat/coregistration_batch.mat)
-      4. Continue by loading [segmentation](src/spm_mat/segmentation_batch.mat)
-      5. Load [normalization](src/spm_mat/normalisation_batch.mat)
-      6. Lastly [smoothing](src/spm_mat/smoothing_batch.mat)
+      1. Load [realignment_batch.m](src/batch_step/realignment_batch.m) first. Select your data from the menu by specifiying  ```Data> Session```
+      2. Then load [slice timing_batch.m](src/batch_step/slice_timing_batch.m)
+      3. Follow by [coregistration_batch.m](src/batch_step/coregistration_batch.m)
+      4. Continue by loading [segmentation_batch.m](src/batch_step/segmentation_batch.m)
+      5. Load [normalization_batch.m](src/batch_step/normalisation_batch.m)
+      6. Lastly [smoothing_batch.m](src/batch_step/smoothing_batch.m)
  *   For Batch interface
-     * Load [batch interface GUI mat](src/spm_mat/batch_preprocessing_batch.mat) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```
+     * Load [batch interface GUI](src/batch/preprocessing_batch.m) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```
  *   For Scripting 
- [preprocessing_dep.m ](src/preprocessing_dep.m) controls the job of [preprocessing_dep_job.m](src/preprocessing_dep_job.m) it is also possible to run the ```_job.m``` file separately.
+ [preprocessing_script.m ](src/preprocessing_dep.m) controls the job of [preprocessing_script_job.m](src/preprocessing_dep_job.m) it is also possible to run the ```_job.m``` file separately. Inthis example I edited and used ```preprocessing_script_job.m```
  Make sure to indicate correct file paths for these files.
 
 ## Further on reproducibility
