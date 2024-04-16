@@ -97,8 +97,10 @@ compare_shasums() {
 ##############################################################
 # Iterate over the REFERENCE folder to calculate shasums for all the nifti files'
 # THIS NEEDS TO BE DONE ONCE FOR THE REFERENCE FOLDER 
-# It is recommended to run it once then comment it out
-# lock your reference folder and reference txt to avooid overwriting
+# It is recommended to run it once then comment it out.
+# lock your reference folder and reference txt to avoid overwriting.
+# COMMENT OUT THE FOLLOWING 3 LINES OF THE CODE BELOW TO GET THE SHASUMS OF THE REFERENCE FOLDER 
+##############################################################
 #for ref_subfolder in "$REFERENCEDIR"; do
 #    calculate_shasums "$ref_subfolder"
 #done
