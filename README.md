@@ -95,10 +95,10 @@ Instructions to check hash values using the provided bash script:
 
 * For example, for results which obtained from  interface create a ```BATCH``` folder with the input data and make SPM run from there so it will create results of the  batch interface.
 
-* You can see the results of your shasum comparisons as a text file in the ```/results``` folder.
+* You can see the results of your shasum comparisons as a text file in the [/results](results/comparison_result.txt) folder.
 
 Lastly keep in mind that every  instruction in this repo can change and serves the purpose of  my learning and testing. 
 
 If you notice anything needs to be edited or fixed, feel free to open an issue. 
-I don't have an issue template right now.
+
 Thanks for your time and attention. :smile: 
