@@ -33,7 +33,10 @@ Version of the software used:```MATLAB R2020b``` & ```SPM12```.
  
  ## How to Reproduce Each Step
 For the scripts in this repo, to load the data all the relative paths aligned.
+
 First thing before the running the pipelines, in the first section defining the data root, the parameter should be adjusted accordingly ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
+
+To be able test the reproducibility afterwards, in your ```/data/``` folder keep three different copies of your original data, named according to the processes.  For example ```MoAEpilot_script``` should contain the files to run the script interface. The ```root``` should be edited beforehand according to the pipelines, to avoid overwriting.
 
 Bear in mind that for the sections containing the ```segmentation``` step  ```/home/user/Documents/MATLAB/spm12/tpm/TPM.nii``` should be adjusted with your username and the correct path of your SPM.
 
@@ -56,27 +59,29 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
       4. Continue by loading [segmentation_batch.m](src/batch_step/segmentation_batch.m)
       Segnentation script produce different segmentations  in the ```/anat/``` folder according to the predefined tissue probability maps. 
       5. Load [normalization_batch.m](src/batch_step/normalisation_batch.m) 
-      This script produces files starting with ```war.*```
+      This script produces files starting with ```war```
       6. Lastly [smoothing_batch.m](src/batch_step/smoothing_batch.m)
-      This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar.*```
+      This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar```
 
  *   For the Batch interface inside ```/batch``` folder ```preprocessing_batch_job.m``` should be run.   
      *  If you want to follow the GUI, steps below:
-     1. Load [batch interface GUI](src/batch/preprocessing_batch.m) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```. 
+     1. Load [batch interface GUI](src/batch/preprocessing_batch.m) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```. And the rest is the same with the [tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/).
+
      2. The rest of the script should run automatically using the relative paths of your data.
      3. If not, follow the steps in the [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/) to define paths of your anatomical data.
      * If you want to run the script just adjust the path of your data the ```root``` section and your ```TPM.nii``` for segmentation
 
  *   For Scripting 
     
-     * [preprocessing_script.m ](src/preprocessing_dep.m) controls the job of [preprocessing_script_job.m](src/preprocessing_dep_job.m) it is also possible to run the ```_job.m``` file separately. Inthis example I edited and used ```preprocessing_script_job.m```
- Make sure to indicate correct file paths for these files.
+     * [preprocessing_script.m ](src/preprocessing_dep.m) controls the job of [preprocessing_script_job.m](src/preprocessing_dep_job.m) normally. 
+     In this tutorial I only edited and used  [preprocessing_script_job.m](src/preprocessing_dep_job.m) solely.
+     * As a rule of the thumb make sure to indicate correct file paths for these files.
 
 ## Further on reproducibility
 
 SPM has a display and check reg features to visually inspect the outputs.
 Visual inspection does not guarantee that all the results are the same.
-To ensure about all of the steps producing same results after the same preprocessing steps, you can use this tiny (just *122* lines) bash script.
+To ensure about all of the steps producing same results after the same preprocessing steps, you can use [this](/src/shasum_checker.sh) *bash* script.
 This script basically lists and compares the ```sha25sum``` values of the designated folders containing nifti files.  
 
 Instructions to check hash values using the provided bash script:
@@ -86,11 +91,14 @@ Instructions to check hash values using the provided bash script:
 * Important note regarding to the base folder: Base folder should contain the results from the [batch_step](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/introduction/) interface. It is recommended to run the ```shasum_checker.sh``` on it once it is finished and then lock the writing access using ``` chmod a=rx -R filename ``` for linux. 
 
 
-* Make sure to save your results of preprocessing into different folders and direct their paths accordingly.
+* <u> REMINDER</u>: Make sure to save your results of preprocessing into different folders and direct their paths accordingly.
 
 * For example, for results which obtained from  interface create a ```BATCH``` folder with the input data and make SPM run from there so it will create results of the  batch interface.
+
+* You can see the results of your shasum comparisons as a text file in the ```/results``` folder.
 
 Lastly keep in mind that every  instruction in this repo can change and serves the purpose of  my learning and testing. 
 
 If you notice anything needs to be edited or fixed, feel free to open an issue. 
+I don't have an issue template right now.
 Thanks for your time and attention. :smile: 
