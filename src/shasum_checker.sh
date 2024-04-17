@@ -74,25 +74,17 @@ calculate_shasums() {
 }
 
 compare_shasums() {
-    # first director to compare
-    local dir1="$1"
-    # second directory to compare
-    local dir2="$2"
-    # output folder to store the comparison result
-    local output_file="$RESULTSDIR/comparison_results.txt"
-
-    # Get the SHA256 sums of files in the first directory
-    shasums_dir1=($(find "$dir1" -type f -name "*$file_extension" -exec sha256sum {} + | awk '{print $1}' | sort))
-
-    # Get the SHA256 sums of files in the second directory
-    shasums_dir2=($(find "$dir2" -type f -name "*$file_extension" -exec sha256sum {} + | awk '{print $1}' | sort))
-
-    # Compare the arrays of SHA256 sums if they are identical or not 
-    if [ "${shasums_dir1[*]}" == "${shasums_dir2[*]}" ]; then
-        echo "SHA256 sums are identical for $dir1 and $dir2" >> "$output_file"
-    else
-        echo "SHA256 sums are different for $dir1 and $dir2" >> "$output_file"
-    fi
+# loading text files  
+local output_file="$RESULTSDIR/comparison_result.txt"
+local reference="$1"
+local file1="$2"
+# compare the loaded text files below
+if cmp -s "$reference_file" "$file1";
+then
+   echo "SHA256sums are identical for $file1 and $reference_file" >> "$output_file"
+else
+   echo "SHA256sums are not identical for $file1 and $reference_file" >> "$output_file"
+fi
 }
 ##############################################################
 # Iterate over the REFERENCE folder to calculate shasums for all the nifti files'
@@ -107,18 +99,22 @@ compare_shasums() {
 ##############################################################
 
 
-# TO COMPARE THEM WITH THE REFERENCEDIR
+# TO CALCULATE THE SHASUMS
 # Iterate over BATCH folder to calculate shasums for all nifti files'
 for batch_subfolder in "$BATCHDIR"; do
     calculate_shasums "$batch_subfolder"
-    compare_shasums "$batch_subfolder" "$REFERENCEDIR/MoAEpilot_shasums.txt"
 done
 
 # Iterate over SCRIPT folder to calculate shasums for all nifti files'
 for script_subfolder in "$SCRIPTDIR"; do
     calculate_shasums "$script_subfolder"
-    compare_shasums "$script_subfolder" "$REFERENCEDIR/MoAEpilot_shasums.txt"
 done
 
-# TO COMPARE THEM WITH EACH OTHER
-compare_shasums "$BATCHDIR" "$SCRIPTDIR"
+# TO COMPARE THE SHASUMS WITH EACH OTHER
+reference_file="$DATADIR/MoAEpilot_shasums.txt"
+batch_file="$DATADIR/MoAEpilot_batch_shasums.txt"
+script_file="$DATADIR/MoAEpilot_script_shasums.txt"
+
+compare_shasums "$batch_file" "$reference_file"
+compare_shasums "$script_file" "$reference_file"
+compare_shasums "$batch_file" "$script_file"
