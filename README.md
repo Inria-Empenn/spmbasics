@@ -10,12 +10,6 @@
 
    * [Overview](#Overview)
 
-   * [data](https://github.com/mselimata/spmbasics/tree/main/data#readme)
-   * [figures](https://github.com/mselimata/spmbasics/blob/main/figures/README.md)
-
-   *  [code](https://github.com/mselimata/spmbasics/tree/main/src)
-
-   * [results](https://github.com/mselimata/spmbasics/blob/main/results/README.md)
 
    * [How to reproduce each step](#How-to-reproduce-each-step)
 
@@ -23,7 +17,7 @@
 
 ## Overview
 
-This repo contains my reproduction of the SPM12 tutorials with MATLAB. 
+This repo contains my reproduction of the SPM12 tutorials with MATLAB and they will be reffered as [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/introduction/) from now on.  You can download the data used in tis tutorial from [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/MoAEpilot/MoAEpilot.bids.zip). 
 You can find the code in [src](https://github.com/mselimata/spmbasics/tree/main/src) folder.
 
 
