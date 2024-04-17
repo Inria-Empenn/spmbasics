@@ -32,18 +32,44 @@ Version of the software used:```MATLAB R2020b``` & ```SPM12```.
 
  
  ## How to Reproduce Each Step
+For the scripts in this repo, to load the data all the relative paths aligned.
+First thing before the running the pipelines, in the first section defining the data root, the parameter should be adjusted accordingly ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
 
- *   For GUI interface, .mat files in the ```src/spm_mat``` must be loaded subsequently 
-      1. Load [realignment_batch.m](src/batch_step/realignment_batch.m) first. Select your data from the menu by specifiying  ```Data> Session```
-      2. Then load [slice timing_batch.m](src/batch_step/slice_timing_batch.m)
-      3. Follow by [coregistration_batch.m](src/batch_step/coregistration_batch.m)
+Bear in mind that for the sections containing the ```segmentation``` step  ```/home/user/Documents/MATLAB/spm12/tpm/TPM.nii``` should be adjusted with your username and the correct path of your SPM.
+
+Now steps of running these scripts:
+All the scripts meant to run without loading the gui and all the dependencies are defined and can be adjusted as mentioned earlier.
+
+To avoid redundancies if you want to use the GUI interface solely, I recommend to follow the [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/realignment/). 
+If you want to load the scripts in this repo using the GUI interface it is possible and could be done by selecting data folder in similar methodology in the original tutorial.
+Below I will be explaining running all as a script.
+
+To be able to run SPM, it should be added to the path in MATLAB via ```addpath /path/of/your/spm12/```. 
+ *   For the GUI interface, ```.m``` files in the folders ```src/batch_step``` and they must be run subsequently. 
+      1. Load [realignment_batch.m](src/batch_step/realignment_batch.m) first. 
+      Then run the script. It should produce a file starting with ```mean``` and ```r```. 
+      
+      2. Then load [slice timing_batch.m](src/batch_step/slice_timing_batch.m) 
+      Run the script. It should produce a file starting with and ```ar```. 
+
+      3. Follow by [coregistration_batch.m](src/batch_step/coregistration_batch.m).  Run the script and your anatomical images now be coregistered to the ```mean``` that we obtained at the realignment step. Deformation field is generated under ```/anat``` folder, with the name of ```y_sub-01_T1w.nii```
       4. Continue by loading [segmentation_batch.m](src/batch_step/segmentation_batch.m)
-      5. Load [normalization_batch.m](src/batch_step/normalisation_batch.m)
+      Segnentation script produce different segmentations  in the ```/anat/``` folder according to the predefined tissue probability maps. 
+      5. Load [normalization_batch.m](src/batch_step/normalisation_batch.m) 
+      This script produces files starting with ```war.*```
       6. Lastly [smoothing_batch.m](src/batch_step/smoothing_batch.m)
- *   For Batch interface
-     * Load [batch interface GUI](src/batch/preprocessing_batch.m) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```
+      This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar.*```
+
+ *   For the Batch interface inside ```/batch``` folder ```preprocessing_batch_job.m``` should be run.   
+     *  If you want to follow the GUI, steps below:
+     1. Load [batch interface GUI](src/batch/preprocessing_batch.m) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```. 
+     2. The rest of the script should run automatically using the relative paths of your data.
+     3. If not, follow the steps in the [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/) to define paths of your anatomical data.
+     * If you want to run the script just adjust the path of your data the ```root``` section and your ```TPM.nii``` for segmentation
+
  *   For Scripting 
- [preprocessing_script.m ](src/preprocessing_dep.m) controls the job of [preprocessing_script_job.m](src/preprocessing_dep_job.m) it is also possible to run the ```_job.m``` file separately. Inthis example I edited and used ```preprocessing_script_job.m```
+    
+     * [preprocessing_script.m ](src/preprocessing_dep.m) controls the job of [preprocessing_script_job.m](src/preprocessing_dep_job.m) it is also possible to run the ```_job.m``` file separately. Inthis example I edited and used ```preprocessing_script_job.m```
  Make sure to indicate correct file paths for these files.
 
 ## Further on reproducibility
