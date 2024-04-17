@@ -17,7 +17,7 @@
 
 ## Overview
 
-This repo contains my reproduction of the SPM12 tutorials with MATLAB and they will be reffered as [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/introduction/) from now on.  You can download the data used in tis tutorial from [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/MoAEpilot/MoAEpilot.bids.zip). 
+This repo contains my reproduction of the SPM12 (release 7771) tutorials with MATLAB R020b and they will be reffered as [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/introduction/) from now on.  You can download the data used in tis tutorial from [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/MoAEpilot/MoAEpilot.bids.zip). 
 You can find the code in [src](https://github.com/mselimata/spmbasics/tree/main/src) folder.
 
 

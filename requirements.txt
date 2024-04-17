@@ -1,4 +1,4 @@
 # The softwares Matlab and SPM12 needs to be downloaded separately.
 
-SPM12
+SPM12 (release 7771) # can be downloaded https://www.fil.ion.ucl.ac.uk/spm/software/download/
 MATLAB-R2020b #to be able to run the scripts and call SPM12
