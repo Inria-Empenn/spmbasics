@@ -1,3 +1,3 @@
 data/*
-src/first_level_analysis/calculations/*
-src/first_level_analysis/trial1/*
+src/first_level_analysis/*
+src/event_related/*
