@@ -3,6 +3,7 @@
 % spm SPM - SPM12 (7771)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
+
 matlabbatch{1}.spm.stats.fmri_spec.dir = {'/home/matay/spmbasics/src/first_level_analysis'};
 matlabbatch{1}.spm.stats.fmri_spec.timing.units = 'scans';
 matlabbatch{1}.spm.stats.fmri_spec.timing.RT = 7;
