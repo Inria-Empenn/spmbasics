@@ -4,7 +4,7 @@
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
 spmDir = fullfile(userpath, 'spm12');
-
+spmwhere = spm_fullfile() 
 home = getenv('HOME');
 user = getenv('USER');
 
@@ -18,11 +18,14 @@ anat_dir = fullfile(root, sub, 'anat'); % this combines the root with a specific
  % find the structural file
 anat = spm_select('FPList', anat_dir, '^sub-01_T1w.nii$'); % this will return the full path (FP) to the T1 file from the anat directory
 
+tpm_dir = fullfile(spmwhere, 'tpm'); 
+% {[tpm_dir filesep 'TPM.nii,' num2str(1)]}
+
 matlabbatch{1}.spm.spatial.preproc.channel.vols(1) = cellstr(anat);
 matlabbatch{1}.spm.spatial.preproc.channel.biasreg = 0.001;
 matlabbatch{1}.spm.spatial.preproc.channel.biasfwhm = 60;
 matlabbatch{1}.spm.spatial.preproc.channel.write = [0 1];
-matlabbatch{1}.spm.spatial.preproc.tissue(1).tpm(1) = {'/home/user/Documents/MATLAB/spm12/tpm/TPM.nii,1'}; %needs to be edited accordingly
+matlabbatch{1}.spm.spatial.preproc.tissue(1).tpm(1) = {[ tpm_dir '/TPM.nii,1']} ; %nthis needs to work and needs to be tested
 matlabbatch{1}.spm.spatial.preproc.tissue(1).ngaus = 1;
 matlabbatch{1}.spm.spatial.preproc.tissue(1).native = [1 0];
 matlabbatch{1}.spm.spatial.preproc.tissue(1).warped = [0 0];
