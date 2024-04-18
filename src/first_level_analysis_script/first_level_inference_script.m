@@ -7,7 +7,7 @@ home = getenv('HOME');
 
 % path of your data file
 
-script_path = fullfile(home, 'spmbasics', '/src/first_level_analysis_guic');
+script_path = fullfile(home, 'spmbasics', '/src/first_level_analysis_script');
 
 disp(['Starting preprocessing']);
 matlabbatch{1}.spm.stats.con.spmmat = cellstr(fullfile(script_path,'SPM.mat'));
@@ -24,7 +24,7 @@ matlabbatch{2}.spm.stats.results.conspec.threshdesc = 'FWE';
 matlabbatch{2}.spm.stats.results.conspec.thresh = 0.05;
 matlabbatch{2}.spm.stats.results.conspec.extent = 0;
 matlabbatch{2}.spm.stats.results.print = false;
-
+% Inference should be edited accordingly with the GUI, including overlays
 % Rendering
 %--------------------------------------------------------------------------
 matlabbatch{3}.spm.util.render.display.rendfile = {fullfile(spm('Dir'),'canonical','cortex_20484.surf.gii')};

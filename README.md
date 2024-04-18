@@ -38,8 +38,10 @@ For the scripts in this repo, to load the data all the relative paths aligned.
 
 First thing before the running the pipelines, add SPM to your path in MATLAB, because the scripts are calling SPM.
 
-At all the scripts there  section defining the data root. The parameter should be adjusted accordingly including true name of your data.  For the MoAEpilot folder under  ```/data/MoAEpilot``` the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
-If you edit the folder names please keep the edits in the code as well. 
+At all the scripts there  section defining the data root. The parameter should be adjusted accordingly including true name of your data.  Here is an example setting showing the MoAEpilot folder under  ```/data/MoAEpilot``` the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
+
+For the face fMRI data ```root = fullfile(home, 'spmbasics', '/data/face_rep)```.
+If you edit the folder names keep the edits in the code as well. 
 Your folder structure should look like the example below:
 
 ![folder_basics](/figures/folder_basics.png)
@@ -56,7 +58,7 @@ If you want to load the scripts in this repo using the GUI interface it is possi
 Below I will be explaining running all as a script.
 
 To be able to run SPM, it should be added to the path in MATLAB via ```addpath /path/of/your/spm12/```. 
-### 1. GUI interface:
+#### 1. GUI interface:
  *   All the, ```.m``` files in the folder ```src/batch_step``` and they must be run subsequently. 
       1. Load [realignment_batch.m](src/batch_step/realignment_batch.m) first. 
       Then run the script. It should produce a file starting with ```mean``` and ```r```. 
@@ -71,7 +73,7 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
       This script produces files starting with ```war```
       6. Lastly [smoothing_batch.m](src/batch_step/smoothing_batch.m)
       This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar```
-### 2. Batch interface
+#### 2. Batch interface
  *   For the Batch interface inside ```/batch``` folder ```preprocessing_batch_job.m``` should be run.   
      *  If you want to follow the GUI, steps below:
      1. Load the [batch interface GUI](src/batch/preprocessing_batch.m) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```. And the rest is the same with the [tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/).
@@ -80,7 +82,7 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
      3. If not, follow the steps in the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/) to define paths of your anatomical data.
      * If you want to run the script just adjust the path of your data the ```root``` section and your ```TPM.nii``` for segmentation
 
-### 3. For Scripting 
+#### 3. For Scripting 
  * To be able to run the scripting, in ```/script``` folder, ```/preprocessing_script_job.m``` is the main file and it should be run.
    * In this tutorial I only edited and used  ```preprocessing_script_job.m``` solely.
    
@@ -89,8 +91,17 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
    * As a rule of the thumb make sure to indicate correct file paths for these files as mention at the very beginning of the tutorial.
 
 ### A. Block Design fMRI First Level Analysis
+Relative path settings are the same as [Block Design fMRI Preprocessing](Block_Design_fMRI_Preprocessing) for the ```first_level_analysis.sh``` The rest of the two scripts are depending on the resulting ```SPM.mat``` under the ```/first_level_analysis_script``` folder.
 
-
+#### 1. GUI interface: 
+* Run ```first_level_specification_gui.m``` firstly it will form the ```SPM.mat``` file at the ```/first_level_analysis_gui``` folder. And then run ```first_level_estimation_gui.m```
+In the [original first level analysis tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/modelling/block_design/) the plotting and overlay steps is not saved or exported so that part should be followed from there.
+#### 2. Script interface:
+* All the scripts should be loaded subsequently,
+         
+   1. ```first_level_specification_script.m``` produces the ```SPM.mat file in the ```first_level_specification_script``` folder. The following scripts are taking this file as an input.
+   2. The ```first_level_estimation_script.m``` does the GLM estimation.
+   3. ```first_level_inference_script.m``` does the rendering. [TODO] This part needs to be edited to fit the outputs of the GUI interface, currently it is not producing plots or everlays ebsides rendering.
 ### B. Event-related fMRI
 
 
