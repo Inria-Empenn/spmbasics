@@ -11,4 +11,8 @@ src/first_level_analysis/SPM.mat
 src/first_level_analysis/job_mat/*
 src/first_level_analysis/calculations/*
 src/first_level_analysis/trial1/*
-src/event_related/*
+src/event_related/preprocessing/*
+src/event_related/parametric/*
+src/event_related/categorical/*
+src/event_related/bayesian/*
+
