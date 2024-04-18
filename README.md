@@ -35,7 +35,7 @@ At all the scripts there  section defining the data root. The parameter should b
 If you edit the folder names please keep the edits in the code as well. 
 Your folder structure should look like the example below:
 
-![<img src="folder_basics.png" width="100"/>](/figures/folder_basics.png)
+![folder_basics](/figures/folder_basics.png)
 
 To be able test the reproducibility afterwards, in your ```/data/``` folder keep three different copies of your original data, named according to the processes.  For example ```MoAEpilot_script``` should contain the files to run the script interface. The ```root``` should be edited beforehand according to the pipelines, to avoid overwriting.
 
