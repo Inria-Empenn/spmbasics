@@ -13,11 +13,11 @@
 
    * [How to reproduce each step](#How-to-reproduce-each-step)
 
-      * [Block Design fMRI Preprocessing]( Block_Design_fMRI_Preprocessing)
+      A. [Block Design fMRI Preprocessing]( Block_Design_fMRI_Preprocessing)
       
-      * [Block Design fMRI First Level Analysis](Block_Design_fMRI_First_Level_Analysis)
+      B. [Block Design fMRI First Level Analysis](Block_Design_fMRI_First_Level_Analysis)
 
-      * [Event-related fMRI](Event_related_fMRI)
+      C. [Event-related fMRI](Event_related_fMRI)
 
    * [Further on reproducibility](#Further-on-reproducibility)
 
@@ -30,10 +30,6 @@ This repo contains my reproduction of the SPM12  tutorials with MATLAB R020b and
 You can find the code in [src](https://github.com/mselimata/spmbasics/tree/main/src) folder.
 
 
-
-
-
- 
  ## How to Reproduce Each Step
 
 ### Block Design fMRI Preprocessing
@@ -91,6 +87,12 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
    * NOTE: In the ideal setting, ```preprocessing_script.m``` controls the job of [preprocessing_script_job.m](src/preprocessing_job.m), but currently ```preprocessing_script.m``` is redundant so does not exist in this repo.
    
    * As a rule of the thumb make sure to indicate correct file paths for these files as mention at the very beginning of the tutorial.
+
+### A. Block Design fMRI First Level Analysis
+
+
+### B. Event-related fMRI
+
 
 ## Further on reproducibility
 

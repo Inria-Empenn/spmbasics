@@ -3,6 +3,11 @@
 % spm SPM - SPM12 (7771)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
-matlabbatch{1}.spm.stats.fmri_est.spmmat = {'/home/matay/spmbasics/src/first_level_analysis/SPM.mat'};
+home = getenv('HOME');
+script_path = fullfile(home, 'spmbasics', '/src/first_level_analysis_gui');
+disp(['Starting preprocessing']);
+matlabbatch{1}.spm.stats.fmri_est.spmmat = cellstr(fullfile(script_path,'SPM.mat'));
 matlabbatch{1}.spm.stats.fmri_est.write_residuals = 0;
 matlabbatch{1}.spm.stats.fmri_est.method.Classical = 1;
+disp(['Completed preprocessing']) 
+spm_jobman('run',matlabbatch) 
