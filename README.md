@@ -28,9 +28,12 @@ Version of the software used:```MATLAB R2020b``` & ```SPM12```.
  ## How to Reproduce Each Step
 For the scripts in this repo, to load the data all the relative paths aligned.
 
-First thing before the running the pipelines, in the first section defining the data root, the parameter should be adjusted accordingly including true name of your data for the MoAEpilot folder the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
+
+First thing before the running the pipelines, add SPM to your path in MATLAB, because the scripts are calling SPM.
+
+At all the scripts there  section defining the data root. The parameter should be adjusted accordingly including true name of your data.  For the MoAEpilot folder under  ```/data/MoAEpilot``` the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
 If you edit the folder names please keep the edits in the code as well. 
-Your folder structure should look like below:
+Your folder structure should look like the example below:
 
 ![<img src="folder_basics.png" width="100"/>](/figures/folder_basics.png)
 
