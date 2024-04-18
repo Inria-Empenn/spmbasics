@@ -103,8 +103,18 @@ In the [original first level analysis tutorial](https://www.fil.ion.ucl.ac.uk/sp
    2. The ```first_level_estimation_script.m``` does the GLM estimation.
    3. ```first_level_inference_script.m``` does the rendering. [TODO] This part needs to be edited to fit the outputs of the GUI interface, currently it is not producing plots or everlays ebsides rendering.
 ### B. Event-related fMRI
-
-
+#### 1. Preprocessing
+*  GUI interface
+* Script interface
+#### 2. Parametric
+*  GUI interface
+* Script interface
+#### 3. Categorical
+*  GUI interface
+* Script interface
+#### 4. Bayesian 
+*  GUI interface
+* Script interface
 ## Further on reproducibility
 
 SPM has a display and check reg features to visually inspect the outputs.
