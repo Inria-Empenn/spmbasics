@@ -13,19 +13,30 @@
 
    * [How to reproduce each step](#How-to-reproduce-each-step)
 
+      * [Block Design fMRI Preprocessing]( Block_Design_fMRI_Preprocessing)
+      
+      * [Block Design fMRI First Level Analysis](Block_Design_fMRI_First_Level_Analysis)
+
+      * [Event-related fMRI](Event_related_fMRI)
+
    * [Further on reproducibility](#Further-on-reproducibility)
 
 ## Overview
 
-This repo contains my reproduction of the SPM12 (release 7771) tutorials with MATLAB R020b and they will be reffered as [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/introduction/) from now on.  You can download the data used in tis tutorial from [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/MoAEpilot/MoAEpilot.bids.zip). 
+
+Version of the software used:```MATLAB R2020b``` & ```SPM12 (release 7771)```.
+
+This repo contains my reproduction of the SPM12  tutorials with MATLAB R020b and they will be reffered as [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/) from now on. You can download the data used for preprocessing in this tutorial from [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/MoAEpilot/MoAEpilot.bids.zip). And the data used for event related fMRI analysis [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/face_rep/face_rep.zip)
 You can find the code in [src](https://github.com/mselimata/spmbasics/tree/main/src) folder.
 
 
-Version of the software used:```MATLAB R2020b``` & ```SPM12```.
+
 
 
  
  ## How to Reproduce Each Step
+
+### Block Design fMRI Preprocessing
 For the scripts in this repo, to load the data all the relative paths aligned.
 
 
@@ -44,7 +55,7 @@ Bear in mind that for the sections containing the ```segmentation``` step  ```/h
 Now steps of running these scripts:
 All the scripts meant to run without loading the gui and all the dependencies are defined and can be adjusted as mentioned earlier.
 
-To avoid redundancies if you want to use the GUI interface solely, I recommend to follow the [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/realignment/). 
+To avoid redundancies if you want to use the GUI interface solely, I recommend to follow the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/realignment/). 
 If you want to load the scripts in this repo using the GUI interface it is possible and could be done by selecting data folder in similar methodology in the original tutorial.
 Below I will be explaining running all as a script.
 
@@ -70,7 +81,7 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
      1. Load the [batch interface GUI](src/batch/preprocessing_batch.m) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```. And the rest is the same with the [tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/).
 
      2. The rest of the script should run automatically using the relative paths of your data.
-     3. If not, follow the steps in the [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/) to define paths of your anatomical data.
+     3. If not, follow the steps in the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/) to define paths of your anatomical data.
      * If you want to run the script just adjust the path of your data the ```root``` section and your ```TPM.nii``` for segmentation
 
 ### 3. For Scripting 
