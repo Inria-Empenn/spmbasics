@@ -1,0 +1,569 @@
+%-----------------------------------------------------------------------
+% Job saved on 18-Apr-2024 14:54:48 by cfg_util (rev $Rev: 7345 $)
+% spm SPM - SPM12 (7771)
+% cfg_basicio BasicIO - Unknown
+%-----------------------------------------------------------------------
+matlabbatch{1}.spm.stats.fmri_spec.dir = {'/home/matay/spmbasics/src/event_related/parametric'};
+matlabbatch{1}.spm.stats.fmri_spec.timing.units = 'scans';
+matlabbatch{1}.spm.stats.fmri_spec.timing.RT = 2;
+matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t = 24;
+matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t0 = 12;
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.scans = {
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0006.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0007.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0008.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0009.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0010.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0011.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0012.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0013.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0014.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0015.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0016.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0017.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0018.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0019.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0020.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0021.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0022.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0023.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0024.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0025.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0026.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0027.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0028.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0029.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0030.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0031.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0032.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0033.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0034.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0035.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0036.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0037.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0038.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0039.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0040.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0041.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0042.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0043.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0044.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0045.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0046.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0047.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0048.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0049.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0050.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0051.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0052.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0053.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0054.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0055.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0056.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0057.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0058.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0059.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0060.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0061.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0062.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0063.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0064.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0065.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0066.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0067.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0068.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0069.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0070.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0071.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0072.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0073.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0074.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0075.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0076.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0077.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0078.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0079.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0080.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0081.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0082.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0083.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0084.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0085.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0086.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0087.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0088.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0089.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0090.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0091.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0092.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0093.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0094.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0095.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0096.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0097.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0098.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0099.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0100.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0101.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0102.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0103.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0104.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0105.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0106.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0107.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0108.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0109.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0110.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0111.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0112.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0113.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0114.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0115.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0116.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0117.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0118.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0119.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0120.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0121.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0122.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0123.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0124.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0125.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0126.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0127.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0128.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0129.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0130.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0131.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0132.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0133.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0134.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0135.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0136.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0137.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0138.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0139.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0140.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0141.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0142.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0143.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0144.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0145.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0146.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0147.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0148.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0149.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0150.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0151.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0152.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0153.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0154.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0155.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0156.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0157.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0158.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0159.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0160.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0161.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0162.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0163.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0164.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0165.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0166.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0167.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0168.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0169.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0170.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0171.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0172.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0173.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0174.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0175.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0176.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0177.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0178.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0179.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0180.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0181.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0182.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0183.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0184.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0185.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0186.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0187.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0188.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0189.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0190.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0191.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0192.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0193.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0194.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0195.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0196.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0197.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0198.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0199.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0200.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0201.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0202.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0203.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0204.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0205.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0206.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0207.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0208.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0209.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0210.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0211.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0212.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0213.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0214.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0215.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0216.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0217.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0218.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0219.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0220.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0221.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0222.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0223.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0224.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0225.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0226.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0227.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0228.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0229.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0230.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0231.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0232.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0233.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0234.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0235.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0236.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0237.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0238.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0239.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0240.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0241.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0242.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0243.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0244.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0245.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0246.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0247.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0248.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0249.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0250.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0251.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0252.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0253.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0254.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0255.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0256.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0257.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0258.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0259.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0260.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0261.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0262.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0263.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0264.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0265.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0266.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0267.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0268.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0269.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0270.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0271.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0272.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0273.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0274.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0275.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0276.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0277.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0278.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0279.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0280.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0281.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0282.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0283.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0284.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0285.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0286.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0287.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0288.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0289.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0290.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0291.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0292.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0293.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0294.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0295.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0296.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0297.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0298.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0299.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0300.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0301.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0302.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0303.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0304.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0305.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0306.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0307.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0308.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0309.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0310.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0311.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0312.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0313.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0314.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0315.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0316.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0317.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0318.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0319.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0320.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0321.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0322.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0323.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0324.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0325.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0326.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0327.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0328.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0329.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0330.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0331.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0332.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0333.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0334.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0335.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0336.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0337.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0338.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0339.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0340.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0341.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0342.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0343.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0344.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0345.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0346.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0347.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0348.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0349.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0350.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0351.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0352.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0353.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0354.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0355.img,1'
+                                                 '/home/matay/spmbasics/data/face_rep/RawEPI/swarsM03953_0005_0356.img,1'
+                                                 };
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).name = 'N1';
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).onset = [6.74996666666667
+                                                         15.7499666666667
+                                                         17.9999666666667
+                                                         26.9999666666667
+                                                         29.2499666666667
+                                                         31.4999666666667
+                                                         35.9999666666667
+                                                         42.7499666666667
+                                                         65.2499666666667
+                                                         67.4999666666667
+                                                         74.2499666666667
+                                                         92.2499666666667
+                                                         112.499966666667
+                                                         119.249966666667
+                                                         123.749966666667
+                                                         125.999966666667
+                                                         137.249966666667
+                                                         141.749966666667
+                                                         143.999966666667
+                                                         146.249966666667
+                                                         155.249966666667
+                                                         159.749966666667
+                                                         161.999966666667
+                                                         164.249966666667
+                                                         204.749966666667
+                                                         238.499966666667];
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).duration = 0;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).tmod = 0;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).pmod = struct('name', {}, 'param', {}, 'poly', {});
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).orth = 1;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(2).name = 'N2';
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(2).onset = [13.4999666666667
+                                                         40.4999666666667
+                                                         47.2499666666667
+                                                         56.2499666666667
+                                                         89.9999666666667
+                                                         94.4999666666667
+                                                         96.7499666666667
+                                                         134.999966666667
+                                                         148.499966666667
+                                                         184.499966666667
+                                                         191.249966666667
+                                                         202.499966666667
+                                                         215.999966666667
+                                                         233.999966666667
+                                                         236.249966666667
+                                                         242.999966666667
+                                                         245.249966666667
+                                                         256.499966666667
+                                                         260.999966666667
+                                                         281.249966666667
+                                                         290.249966666667
+                                                         303.749966666667
+                                                         310.499966666667
+                                                         319.499966666667
+                                                         339.749966666667
+                                                         341.999966666667];
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(2).duration = 0;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(2).tmod = 0;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(2).pmod.name = 'Lag';
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(2).pmod.param = [3
+                                                              3
+                                                              10
+                                                              10
+                                                              14
+                                                              1
+                                                              23
+                                                              3
+                                                              3
+                                                              37
+                                                              10
+                                                              42
+                                                              61
+                                                              33
+                                                              27
+                                                              61
+                                                              28
+                                                              22
+                                                              39
+                                                              37
+                                                              62
+                                                              37
+                                                              20
+                                                              54
+                                                              34
+                                                              50];
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(2).pmod.poly = 2;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(2).orth = 1;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(3).name = 'F1';
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(3).onset = [-3.33333333333366e-05
+                                                         2.24996666666667
+                                                         8.99996666666667
+                                                         11.2499666666667
+                                                         22.4999666666667
+                                                         44.9999666666667
+                                                         51.7499666666667
+                                                         60.7499666666667
+                                                         62.9999666666667
+                                                         76.4999666666667
+                                                         78.7499666666667
+                                                         85.4999666666667
+                                                         98.9999666666667
+                                                         101.249966666667
+                                                         103.499966666667
+                                                         116.999966666667
+                                                         130.499966666667
+                                                         150.749966666667
+                                                         170.999966666667
+                                                         188.999966666667
+                                                         227.249966666667
+                                                         265.499966666667
+                                                         283.499966666667
+                                                         285.749966666667
+                                                         287.999966666667
+                                                         344.249966666667];
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(3).duration = 0;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(3).tmod = 0;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(3).pmod = struct('name', {}, 'param', {}, 'poly', {});
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(3).orth = 1;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).name = 'F2';
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).onset = [33.7499666666667
+                                                         49.4999666666667
+                                                         105.749966666667
+                                                         152.999966666667
+                                                         157.499966666667
+                                                         168.749966666667
+                                                         177.749966666667
+                                                         179.999966666667
+                                                         182.249966666667
+                                                         197.999966666667
+                                                         222.749966666667
+                                                         240.749966666667
+                                                         254.249966666667
+                                                         267.749966666667
+                                                         269.999966666667
+                                                         274.499966666667
+                                                         294.749966666667
+                                                         299.249966666667
+                                                         301.499966666667
+                                                         314.999966666667
+                                                         317.249966666667
+                                                         326.249966666667
+                                                         332.999966666667
+                                                         335.249966666667
+                                                         337.499966666667
+                                                         346.499966666667];
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).duration = 0;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).tmod = 0;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).pmod.name = 'Lag';
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).pmod.param = [11
+                                                              14
+                                                              2
+                                                              47
+                                                              36
+                                                              18
+                                                              37
+                                                              59
+                                                              11
+                                                              56
+                                                              33
+                                                              4
+                                                              57
+                                                              18
+                                                              59
+                                                              55
+                                                              46
+                                                              61
+                                                              4
+                                                              67
+                                                              9
+                                                              63
+                                                              13
+                                                              19
+                                                              42
+                                                              1];
+%%
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).pmod.poly = 2;
+matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).orth = 1;
+matlabbatch{1}.spm.stats.fmri_spec.sess.multi = {''};
+matlabbatch{1}.spm.stats.fmri_spec.sess.regress = struct('name', {}, 'val', {});
+matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = {'/home/matay/spmbasics/data/face_rep/RawEPI/rp_sM03953_0005_0006.txt'};
+matlabbatch{1}.spm.stats.fmri_spec.sess.hpf = 128;
+matlabbatch{1}.spm.stats.fmri_spec.fact(1).name = 'Fam';
+matlabbatch{1}.spm.stats.fmri_spec.fact(1).levels = 2;
+matlabbatch{1}.spm.stats.fmri_spec.fact(2).name = 'Rep';
+matlabbatch{1}.spm.stats.fmri_spec.fact(2).levels = 2;
+matlabbatch{1}.spm.stats.fmri_spec.bases.hrf.derivs = [0 0];
+matlabbatch{1}.spm.stats.fmri_spec.volt = 1;
+matlabbatch{1}.spm.stats.fmri_spec.global = 'None';
+matlabbatch{1}.spm.stats.fmri_spec.mthresh = 0.8;
+matlabbatch{1}.spm.stats.fmri_spec.mask = {''};
+matlabbatch{1}.spm.stats.fmri_spec.cvi = 'AR(1)';
