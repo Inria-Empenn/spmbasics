@@ -77,7 +77,7 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
  * To be able to run the scripting, in ```/script``` folder, ```/preprocessing_script_job.m``` is the main file and it should be run.
    * In this tutorial I only edited and used  ```preprocessing_script_job.m``` solely.
    
-   * NOTE: In ideal setting, [preprocessing_script.m ](src/preprocessing_dep.m) controls the job of [preprocessing_script_job.m](src/preprocessing_dep_job.m), but currently ```preprocessing_script.m``` is redundant.
+   * NOTE: In the ideal setting, ```preprocessing_script.m``` controls the job of [preprocessing_script_job.m](src/preprocessing_job.m), but currently ```preprocessing_script.m``` is redundant so does not exist in this repo.
    
    * As a rule of the thumb make sure to indicate correct file paths for these files as mention at the very beginning of the tutorial.
 
