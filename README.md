@@ -28,7 +28,11 @@ Version of the software used:```MATLAB R2020b``` & ```SPM12```.
  ## How to Reproduce Each Step
 For the scripts in this repo, to load the data all the relative paths aligned.
 
-First thing before the running the pipelines, in the first section defining the data root, the parameter should be adjusted accordingly ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
+First thing before the running the pipelines, in the first section defining the data root, the parameter should be adjusted accordingly including true name of your data for the MoAEpilot folder the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
+If you edit the folder names please keep the edits in the code as well. 
+Your folder structure should look like below:
+
+![<img src="folder_basics.png" width="100"/>](/figures/folder_basics.png)
 
 To be able test the reproducibility afterwards, in your ```/data/``` folder keep three different copies of your original data, named according to the processes.  For example ```MoAEpilot_script``` should contain the files to run the script interface. The ```root``` should be edited beforehand according to the pipelines, to avoid overwriting.
 
@@ -42,7 +46,8 @@ If you want to load the scripts in this repo using the GUI interface it is possi
 Below I will be explaining running all as a script.
 
 To be able to run SPM, it should be added to the path in MATLAB via ```addpath /path/of/your/spm12/```. 
- *   For the GUI interface, ```.m``` files in the folders ```src/batch_step``` and they must be run subsequently. 
+### 1. GUI interface:
+ *   All the, ```.m``` files in the folder ```src/batch_step``` and they must be run subsequently. 
       1. Load [realignment_batch.m](src/batch_step/realignment_batch.m) first. 
       Then run the script. It should produce a file starting with ```mean``` and ```r```. 
       
@@ -56,20 +61,22 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
       This script produces files starting with ```war```
       6. Lastly [smoothing_batch.m](src/batch_step/smoothing_batch.m)
       This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar```
-
+### 2. Batch interface
  *   For the Batch interface inside ```/batch``` folder ```preprocessing_batch_job.m``` should be run.   
      *  If you want to follow the GUI, steps below:
-     1. Load [batch interface GUI](src/batch/preprocessing_batch.m) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```. And the rest is the same with the [tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/).
+     1. Load the [batch interface GUI](src/batch/preprocessing_batch.m) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```. And the rest is the same with the [tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/).
 
      2. The rest of the script should run automatically using the relative paths of your data.
      3. If not, follow the steps in the [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/) to define paths of your anatomical data.
      * If you want to run the script just adjust the path of your data the ```root``` section and your ```TPM.nii``` for segmentation
 
- *   For Scripting 
-    
-     * [preprocessing_script.m ](src/preprocessing_dep.m) controls the job of [preprocessing_script_job.m](src/preprocessing_dep_job.m) normally. 
-     In this tutorial I only edited and used  [preprocessing_script_job.m](src/preprocessing_dep_job.m) solely.
-     * As a rule of the thumb make sure to indicate correct file paths for these files.
+### 3. For Scripting 
+ * To be able to run the scripting, in ```/script``` folder, ```/preprocessing_script_job.m``` is the main file and it should be run.
+   * In this tutorial I only edited and used  ```preprocessing_script_job.m``` solely.
+   
+   * NOTE: In ideal setting, [preprocessing_script.m ](src/preprocessing_dep.m) controls the job of [preprocessing_script_job.m](src/preprocessing_dep_job.m), but currently ```preprocessing_script.m``` is redundant.
+   
+   * As a rule of the thumb make sure to indicate correct file paths for these files as mention at the very beginning of the tutorial.
 
 ## Further on reproducibility
 

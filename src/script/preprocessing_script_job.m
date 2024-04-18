@@ -9,7 +9,7 @@ spmDir = fullfile(userpath, 'spm12');
 home = getenv('HOME');
 user = getenv('USER');
 %PATH.SCRIPT = fileparts(mfilename('fullpath')); % path of where the script is 
-%root= cd(fullfile([PATH.SCRIPT, filesep, '..' , filesep, '/data/MoAEpilot_zero/']));
+%root= cd(fullfile([PATH.SCRIPT, filesep, '..' , filesep, '/data/MoAEpilot/']));
 % path of your data file
 root = fullfile(home, 'spmbasics', '/data/MoAEpilot');
 sub = {'sub-01'}; % specify a list of subjects you want to process

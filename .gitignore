@@ -1,3 +1,9 @@
-data/*
+data/MoAEpilot/*
+data/MoAEpilot_batch_step/*
+data/MoAEpilot_shasums.txt
+data/face_rep/*
+data/output/*
+data/to_be_deleted/*
+data/MoAEpilot_raw/*
 src/first_level_analysis/*
 src/event_related/*
