@@ -3,7 +3,11 @@
 % spm SPM - SPM12 (7771)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
-matlabbatch{1}.spm.stats.fmri_est.spmmat = {'/home/matay/spmbasics/src/event_related/bayesian/SPM.mat'};
+home = getenv('HOME');
+scriptdir = fullfile(home, 'spmbasics', '/src/event_related_gui/bayesian')
+matfile = fullfile(scriptdir, 'SPM.mat');
+
+matlabbatch{1}.spm.stats.fmri_est.spmmat = cellstr(matfile);
 matlabbatch{1}.spm.stats.fmri_est.write_residuals = 0;
 matlabbatch{1}.spm.stats.fmri_est.method.Bayesian.space.volume.block_type = 'Slices';
 matlabbatch{1}.spm.stats.fmri_est.method.Bayesian.signal = 'UGL';
@@ -13,3 +17,6 @@ matlabbatch{1}.spm.stats.fmri_est.method.Bayesian.LogEv = 'No';
 matlabbatch{1}.spm.stats.fmri_est.method.Bayesian.anova.first = 'No';
 matlabbatch{1}.spm.stats.fmri_est.method.Bayesian.anova.second = 'Yes';
 matlabbatch{1}.spm.stats.fmri_est.method.Bayesian.gcon = struct('name', {}, 'convec', {});
+
+save(fullfile(scriptdir,'parametric_est.mat'),'matlabbatch');
+spm_jobman('run',matlabbatch);

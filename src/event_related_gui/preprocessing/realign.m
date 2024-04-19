@@ -22,3 +22,5 @@ matlabbatch{1}.spm.spatial.realign.estwrite.roptions.interp = 4;
 matlabbatch{1}.spm.spatial.realign.estwrite.roptions.wrap = [0 0 0];
 matlabbatch{1}.spm.spatial.realign.estwrite.roptions.mask = 1;
 matlabbatch{1}.spm.spatial.realign.estwrite.roptions.prefix = 'r';
+save(fullfile(scriptdir,'realign.mat'),'matlabbatch');
+spm_jobman('run',matlabbatch);

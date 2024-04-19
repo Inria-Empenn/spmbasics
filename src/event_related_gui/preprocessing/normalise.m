@@ -19,3 +19,5 @@ matlabbatch{1}.spm.spatial.normalise.write.woptions.bb = [-78 -112 -70
 matlabbatch{1}.spm.spatial.normalise.write.woptions.vox = [3 3 3];
 matlabbatch{1}.spm.spatial.normalise.write.woptions.interp = 4;
 matlabbatch{1}.spm.spatial.normalise.write.woptions.prefix = 'w';
+save(fullfile(scriptdir,'normalise.mat'),'matlabbatch');
+spm_jobman('run',matlabbatch);

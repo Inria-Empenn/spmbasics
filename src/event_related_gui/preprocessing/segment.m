@@ -46,3 +46,5 @@ matlabbatch{1}.spm.spatial.preproc.warp.write = [0 1];
 matlabbatch{1}.spm.spatial.preproc.warp.vox = NaN;
 matlabbatch{1}.spm.spatial.preproc.warp.bb = [NaN NaN NaN
                                               NaN NaN NaN];
+save(fullfile(scriptdir,'segment.mat'),'matlabbatch');
+spm_jobman('run',matlabbatch);
