@@ -60,16 +60,16 @@ Below I will be explaining running all as a script.
 To be able to run SPM, it should be added to the path in MATLAB via ```addpath /path/of/your/spm12/```. 
 #### 1. GUI interface:
  *   All the, ```.m``` files in the folder ```src/batch_step``` and they must be run subsequently. 
-      1. Load [realignment_batch.m](src/batch_step/realignment_batch.m) first. 
+      1. Load and run [realignment_batch.m](src/batch_step/realignment_batch.m) first. 
       Then run the script. It should produce a file starting with ```mean``` and ```r```. 
       
-      2. Then load [slice timing_batch.m](src/batch_step/slice_timing_batch.m) 
+      2. Then run [slice timing_batch.m](src/batch_step/slice_timing_batch.m) 
       Run the script. It should produce a file starting with and ```ar```. 
 
       3. Follow by [coregistration_batch.m](src/batch_step/coregistration_batch.m).  Run the script and your anatomical images now be coregistered to the ```mean``` that we obtained at the realignment step. Deformation field is generated under ```/anat``` folder, with the name of ```y_sub-01_T1w.nii```
-      4. Continue by loading [segmentation_batch.m](src/batch_step/segmentation_batch.m)
-      Segnentation script produce different segmentations  in the ```/anat/``` folder according to the predefined tissue probability maps. 
-      5. Load [normalization_batch.m](src/batch_step/normalisation_batch.m) 
+      4. Continue by running [segmentation_batch.m](src/batch_step/segmentation_batch.m)
+      Segmentation script produce different segmentations  in the ```/anat/``` folder according to the predefined tissue probability maps. 
+      5. Load and run [normalization_batch.m](src/batch_step/normalisation_batch.m) 
       This script produces files starting with ```war```
       6. Lastly [smoothing_batch.m](src/batch_step/smoothing_batch.m)
       This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar```
@@ -105,16 +105,36 @@ In the [original first level analysis tutorial](https://www.fil.ion.ucl.ac.uk/sp
 ### B. Event-related fMRI
 #### 1. Preprocessing
 *  GUI interface
-* Script interface
+ *   All the, ```.m``` files in the folder ```src/event_related_gui/preprocessing``` and they must be run subsequently. 
+      1. Load & run [realign.m](src/event_related_gui/preprocessing/realign.m) first. 
+      Then run the script. It should produce a file starting with ```mean``` and ```r```. 
+      
+      2. Then run [slice timing.m](src/event_related_gui/preprocessing/slice_timing.m) 
+      Run the script. It should produce a file starting with and ```ar```. 
+
+      3. Follow it by [coreg.job.m](src/event_related_gui/preprocessing/coreg.job.m).  Run the script and your anatomical images now be coregistered to the ```mean``` that we obtained at the realignment step. Deformation field is generated under ```/anat``` folder, with the name of ```y_sub-01_T1w.nii```
+      4. Continue by running [segmentat.m](src/event_related_gui/preprocessing/segment.m)
+      Segmentation script produce different segmentations  in the ```/anat/``` folder according to the predefined tissue probability maps. 
+      5. Run [normalise.m](src/event_related_gui/preprocessing/normalise.m) 
+      This script produces files starting with ```war```
+      6. Lastly [smooth.m](src/event_related_gui/preprocessing/smooth.m)
+      This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar```
+* Script interface [TODO]
 #### 2. Parametric
 *  GUI interface
-* Script interface
+   * Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
+The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/parametric/).  
+* Script interface [TODO]
 #### 3. Categorical
 *  GUI interface
-* Script interface
+* Run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
+The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/). 
+* Script interface [TODO]
 #### 4. Bayesian 
 *  GUI interface
-* Script interface
+   * Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
+The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/bayesian/).
+* Script interface [TODO]
 ## Further on reproducibility
 
 SPM has a display and check reg features to visually inspect the outputs.
