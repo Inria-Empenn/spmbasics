@@ -1,18 +1,12 @@
 data/MoAEpilot/*
 data/MoAEpilot/sub-01/*
+data/MoAEpilot_toy/*
 data/MoAEpilot_batch_step/*
 data/MoAEpilot_shasums.txt
-data/face_rep/*
+data/face_rep_raw/*
+data/face_rep_gui/*
+data/face_rep_script/*
 data/output/*
 data/to_be_deleted/*
 data/MoAEpilot_raw/*
-src/first_level_analysis/*
-src/first_level_analysis/SPM.mat
-src/first_level_analysis/job_mat/*
-src/first_level_analysis/calculations/*
-src/first_level_analysis/trial1/*
-src/event_related/preprocessing/*
-src/event_related/parametric/*
-src/event_related/categorical/*
-src/event_related/bayesian/*
 

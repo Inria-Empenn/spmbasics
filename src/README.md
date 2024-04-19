@@ -1,2 +1,2 @@
 # Scripts
-This folder contains the code to get te results.
+This folder contains the code of analysis and reproducibility checks.
