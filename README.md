@@ -38,7 +38,8 @@ For the scripts in this repo, to load the data all the relative paths aligned.
 
 First thing before the running the pipelines, add SPM to your path in MATLAB, because the scripts are calling SPM.
 
-At all the scripts there  section defining the data root. The parameter should be adjusted accordingly including true name of your data.  Here is an example setting showing the MoAEpilot folder under  ```/data/MoAEpilot``` the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
+At all the scripts there  section defining the data root which requires that ```/spmbasics``` folder to be under ```/home/username/``` directory. 
+The parameter in the scripts should be adjusted accordingly including true name of your data.  Here is an example setting showing the MoAEpilot folder under  ```/data/MoAEpilot``` the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
 
 For the face fMRI data ```root = fullfile(home, 'spmbasics', '/data/face_rep)```.
 If you edit the folder names keep the edits in the code as well. 
