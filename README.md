@@ -38,7 +38,7 @@ For the scripts in this repo, to load the data all the relative paths aligned.
 
 First thing before the running the pipelines, add SPM to your path in MATLAB, because the scripts are calling SPM.
 
-At all the scripts there  section defining the data root which requires that ```/spmbasics``` folder to be under ```/home/username/``` directory. 
+At all the scripts there  section defining the data root which requires that ```/spmbasics``` folder to be under ```to be under your home directory``` directory. 
 
 The parameter in the scripts should be adjusted accordingly including true name of your data.  Here is an example setting showing the MoAEpilot folder under  ```/data/MoAEpilot``` the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
 
@@ -82,7 +82,7 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
 
      2. The rest of the script should run automatically using the relative paths of your data.
      3. If not, follow the steps in the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/) to define paths of your anatomical data.
-     * If you want to run the script just adjust the path of your data the ```root``` section and your ```TPM.nii``` for segmentation
+   
 
 #### 3. For Scripting 
  * To be able to run the scripting, in ```/script``` folder, ```/preprocessing_script_job.m``` is the main file and it should be run.
@@ -103,7 +103,8 @@ In the [original first level analysis tutorial](https://www.fil.ion.ucl.ac.uk/sp
          
    1. ```first_level_specification_script.m``` produces the ```SPM.mat file in the ```first_level_specification_script``` folder. The following scripts are taking this file as an input.
    2. The ```first_level_estimation_script.m``` does the GLM estimation.
-   3. ```first_level_inference_script.m``` does the rendering. [TODO] This part needs to be edited to fit the outputs of the GUI interface, currently it is not producing plots or everlays ebsides rendering.
+   3. ```first_level_inference_script.m``` does the rendering.
+   Note: script and GUI outputs are not fully same yet...
 ### B. Event-related fMRI
 #### 1. Preprocessing
 *  GUI interface
@@ -131,12 +132,12 @@ The inference should be followed at the [original event related tutorial](https:
 *  GUI interface
 * Run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/). 
-* Script interface [TODO]
+* Script interface 
 #### 4. Bayesian 
 *  GUI interface
    * Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/bayesian/).
-* Script interface [TODO]
+
 ## Further on reproducibility
 
 SPM has a display and check reg features to visually inspect the outputs.
