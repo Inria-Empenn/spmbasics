@@ -19,7 +19,7 @@ func_dir = fullfile(root, sub, 'func'); % this combines the root with a specific
 anat = spm_select('FPList', anat_dir, '^sub-01_T1w.nii$'); % this will return the full path (FP) to the T1 file from the anat directory
 
     %find and select the functional data
-mean = spm_select('ExtFPList', func_dir, '^meansub-01_task-auditory_bold.nii$', NaN); % this will give the full path to the task data, NaN will ensure you are loading all volumes present (i.e. consider the 4D file as a whole)
+mean = spm_select('ExtFPList', func_dir, '^meansub-.*\.nii$', NaN); % this will give the full path to the task data, NaN will ensure you are loading all volumes present (i.e. consider the 4D file as a whole)
 
 
 matlabbatch{1}.spm.spatial.coreg.estimate.ref(1) = cellstr(mean);

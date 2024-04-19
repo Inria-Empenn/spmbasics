@@ -1,18 +1,16 @@
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/data/MoAEpilot'); % must be edited according to the name of the data folder
-script_path = fullfile(home, 'spmbasics', '/src/first_level_analysis_script');
+root = fullfile(home, 'spmbasics', '/data/output/MoAEpilot_batch/'); % must be edited according to the name of the data folder
 sub = {'sub-01'}; 
 disp(['Starting preprocessing for ', sub]);
 
 anat_dir = fullfile(root, sub, 'anat'); % this combines the root with a specific subject directory to create the full path to the folder containing anatomical data
 
-func_dir = fullfile(root, sub, 'func'); % this combines the root with a specific subject directory to create the full path to the folder containing functional data
-
- % find the structural file
-anat = spm_select('FPList', anat_dir, '^sub-01_T1w.nii$'); % this will return the full path (FP) to the T1 file from the anat directory
-
+func_dir = fullfile(root, sub, 'func');
+%anat = spm_select('FPList', anat_dir, '^sub-01_T1w.nii$'); % this will return the full path (FP) to the T1 file from the anat directory
+pwd
     %find and select the functional data
-func = spm_select('ExtFPList', func_dir, '^swarsub-01_task-auditory_bold.nii$', NaN);
+func = spm_select('ExtFPList', func_dir, '^swarsub-.*\.nii$', NaN);
+script_path = fullfile(home, 'spmbasics', '/data/output/first_level_script');
 
 matlabbatch{1}.spm.stats.fmri_spec.dir = cellstr(script_path);
 matlabbatch{1}.spm.stats.fmri_spec.timing.units = 'scans';
