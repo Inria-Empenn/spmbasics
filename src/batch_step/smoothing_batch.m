@@ -13,7 +13,7 @@ sub = {'sub-01'};
 func_dir = fullfile(root, sub, 'func'); % this combines the root with a specific subject directory to create the full path to the folder containing functional data
 
     %find and select the functional data
-normalized = spm_select('ExtFPList', func_dir, '^warsub-01_task-auditory_bold.nii$', NaN); % this will give the full path to the task data, NaN will ensure you are loading all volumes present (i.e. consider the 4D file as a whole)
+normalized = spm_select('ExtFPList', func_dir, '^warsub-.*\.nii$', NaN); % this will give the full path to the task data, NaN will ensure you are loading all volumes present (i.e. consider the 4D file as a whole)
 
 matlabbatch{1}.spm.spatial.smooth.data = cellstr(normalized);
 matlabbatch{1}.spm.spatial.smooth.fwhm = [6 6 6];

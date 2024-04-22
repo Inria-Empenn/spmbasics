@@ -1,6 +1,7 @@
 data/MoAEpilot/*
 data/MoAEpilot/sub-01/*
 data/MoAEpilot_toy/*
+data/MoAEpilot_raw_toy/*
 data/MoAEpilot_batch_step/*
 data/MoAEpilot_shasums.txt
 data/face_rep_raw/*
@@ -9,4 +10,4 @@ data/face_rep_script/*
 data/output/*
 data/to_be_deleted/*
 data/MoAEpilot_raw/*
-
+data/*

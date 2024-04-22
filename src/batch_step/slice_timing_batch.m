@@ -14,7 +14,7 @@ realigned_dir = fullfile(root, sub, 'func'); % this combines the root with a spe
 
  % find the structural file
     %find and select the functional data
-realigned = spm_select('ExtFPList', realigned_dir, '^rsub-01_task-auditory_bold.nii$', NaN); % this will give the full path to the task data, NaN will ensure you are loading all volumes present (i.e. consider the 4D file as a whole)
+realigned = spm_select('ExtFPList', realigned_dir, '^rsub-.*\.nii$', NaN); % this will give the full path to the task data, NaN will ensure you are loading all volumes present (i.e. consider the 4D file as a whole)
 
 %cd(func_dir) % move into the subject specific folder containing the functional data
 
