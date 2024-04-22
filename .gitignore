@@ -11,3 +11,6 @@ data/output/*
 data/to_be_deleted/*
 data/MoAEpilot_raw/*
 data/*
+/src/shasum_checker_event.sh
+/src/event_related_gui/preprocessing/matfiles/*
+/results/basecomparison_result.txt

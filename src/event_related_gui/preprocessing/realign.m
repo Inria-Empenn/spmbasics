@@ -7,6 +7,9 @@
 home = getenv('HOME');
 root = fullfile(home, 'spmbasics', '/data/face_rep_gui')
 func = spm_select('FPList', fullfile(root,'RawEPI'), '^sM.*\.img$');
+scriptdir = fullfile(home, 'spmbasics', '/src/event_related_gui/preprocessing/matfiles');
+
+disp('Starting preprocessing...'); 
 
 matlabbatch{1}.spm.spatial.realign.estwrite.data(1) = {cellstr(func)};
 
@@ -22,5 +25,7 @@ matlabbatch{1}.spm.spatial.realign.estwrite.roptions.interp = 4;
 matlabbatch{1}.spm.spatial.realign.estwrite.roptions.wrap = [0 0 0];
 matlabbatch{1}.spm.spatial.realign.estwrite.roptions.mask = 1;
 matlabbatch{1}.spm.spatial.realign.estwrite.roptions.prefix = 'r';
+
+disp('Completed preprocessing...')
 save(fullfile(scriptdir,'realign.mat'),'matlabbatch');
 spm_jobman('run',matlabbatch);
