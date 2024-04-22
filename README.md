@@ -172,7 +172,10 @@ This part is following exact steps of the [original tutorial](https://www.fil.io
 <details>
 <summary><strong> 1-B. Preprocessing via scripting </strong></summary>
 
-* Script Interface [TODO]
+Scripting
+
+Run ```src/event_related_script/event_related_preprocessing_script.m```.
+
 
 </details>
 
