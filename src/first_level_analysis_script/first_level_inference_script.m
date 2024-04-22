@@ -13,8 +13,8 @@ disp(['Starting preprocessing']);
 matlabbatch{1}.spm.stats.con.spmmat = cellstr(fullfile(script_path,'SPM.mat'));
 matlabbatch{1}.spm.stats.con.consess{1}.tcon.name = 'Listening > Rest';
 matlabbatch{1}.spm.stats.con.consess{1}.tcon.weights = [1 0];
-%matlabbatch{1}.spm.stats.con.consess{2}.tcon.name = 'Rest > Listening';
-%matlabbatch{1}.spm.stats.con.consess{2}.tcon.weights = [-1 0];
+% matlabbatch{1}.spm.stats.con.consess{2}.tcon.name = 'Rest > Listening';
+% matlabbatch{1}.spm.stats.con.consess{2}.tcon.weights = [-1 0];
 
 % Inference Results
 %--------------------------------------------------------------------------

@@ -33,8 +33,6 @@ You can find the code in [src](https://github.com/mselimata/spmbasics/tree/main/
  ## How to Reproduce Each Step
 
 ### Block Design fMRI Preprocessing
-For the scripts in this repo, to load the data all the relative paths aligned.
-
 
 First thing before the running the pipelines, add SPM to your path in MATLAB, because the scripts are calling SPM.
 
