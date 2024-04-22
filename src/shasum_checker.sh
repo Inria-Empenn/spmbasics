@@ -34,15 +34,19 @@ fi
 # Define paths relative to the base directory
 SRCDIR="$BASEDIR/src"
 DATADIR="$BASEDIR/data" #where all data is stored
+OUTPUTDIR="$DATADIR/output" #where spm outputs are stored
 # Reference folder is the folder which contains all results from batch interface step by step
 # All other folders will be compared with this.
 REFERENCEDIR="$DATADIR/MoAEpilot" 
 # Output folder of the batch interface
-BATCHDIR="$DATADIR/output/MoAEpilot_bids_batch" 
+BATCHDIR="$OUTPUTDIR/MoAEpilot_bids_batch" 
 # Output folder of the script interface
-SCRIPTDIR="$DATADIR/output/MoAEpilot_bids_script"  
+SCRIPTDIR="$OUTPUTDIR/MoAEpilot_bids_script"  
 
 RESULTSDIR="$BASEDIR/results"
+
+FL_GUI="$OUTPUTDIR/first_level_analysis_gui"
+FL_SCRIPT="$OUTPUTDIR/first_level_analysis_script"
 
 # defining file extension to search for the defined file extension 
 file_extension=".nii"
@@ -101,6 +105,7 @@ fi
 
 # TO CALCULATE THE SHASUMS
 # Iterate over BATCH folder to calculate shasums for all nifti files'
+
 for batch_subfolder in "$BATCHDIR"; do
     calculate_shasums "$batch_subfolder"
 done
@@ -110,11 +115,24 @@ for script_subfolder in "$SCRIPTDIR"; do
     calculate_shasums "$script_subfolder"
 done
 
+for flgui_subfolder in "$FL_GUI"; do
+    calculate_shasums "$flgui_subfolder"
+done
+
+for flsc_subfolder in "$FL_SCRIPT"; do
+    calculate_shasums "$flsc_subfolder"
+done
+
 # TO COMPARE THE SHASUMS WITH EACH OTHER
 reference_file="$DATADIR/MoAEpilot_shasums.txt"
 batch_file="$DATADIR/MoAEpilot_batch_shasums.txt"
 script_file="$DATADIR/MoAEpilot_script_shasums.txt"
 
+reference_file2="$OUTPUTDIR/first_level_analysis_gui_shasums.txt"
+flsc_file="$OUTPUTDIR/first_level_analysis_script_shasums.txt"
+
 compare_shasums "$batch_file" "$reference_file"
 compare_shasums "$script_file" "$reference_file"
 compare_shasums "$batch_file" "$script_file"
+
+compare_shasums "$flsc_file" "$reference_file2"

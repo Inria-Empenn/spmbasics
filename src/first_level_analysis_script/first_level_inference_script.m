@@ -38,6 +38,16 @@ matlabbatch{2}.spm.stats.results.print = false;
 
 % Rendering
 %--------------------------------------------------------------------------
+% To plot the rendered brain figure
+
+matlabbatch{3}.spm.util.render.display.rendfile = {fullfile(spmDir,'canonical','cortex_20484.surf.gii')};
+matlabbatch{3}.spm.util.render.display.conspec.spmmat = cellstr(fullfile(script_path,'SPM.mat'));
+matlabbatch{3}.spm.util.render.display.conspec.contrasts = 1;
+matlabbatch{3}.spm.util.render.display.conspec.threshdesc = 'FWE';
+matlabbatch{3}.spm.util.render.display.conspec.thresh = 0.05;
+matlabbatch{3}.spm.util.render.display.conspec.extent = 0;
+
+
 disp(['Completed first level inference...', sub]) 
 
 spm_jobman('run',matlabbatch)
