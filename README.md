@@ -48,7 +48,9 @@ Your folder structure should look like the example below:
 
 To be able test the reproducibility afterwards, in your ```/data/``` folder keep three different copies of your original data, named according to the processes.  For example ```MoAEpilot_script``` should contain the files to run the script interface. The ```root``` should be edited beforehand according to the pipelines, to avoid overwriting.
 
-Bear in mind that for the sections containing the ```segmentation``` step  ```/home/user/Documents/MATLAB/spm12/tpm/TPM.nii``` should be adjusted with your username and the correct path of your SPM.
+As a reminder all scripts meant to run in a clear window with no parameters. For the event related design there is an exception,  when a parameter needs to be loaded  beforehand it is mentioned on the script. 
+So as a rule it would be useful to ```clc``` and ```clear all``` before and/or after each time running the scripts.
+
 
 Now steps of running these scripts:
 All the scripts meant to run without loading the gui and all the dependencies are defined and can be adjusted as mentioned earlier.
