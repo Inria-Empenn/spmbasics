@@ -120,6 +120,7 @@ Relative path settings are the same as [Block Design fMRI Preprocessing](Block_D
 * Run ```first_level_specification_gui.m``` firstly it will form the ```SPM.mat``` file at the ```/first_level_analysis_gui``` folder. 
 * And then run ```first_level_estimation_gui.m```
 * To be able to obtain the T staticstics and perform inference and rendering, [original first level analysis tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/modelling/block_design/) should be followed. 
+* At the end, it is possible to get a rendered figure showing activations: ![gui_figure](figures/first_level_gui_render.png)
 </details>
 <details>
 <summary>First level analysis script interface </summary>
@@ -131,7 +132,8 @@ Relative path settings are the same as [Block Design fMRI Preprocessing](Block_D
    1. ```first_level_specification_script.m``` produces the ```SPM.mat file in the ```first_level_specification_script``` folder. The following scripts are taking this file as an input.
    2. The ```first_level_estimation_script.m``` does the GLM estimation.
    3. ```first_level_inference_script.m``` does the rendering. Calculates the estimation parameters and the T level statistics.
-   Note: script and GUI outputs are not fully same yet...
+   
+Resulting render can be seen here : ![script_figure](figures/first_level_script_render.png)
 
 </details>   
 <details> 
