@@ -30,9 +30,9 @@ This repo contains my reproduction of the SPM12  tutorials with MATLAB R020b and
 You can find the code in [src](https://github.com/mselimata/spmbasics/tree/main/src) folder.
 
 
- ## How to Reproduce Each Step
+## How to Reproduce Each Step
 
-###  Block Design fMRI Preprocessing Steps 
+### A. Block Design fMRI Preprocessing Steps 
 
 First thing before the running the pipelines, add SPM to your path in MATLAB, because the scripts are calling SPM.
 
@@ -64,9 +64,9 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
 
 <details>
 
-<summary> GUI Interface </summary>
+<summary><strong> 1. GUI Interface </strong></summary>
 
-#### 1. GUI Interface:
+<!--#### 1. GUI Interface:-->
  
  All the, ```.m``` files in the folder ```src/batch_step``` and they must be run subsequently. 
   1. Load and run [realignment_batch.m](src/batch_step/realignment_batch.m) first.
@@ -82,9 +82,9 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
 </details>
 
 <details>
-<summary> Batch Interface </summary>   
+<summary><strong> 2. Batch Interface </strong></summary>   
 
-#### 2. Batch Interface
+<!-- #### 2. Batch Interface -->
 
  For the Batch interface inside ```/batch``` folder ```preprocessing_batch_job.m``` should be run. 
  *  If you want to follow the GUI, steps below:
@@ -97,9 +97,9 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
 </details>
 
 <details>
-<summary>Scripting </summary>
+<summary><strong> 3. Scripting </strong></summary>
 
-#### 3. For scripting 
+<!-- #### 3. For scripting --> 
 
  * To be able to run the scripting, in ```/script``` folder, ```/preprocessing_script_job.m``` is the main file and it should be run.
    * In this tutorial I only edited and used  ```preprocessing_script_job.m``` solely.
@@ -109,15 +109,16 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
    * As a rule of the thumb make sure to indicate correct file paths for these files as mention at the very beginning of the tutorial.
 </details>
 
-### A. Block Design fMRI First Level Analysis Steps
+### B. Block Design fMRI First Level Analysis Steps
 
 Relative path settings are the same as [Block Design fMRI Preprocessing](Block_Design_fMRI_Preprocessing) for the ```first_level_analysis.sh``` The rest of the two scripts are depending on the resulting ```SPM.mat``` under the ```/first_level_analysis_script``` folder.
 
 <details> 
 
-<summary> First Level Analysis GUI Interface </summary>
+<summary><strong> 1. First Level Analysis GUI Interface </strong></summary>
 
-#### 1. GUI Interface: 
+<!-- #### 1. GUI Interface: -->
+
 * Run ```first_level_specification_gui.m``` firstly it will form the ```SPM.mat``` file at the ```/first_level_analysis_gui``` folder. 
 * And then run ```first_level_estimation_gui.m```
 * To be able to obtain the T staticstics and perform inference and rendering, [original first level analysis tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/modelling/block_design/) should be followed. 
@@ -125,9 +126,9 @@ Relative path settings are the same as [Block Design fMRI Preprocessing](Block_D
 </details>
 
 <details>
-<summary>First Level Analysis Scripting </summary>
+<summary> <strong> 2. First Level Analysis Scripting </strong></summary>
 
-#### 2. Scripting:
+<!-- #### 2. Scripting:-->
 
 * All the scripts should be loaded subsequently,
          
@@ -140,14 +141,14 @@ Resulting render can be seen here : ![script_figure](figures/FIRST_LEVEL/first_l
 </details>   
 
 
-### B. Event-related fMRI
+### C. Event-related fMRI
 
-#### 1. Preprocessing
+
 <details>
 
-<summary> GUI Interface Preprocessing </summary>
+<summary> <strong> 1-A. GUI Interface Preprocessing </strong> </summary>
 
-
+<!-- #### 1. Preprocessing -->
 GUI interface: 
 This part is following exact steps of the [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/preprocessing/). All the code files exported from the saved ```mat``` files.
 
@@ -169,16 +170,16 @@ This part is following exact steps of the [original tutorial](https://www.fil.io
 </details>
 
 <details>
-<summary> Preprocessing via scripting </summary>
+<summary><strong> 1-B. Preprocessing via scripting </strong></summary>
 
 * Script Interface [TODO]
 
 </details>
 
 <details>
-<summary> Parametric Modelling  </summary>
+<summary><strong> Parametric Modelling  </strong></summary>
 
-#### 2. Parametric Modelling
+#### Parametric Modelling
 
 *  GUI interface
    * Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
@@ -189,14 +190,14 @@ The inference should be followed at the [original event related tutorial](https:
 
 <details>
 
-<summary> Categorical modelling and Bayesian Analysis are omitted for this tutorial. </summary>
+<summary> <strong> Categorical modelling and Bayesian Analysis are omitted for this tutorial. </strong> </summary>
 
-#### 3. Categorical
+#### Categorical Modelling
 
 * Run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/).  
 
-#### 4. Bayesian 
+#### Bayesian Analysis
 
    * Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/bayesian/).
