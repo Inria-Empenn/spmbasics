@@ -1,23 +1,23 @@
 %-----------------------------------------------------------------------
-% Job saved on 17-Apr-2024 17:01:04 by cfg_util (rev $Rev: 7345 $)
+% Job saved on 22-Apr-2024 10:58:25 by cfg_util (rev $Rev: 7345 $)
 % spm SPM - SPM12 (7771)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
 home = getenv('HOME');
 root = fullfile(home, 'spmbasics', '/data/MoAEpilot'); % must be edited according to the name of the data folder
-script_path = fullfile(home, 'spmbasics', '/src/first_level_analysis_gui');
+script_path = fullfile(home, 'spmbasics', '/data/output/first_level_analysis_gui');
 sub = {'sub-01'}; 
-disp(['Starting preprocessing for ', sub]);
+disp(['Starting first level analysis specifications for ', sub]);
 
-anat_dir = fullfile(root, sub, 'anat'); % this combines the root with a specific subject directory to create the full path to the folder containing anatomical data
 
 func_dir = fullfile(root, sub, 'func'); % this combines the root with a specific subject directory to create the full path to the folder containing functional data
 
- % find the structural file
-anat = spm_select('FPList', anat_dir, '^sub-01_T1w.nii$'); % this will return the full path (FP) to the T1 file from the anat directory
 
     %find and select the functional data
-func = spm_select('ExtFPList', func_dir, '^swarsub-01_task-auditory_bold.nii$', NaN);
+func = spm_select('ExtFPList', func_dir, '^swarsub-.*\.nii$', NaN);
+
+
+
 
 matlabbatch{1}.spm.stats.fmri_spec.dir = cellstr(script_path);
 matlabbatch{1}.spm.stats.fmri_spec.timing.units = 'scans';
@@ -49,6 +49,6 @@ matlabbatch{1}.spm.stats.fmri_spec.mthresh = 0.8;
 matlabbatch{1}.spm.stats.fmri_spec.mask = {''};
 matlabbatch{1}.spm.stats.fmri_spec.cvi = 'AR(1)';
 
-disp(['Completed preprocessing for ', sub]) % add a print statement telling you which subject has been processed
+disp(['Completed first level analysis specifications for ', sub]) 
 
 spm_jobman('run',matlabbatch) 

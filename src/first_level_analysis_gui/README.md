@@ -1,1 +1,1 @@
-These are the outputs of the first level anaylsis tutorial.
+These are the exported outputs of the first level anaylsis tutorial.

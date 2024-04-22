@@ -1,3 +1,5 @@
 SHA256sums are identical for /home/user/spmbasics/data/copy/MoAEpilot_shasums.txt and /home/user/spmbasics/data/copy/MoAEpilot_shasums.txt
 SHA256sums are identical for /home/user/spmbasics/data/copy/MoAEpilot_shasums.txt and /home/user/spmbasics/data/copy/MoAEpilot_shasums.txt
 SHA256sums are identical for /home/user/spmbasics/data/copy/MoAEpilot_script_shasums.txt and /home/user/spmbasics/data/copy/MoAEpilot_shasums.txt
+
+SHA256sums are identical for /home/user/spmbasics/data/output/first_level_analysis_gui_shasums.txt and /home/user/spmbasics/data/output/first_level_analysis_gui_shasums.txt
