@@ -3,6 +3,7 @@
 % spm SPM - SPM12 (7771)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
+%%% this is ommitted as a beginner
 
 home = getenv('HOME');
 root = fullfile(home, 'spmbasics', '/data/face_rep_gui')
@@ -10,6 +11,7 @@ func = spm_select('FPList', fullfile(root,'RawEPI'), '^arsM.*\.img$');
 def = spm_select('FPList', fullfile(root,'Structural'), '^y_sM.*\.nii$'); % y_sM03953_0007.nii
 
 anatm = spm_select('FPList', fullfile(root,'Structural'), '^sM.*\.img$');
+scriptdir = fullfile(home, 'spmbasics', '/src/event_related_gui/preprocessing/matfiles');
 
 matlabbatch{1}.spm.spatial.normalise.write.subj.def = {cellstr(def)};
 matlabbatch{1}.spm.spatial.normalise.write.subj.resample(1) = {cellstr(anatm)};

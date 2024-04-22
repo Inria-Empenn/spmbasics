@@ -18,7 +18,7 @@ anat_dir = fullfile(root, sub, 'anat'); % this combines the root with a specific
  % find the structural file
 anat = spm_select('FPList', anat_dir, '^sub-01_T1w.nii$'); % this will return the full path (FP) to the T1 file from the anat directory
 
-tpm_dir = fullfile(spmwhere, 'tpm'); 
+tpm_dir = fullfile(spmDir, 'tpm'); 
 % {[tpm_dir filesep 'TPM.nii,' num2str(1)]}
 %p = {[ tpm_dir '/TPM.nii,1']};
 matlabbatch{1}.spm.spatial.preproc.channel.vols(1) = cellstr(anat);
