@@ -13,11 +13,11 @@
 
    * [How to reproduce each step](#How-to-reproduce-each-step)
 
-      A. [Block Design fMRI Preprocessing]( Block_Design_fMRI_Preprocessing)
+      A. [Block Design fMRI Preprocessing Steps]( Block_Design_fMRI_Preprocessing_Steps)
       
-      B. [Block Design fMRI First Level Analysis](Block_Design_fMRI_First_Level_Analysis)
+      B. [Block Design fMRI First Level Analysis Steps](Block_Design_fMRI_First_Level_Analysis_Steps)
 
-      C. [Event-related fMRI](Event_related_fMRI)
+      C. [Event-related fMRI Steps](Event_related_fMRI_Steps)
 
    * [Further on reproducibility](#Further-on-reproducibility)
 
@@ -32,7 +32,7 @@ You can find the code in [src](https://github.com/mselimata/spmbasics/tree/main/
 
  ## How to Reproduce Each Step
 
-### Block Design fMRI Preprocessing
+###  Block Design fMRI Preprocessing Steps 
 
 First thing before the running the pipelines, add SPM to your path in MATLAB, because the scripts are calling SPM.
 
@@ -60,52 +60,85 @@ If you want to load the scripts in this repo using the GUI interface it is possi
 Below I will be explaining running all as a script.
 
 To be able to run SPM, it should be added to the path in MATLAB via ```addpath /path/of/your/spm12/```. 
-#### 1. GUI interface:
- *   All the, ```.m``` files in the folder ```src/batch_step``` and they must be run subsequently. 
-      1. Load and run [realignment_batch.m](src/batch_step/realignment_batch.m) first. 
-      Then run the script. It should produce a file starting with ```mean``` and ```r```. 
-      
-      2. Then run [slice timing_batch.m](src/batch_step/slice_timing_batch.m) 
-      Run the script. It should produce a file starting with and ```ar```. 
 
-      3. Follow by [coregistration_batch.m](src/batch_step/coregistration_batch.m).  Run the script and your anatomical images now be coregistered to the ```mean``` that we obtained at the realignment step. Deformation field is generated under ```/anat``` folder, with the name of ```y_sub-01_T1w.nii```
-      4. Continue by running [segmentation_batch.m](src/batch_step/segmentation_batch.m)
+
+<details>
+
+<summary> GUI Interface </summary>
+
+#### 1. GUI Interface:
+ 
+ All the, ```.m``` files in the folder ```src/batch_step``` and they must be run subsequently. 
+  1. Load and run [realignment_batch.m](src/batch_step/realignment_batch.m) first.
+  Then run the script. It should produce a file starting with ```mean``` and ```r```. 
+  2. Then run [slice timing_batch.m](src/batch_step/slice_timing_batch.m) 
+      Run the script. It should produce a file starting with and ```ar```. 
+  3. Follow by [coregistration_batch.m](src/batch_step/coregistration_batch.m).  Run the script and your anatomical images now be coregistered to the ```mean``` that we obtained at the realignment step. Deformation field is generated under ```/anat``` folder, with the name of ```y_sub-01_T1w.nii```
+  4. Continue by running [segmentation_batch.m](src/batch_step/segmentation_batch.m)
       Segmentation script produce different segmentations  in the ```/anat/``` folder according to the predefined tissue probability maps. 
-      5. Load and run [normalization_batch.m](src/batch_step/normalisation_batch.m) 
+   5. Load and run [normalization_batch.m](src/batch_step/normalisation_batch.m) 
       This script produces files starting with ```war```
-      6. Lastly [smoothing_batch.m](src/batch_step/smoothing_batch.m)
-      This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar```
-#### 2. Batch interface
- *   For the Batch interface inside ```/batch``` folder ```preprocessing_batch_job.m``` should be run.   
-     *  If you want to follow the GUI, steps below:
+   6. Lastly [smoothing_batch.m](src/batch_step/smoothing_batch.m) This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar```
+</details>
+
+<details>
+<summary> Batch Interface </summary>   
+
+#### 2. Batch Interface
+
+ For the Batch interface inside ```/batch``` folder ```preprocessing_batch_job.m``` should be run. 
+ *  If you want to follow the GUI, steps below:
      1. Load the [batch interface GUI](src/batch/preprocessing_batch.m) at the first step of the Batch interface ```Realign: Estimate &Reslice ``` select your data by specifiying  ```Data> Session```. And the rest is the same with the [tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/).
 
      2. The rest of the script should run automatically using the relative paths of your data.
-     3. If not, follow the steps in the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/) to define paths of your anatomical data.
-   
 
-#### 3. For Scripting 
+* If it does not work, follow the steps in the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/batch/) to define paths of your anatomical data.
+
+</details>
+
+<details>
+<summary>Scripting </summary>
+
+#### 3. For scripting 
+
  * To be able to run the scripting, in ```/script``` folder, ```/preprocessing_script_job.m``` is the main file and it should be run.
    * In this tutorial I only edited and used  ```preprocessing_script_job.m``` solely.
    
    * NOTE: In the ideal setting, ```preprocessing_script.m``` controls the job of [preprocessing_script_job.m](src/preprocessing_job.m), but currently ```preprocessing_script.m``` is redundant so does not exist in this repo.
    
    * As a rule of the thumb make sure to indicate correct file paths for these files as mention at the very beginning of the tutorial.
+</details>
 
-### A. Block Design fMRI First Level Analysis
+### A. Block Design fMRI First Level Analysis Steps
+
 Relative path settings are the same as [Block Design fMRI Preprocessing](Block_Design_fMRI_Preprocessing) for the ```first_level_analysis.sh``` The rest of the two scripts are depending on the resulting ```SPM.mat``` under the ```/first_level_analysis_script``` folder.
 
-#### 1. GUI interface: 
-* Run ```first_level_specification_gui.m``` firstly it will form the ```SPM.mat``` file at the ```/first_level_analysis_gui``` folder. And then run ```first_level_estimation_gui.m```
-In the [original first level analysis tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/modelling/block_design/) the plotting and overlay steps is not saved or exported so that part should be followed from there.
+<details> 
+<summary> First Level Analysis GUI Interface </summary>
+
+#### 1. GUI Interface: 
+* Run ```first_level_specification_gui.m``` firstly it will form the ```SPM.mat``` file at the ```/first_level_analysis_gui``` folder. 
+* And then run ```first_level_estimation_gui.m```
+* To be able to obtain the T staticstics and perform inference and rendering, [original first level analysis tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/modelling/block_design/) should be followed. 
+</details>
+<details>
+<summary>First level analysis script interface </summary>
+
 #### 2. Script interface:
+
 * All the scripts should be loaded subsequently,
          
    1. ```first_level_specification_script.m``` produces the ```SPM.mat file in the ```first_level_specification_script``` folder. The following scripts are taking this file as an input.
    2. The ```first_level_estimation_script.m``` does the GLM estimation.
-   3. ```first_level_inference_script.m``` does the rendering.
+   3. ```first_level_inference_script.m``` does the rendering. Calculates the estimation parameters and the T level statistics.
    Note: script and GUI outputs are not fully same yet...
+
+</details>   
+<details> 
+<summary> Event related fMRI </summary>
+
 ### B. Event-related fMRI
+
 #### 1. Preprocessing
 *  GUI interface
  *   All the, ```.m``` files in the folder ```src/event_related_gui/preprocessing``` and they must be run subsequently. 
@@ -123,20 +156,27 @@ In the [original first level analysis tutorial](https://www.fil.ion.ucl.ac.uk/sp
       6. Lastly [smooth.m](src/event_related_gui/preprocessing/smooth.m)
       This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar```
 * Script interface [TODO]
+
 #### 2. Parametric
+
 *  GUI interface
    * Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/parametric/).  
 * Script interface [TODO]
+
 #### 3. Categorical
+
 *  GUI interface
 * Run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/). 
 * Script interface 
+
 #### 4. Bayesian 
+
 *  GUI interface
    * Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/bayesian/).
+</details>
 
 ## Further on reproducibility
 

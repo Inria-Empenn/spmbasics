@@ -1,7 +1,7 @@
 home = getenv('HOME');
 root = fullfile(home, 'spmbasics', '/data/output/MoAEpilot_batch/'); % must be edited according to the name of the data folder
 sub = {'sub-01'}; 
-disp(['Starting preprocessing for ', sub]);
+disp(['Starting specifications of first level analysis for ', sub]);
 
 anat_dir = fullfile(root, sub, 'anat'); % this combines the root with a specific subject directory to create the full path to the folder containing anatomical data
 
@@ -42,6 +42,6 @@ matlabbatch{1}.spm.stats.fmri_spec.mthresh = 0.8;
 matlabbatch{1}.spm.stats.fmri_spec.mask = {''};
 matlabbatch{1}.spm.stats.fmri_spec.cvi = 'AR(1)';
 
-disp(['Completed preprocessing for ', sub]) % add a print statement telling you which subject has been processed
+disp(['Completed making SPM mat for ', sub]) 
 
 spm_jobman('run',matlabbatch) 
