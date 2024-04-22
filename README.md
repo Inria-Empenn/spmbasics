@@ -114,6 +114,7 @@ To be able to run SPM, it should be added to the path in MATLAB via ```addpath /
 Relative path settings are the same as [Block Design fMRI Preprocessing](Block_Design_fMRI_Preprocessing) for the ```first_level_analysis.sh``` The rest of the two scripts are depending on the resulting ```SPM.mat``` under the ```/first_level_analysis_script``` folder.
 
 <details> 
+
 <summary> First Level Analysis GUI Interface </summary>
 
 #### 1. GUI Interface: 
@@ -122,6 +123,7 @@ Relative path settings are the same as [Block Design fMRI Preprocessing](Block_D
 * To be able to obtain the T staticstics and perform inference and rendering, [original first level analysis tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/modelling/block_design/) should be followed. 
 * At the end, it is possible to get a rendered figure showing activations: ![gui_figure](figures/FIRST_LEVEL/first_level_gui_render.png)
 </details>
+
 <details>
 <summary>First level analysis script interface </summary>
 
