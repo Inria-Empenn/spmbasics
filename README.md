@@ -125,9 +125,9 @@ Relative path settings are the same as [Block Design fMRI Preprocessing](Block_D
 </details>
 
 <details>
-<summary>First level analysis script interface </summary>
+<summary>First Level Analysis Scripting </summary>
 
-#### 2. Script interface:
+#### 2. Scripting:
 
 * All the scripts should be loaded subsequently,
          
@@ -138,13 +138,19 @@ Relative path settings are the same as [Block Design fMRI Preprocessing](Block_D
 Resulting render can be seen here : ![script_figure](figures/FIRST_LEVEL/first_level_script_render.png)
 
 </details>   
-<details> 
-<summary> Event related fMRI </summary>
+
 
 ### B. Event-related fMRI
 
 #### 1. Preprocessing
-*  GUI interface
+<details>
+
+<summary> GUI Interface Preprocessing </summary>
+
+
+GUI interface: 
+This part is following exact steps of the [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/preprocessing/). All the code files exported from the saved ```mat``` files.
+
  *   All the, ```.m``` files in the folder ```src/event_related_gui/preprocessing``` and they must be run subsequently. 
       1. Load & run [realign.m](src/event_related_gui/preprocessing/realign.m) first. 
       Then run the script. It should produce a file starting with ```mean``` and ```r```. 
@@ -159,27 +165,42 @@ Resulting render can be seen here : ![script_figure](figures/FIRST_LEVEL/first_l
       This script produces files starting with ```war```
       6. Lastly [smooth.m](src/event_related_gui/preprocessing/smooth.m)
       This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar```
-* Script interface [TODO]
 
-#### 2. Parametric
+</details>
+
+<details>
+<summary> Preprocessing via scripting </summary>
+
+* Script Interface [TODO]
+
+</details>
+
+<details>
+<summary> Parametric Modelling  </summary>
+
+#### 2. Parametric Modelling
 
 *  GUI interface
    * Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/parametric/).  
 * Script interface [TODO]
 
+</details>
+
+<details>
+
+<summary> Categorical modelling and Bayesian Analysis are omitted for this tutorial. </summary>
+
 #### 3. Categorical
 
-*  GUI interface
 * Run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
-The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/). 
-* Script interface 
+The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/).  
 
 #### 4. Bayesian 
 
-*  GUI interface
    * Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/bayesian/).
+
 </details>
 
 ## Further on reproducibility
