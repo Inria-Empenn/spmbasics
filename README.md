@@ -24,7 +24,7 @@
 ## Overview
 
 
-Version of the software used:```MATLAB R2020b``` & ```SPM12 (release 7771)```.
+Version of the software used:```MATLAB R2020b```[reffered as MATLAB] & ```SPM12 (release 7771)```[reffered as SPM].
 
 This repo contains my reproduction of the SPM12 tutorials with MATLAB R020b and they will be reffered as [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/) from now on. 
 
