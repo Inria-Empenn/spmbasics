@@ -13,7 +13,7 @@
 
    * [How to reproduce each step](#How-to-reproduce-each-step)
 
-      A. [Block Design fMRI Preprocessing Steps]( Block_Design_fMRI_Preprocessing_Steps)
+      [A Block Design fMRI Preprocessing Steps]( A_Block_Design_fMRI_Preprocessing_Steps)
       
       B. [Block Design fMRI First Level Analysis Steps](Block_Design_fMRI_First_Level_Analysis_Steps)
 
