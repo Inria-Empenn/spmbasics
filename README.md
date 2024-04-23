@@ -17,7 +17,7 @@
       
       B. [Block Design fMRI First Level Analysis Steps](#b-block-design-fmri-first-level-analysis-steps)
 
-      C. [Event-related fMRI Steps](#c.-event-related-fmri-steps)
+      C. [Event-related fMRI Steps](#c-event-related-fmri-steps)
 
    * [Further on reproducibility](#Further-on-reproducibility)
 
