@@ -43,7 +43,7 @@ matlabbatch{2}.spm.temporal.st.so = [24 23 22 21 20 19 18 17 16 15 14 13 12 11 1
 matlabbatch{2}.spm.temporal.st.refslice = 12;
 matlabbatch{2}.spm.temporal.st.prefix = 'a';
 matlabbatch{3}.spm.spatial.coreg.estimate.ref(1) = cfg_dep('Realign: Estimate & Reslice: Mean Image', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','rmean'));
-matlabbatch{3}.spm.spatial.coreg.estimate.source(1) = cellstr(anat);
+matlabbatch{3}.spm.spatial.coreg.estimate.source = {cellstr(anat)};
 matlabbatch{3}.spm.spatial.coreg.estimate.other = {''};
 matlabbatch{3}.spm.spatial.coreg.estimate.eoptions.cost_fun = 'nmi';
 matlabbatch{3}.spm.spatial.coreg.estimate.eoptions.sep = [4 2];
@@ -87,7 +87,6 @@ matlabbatch{4}.spm.spatial.preproc.warp.write = [0 1];
 matlabbatch{4}.spm.spatial.preproc.warp.vox = NaN;
 matlabbatch{4}.spm.spatial.preproc.warp.bb = [NaN NaN NaN
                                               NaN NaN NaN];
-                                          
 matlabbatch{5}.spm.spatial.normalise.write.subj.def(1) = cfg_dep('Segment: Forward Deformations', substruct('.','val', '{}',{4}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','fordef', '()',{':'}));
 matlabbatch{5}.spm.spatial.normalise.write.subj.resample(1) = cfg_dep('Slice Timing: Slice Timing Corr. Images (Sess 1)', substruct('.','val', '{}',{2}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('()',{1}, '.','files'));
 matlabbatch{5}.spm.spatial.normalise.write.woptions.bb = [-78 -112 -70
@@ -101,5 +100,4 @@ matlabbatch{6}.spm.spatial.smooth.dtype = 0;
 matlabbatch{6}.spm.spatial.smooth.im = 0;
 matlabbatch{6}.spm.spatial.smooth.prefix = 's';
 
-save(fullfile(scriptdir,'event_related_preproc.mat'),'matlabbatch');
 spm_jobman('run',matlabbatch);
