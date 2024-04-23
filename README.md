@@ -188,11 +188,20 @@ Run ```src/event_related_script/event_related_preprocessing_script.m```.
 
 
 </details>
+<details>
+<summary><strong> 2. Categorical Modelling </strong></summary>
+
+#### 2. Categorical Modelling
+
+* Run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
+The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/). 
+
+</details>
 
 <details>
-<summary><strong> 2. Parametric Modelling  </strong></summary>
+<summary><strong> 3. Parametric Modelling  </strong></summary>
 
-#### 2. Parametric Modelling
+#### 3. Parametric Modelling
 
 *  GUI interface
    * Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
@@ -201,14 +210,12 @@ The inference should be followed at the [original event related tutorial](https:
 
 </details>
 
+
+
 <details>
 
-<summary> <strong> 3. Categorical modelling and 4. Bayesian Analysis are omitted for this tutorial. </strong> </summary>
-
-#### 3. Categorical Modelling
-
-* Run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
-The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/).  
+<summary> <strong>  4. Bayesian Analysis is omitted for this tutorial. </strong> </summary>
+ 
 
 #### 4. Bayesian Analysis
 
