@@ -13,11 +13,11 @@
 
    * [How to reproduce each step](#How-to-reproduce-each-step)
 
-      A. [Block Design fMRI Preprocessing Steps](A.-Block-Design-fMRI-Preprocessing-Steps)
+      A. [Block Design fMRI Preprocessing Steps](#A.-Block-Design-fMRI-Preprocessing-Steps)
       
-      B. [Block Design fMRI First Level Analysis Steps](B.-Block-Design-fMRI-First-Level-Analysis-Steps)
+      B. [Block Design fMRI First Level Analysis Steps](#B.-Block-Design-fMRI-First-Level-Analysis-Steps)
 
-      C. [Event-related fMRI Steps](C.-Event-related-fMRI-Steps)
+      C. [Event-related fMRI Steps](#C.-Event-related-fMRI-Steps)
 
    * [Further on reproducibility](#Further-on-reproducibility)
 
@@ -34,7 +34,7 @@ You can find the code in the [src](src) folder.
 
 ## How to Reproduce Each Step
 
-### A. Block Design fMRI Preprocessing Steps 
+### A. Block design fMRI preprocessing steps 
 
 First thing before the running the pipelines, add SPM to your path in MATLAB, via ```addpath /path/of/your/spm12/```. Because  all the scripts in this repo are calling SPM.
 
