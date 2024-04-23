@@ -184,8 +184,7 @@ This part is following exact steps of the [original tutorial](https://www.fil.io
 
 Scripting
 
-Run ```src/event_related_script/event_related_preprocessing_script.m```.
-
+Run ```src/event_related_script/event_related_preprocessing_script.m```. And it should produce the exact same files with the gui interface in one step.
 
 </details>
 <details>
