@@ -26,40 +26,49 @@
 
 Version of the software used:```MATLAB R2020b``` & ```SPM12 (release 7771)```.
 
-This repo contains my reproduction of the SPM12  tutorials with MATLAB R020b and they will be reffered as [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/) from now on. You can download the data used for preprocessing in this tutorial from [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/MoAEpilot/MoAEpilot.bids.zip). And the data used for event related fMRI analysis [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/face_rep/face_rep.zip)
-You can find the code in [src](https://github.com/mselimata/spmbasics/tree/main/src) folder.
+This repo contains my reproduction of the SPM12 tutorials with MATLAB R020b and they will be reffered as [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/) from now on. 
+
+You can download the data used for preprocessing in this tutorial from [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/MoAEpilot/MoAEpilot.bids.zip). And the data used for event related fMRI analysis [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/face_rep/face_rep.zip). 
+You can find the code in the [src](src) folder.
 
 
 ## How to Reproduce Each Step
 
 ### A. Block Design fMRI Preprocessing Steps 
 
-First thing before the running the pipelines, add SPM to your path in MATLAB, because the scripts are calling SPM.
+First thing before the running the pipelines, add SPM to your path in MATLAB, via ```addpath /path/of/your/spm12/```. Because  all the scripts in this repo are calling SPM.
 
-At all the scripts there  section defining the data root which requires that ```/spmbasics``` folder to be under ```to be under your home directory``` directory. 
+At the first lines of the all scripts, there is a section defining the data root which requires that ```/spmbasics``` folder to be specifically ```to be under your home directory``` directory. If you wish to use any other path, you may need to redefine relative to your ```home``` directory. 
 
-The parameter in the scripts should be adjusted accordingly including true name of your data.  Here is an example setting showing the MoAEpilot folder under  ```/data/MoAEpilot``` the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
+The parameter in the scripts should be adjusted accordingly to be able to load dataset.
+
+Here is an example setting showing the MoAEpilot folder under  ```/data/MoAEpilot``` the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
 
 For the face fMRI data ```root = fullfile(home, 'spmbasics', '/data/face_rep)```.
 If you edit the folder names keep the edits in the code as well. 
+
 Your folder structure should look like the example below:
 
 ![folder_basics](/figures/folder_basics.png)
 
-To be able test the reproducibility afterwards, in your ```/data/``` folder keep three different copies of your original data, named according to the processes.  For example ```MoAEpilot_script``` should contain the files to run the script interface. The ```root``` should be edited beforehand according to the pipelines, to avoid overwriting.
+To be able test the reproducibility afterwards, in your ```/data/``` folder keep three different copies of your original data, named according to the processes.  
 
-As a reminder all scripts meant to run in a clear window with no parameters. For the event related design there is an exception,  when a parameter needs to be loaded  beforehand it is mentioned on the script. 
-So as a rule it would be useful to ```clc``` and ```clear all``` before and/or after each time running the scripts.
+For example ```MoAEpilot_script``` should contain the files to run the script interface. The ```root``` should be edited beforehand according to the pipelines, to avoid overwriting to the same folder.
+
+As a last reminder,  most of the scripts meant to run in a clear window with no parameters. Preprocessing pipelines may not cause any issue but analysis pipelines strictly require this setting.
+
+So as a rule it would be useful to ```clc``` and ```clear all``` or ```clear matlabbatch``` before and/or after each time running the scripts.
 
 
 Now steps of running these scripts:
-All the scripts meant to run without loading the gui and all the dependencies are defined and can be adjusted as mentioned earlier.
+All the scripts meant to run without loading the gui and all the dependencies are defined and can be adjusted as mentioned above.
 
-To avoid redundancies if you want to use the GUI interface solely, I recommend to follow the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/realignment/). 
+To avoid redundancies in this long README I do not repeat the steps explained at the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/realignment/).
+
 If you want to load the scripts in this repo using the GUI interface it is possible and could be done by selecting data folder in similar methodology in the original tutorial.
 Below I will be explaining running all as a script.
 
-To be able to run SPM, it should be added to the path in MATLAB via ```addpath /path/of/your/spm12/```. 
+
 
 
 <details>
