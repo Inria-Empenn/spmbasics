@@ -13,11 +13,11 @@
 
    * [How to reproduce each step](#How-to-reproduce-each-step)
 
-      A. [Block Design fMRI Preprocessing Steps](#A.-Block-Design-fMRI-Preprocessing-Steps)
+      A. [Block Design fMRI Preprocessing Steps](#a-block-design-fmri-preprocessing-steps)
       
-      B. [Block Design fMRI First Level Analysis Steps](#B.-Block-Design-fMRI-First-Level-Analysis-Steps)
+      B. [Block Design fMRI First Level Analysis Steps](#b-block-design-fmri-first-level-analysis-steps)
 
-      C. [Event-related fMRI Steps](#C.-Event-related-fMRI-Steps)
+      C. [Event-related fMRI Steps](#c-event-related-fmri-steps)
 
    * [Further on reproducibility](#Further-on-reproducibility)
 
@@ -152,6 +152,7 @@ Resulting render can be seen here : ![script_figure](figures/FIRST_LEVEL/first_l
 
 ### C. Event-related fMRI Steps
 
+I followed all the tutorial for sake of completion but focused on making event related preprocessing and parametric modelling mainly. 
 
 <details>
 
@@ -183,15 +184,23 @@ This part is following exact steps of the [original tutorial](https://www.fil.io
 
 Scripting
 
-Run ```src/event_related_script/event_related_preprocessing_script.m```.
+Run ```src/event_related_script/event_related_preprocessing_script.m```. And it should produce the exact same files with the gui interface in one step.
 
+</details>
+<details>
+<summary><strong> 2. Categorical Modelling </strong></summary>
+
+#### 2. Categorical Modelling
+
+* Run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
+The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/). 
 
 </details>
 
 <details>
-<summary><strong> Parametric Modelling  </strong></summary>
+<summary><strong> 3. Parametric Modelling  </strong></summary>
 
-#### Parametric Modelling
+#### 3. Parametric Modelling
 
 *  GUI interface
    * Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
@@ -200,16 +209,14 @@ The inference should be followed at the [original event related tutorial](https:
 
 </details>
 
+
+
 <details>
 
-<summary> <strong> Categorical modelling and Bayesian Analysis are omitted for this tutorial. </strong> </summary>
+<summary> <strong>  4. Bayesian Analysis is omitted for this tutorial. </strong> </summary>
+ 
 
-#### Categorical Modelling
-
-* Run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
-The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/).  
-
-#### Bayesian Analysis
+#### 4. Bayesian Analysis
 
    * Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/bayesian/).

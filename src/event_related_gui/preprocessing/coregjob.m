@@ -5,15 +5,17 @@
 %-----------------------------------------------------------------------
 
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/data/face_rep_gui')
+root = fullfile(home, 'spmbasics', '/data/face_rep_gui');
+func = spm_select('ExtFPList', fullfile(root,'RawEPI'), '^sM.*\.img$');
 mean = spm_select('FPList', fullfile(root,'RawEPI'), '^meansM.*\.img$');
-anat = spm_select('FPList', fullfile(root,'Structural'), '^sM.*\.nii$'); % y_sM03953_0007.nii
+
+anat = spm_select('FPList', fullfile(root,'Structural'), '^sM.*\.img$'); % y_sM03953_0007.nii
 
 scriptdir = fullfile(home, 'spmbasics', '/src/event_related_gui/preprocessing/matfiles');
 disp('Starting preprocessing...'); 
 
-matlabbatch{1}.spm.spatial.coreg.estimate.ref(1) = {cellstr(mean)};
-matlabbatch{1}.spm.spatial.coreg.estimate.source(1) = {cellstr(anat)};
+matlabbatch{1}.spm.spatial.coreg.estimate.ref(1) = cellstr(mean);
+matlabbatch{1}.spm.spatial.coreg.estimate.source(1) = cellstr(anat);
 matlabbatch{1}.spm.spatial.coreg.estimate.other = {''};
 matlabbatch{1}.spm.spatial.coreg.estimate.eoptions.cost_fun = 'nmi';
 matlabbatch{1}.spm.spatial.coreg.estimate.eoptions.sep = [4 2];

@@ -3,18 +3,15 @@
 % spm SPM - SPM12 (7771)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
-%%
+%
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/data/face_rep_gui')
-func = spm_select('FPList', fullfile(root,'RawEPI'), '^arsM.*\.img$');
-def = spm_select('FPList', fullfile(root,'Structural'), '^y_sM.*\.nii$'); % y_sM03953_0007.nii
-scriptdir = fullfile(home, 'spmbasics', '/src/event_related_gui/preprocessing/matfiles');
+root = fullfile(home, 'spmbasics', '/data/face_rep_gui');
+func = spm_select('FPList', fullfile(root,'RawEPI'), '^sM.*\.img$');
+anat = spm_select('FPList', fullfile(root,'Structural'), '^sM.*\.img$');
 
+matlabbatch{1}.spm.spatial.normalise.write.subj.def = cellstr(spm_file(anat,'prefix','y_','ext','nii'));
 
-matlabbatch{1}.spm.spatial.normalise.write.subj.def(1) = {cellstr(def)};
-
-matlabbatch{1}.spm.spatial.normalise.write.subj.resample(1) ={cellstr(func)};
-%%
+matlabbatch{1}.spm.spatial.normalise.write.subj.resample = cellstr(spm_file(func,'prefix','ar'));
 matlabbatch{1}.spm.spatial.normalise.write.woptions.bb = [-78 -112 -70
                                                           78 76 85];
 matlabbatch{1}.spm.spatial.normalise.write.woptions.vox = [3 3 3];

@@ -13,4 +13,5 @@ data/MoAEpilot_raw/*
 data/*
 /src/shasum_checker_event.sh
 /src/event_related_gui/preprocessing/matfiles/*
+/src/event_related_script/matfiles/*
 /results/basecomparison_result.txt
