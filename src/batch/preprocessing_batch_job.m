@@ -8,7 +8,7 @@ tpm_dir = fullfile(spmDir, 'tpm');
 home = getenv('HOME');
 user = getenv('USER');
 % path of your data file
-root = fullfile(home, 'spmbasics', '/data/MoAEpilot'); % must be edited according to the name of the data folder
+root = fullfile(home, 'spmbasics', '/data/MoAEpilot_batch'); % must be edited according to the name of the data folder
 sub = {'sub-01'}; 
 disp(['Starting preprocessing for ', sub]); % add a print statement to tell you which subject is being processed
 

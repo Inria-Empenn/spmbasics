@@ -6,7 +6,7 @@
 %%% this is ommitted as a beginner
 
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/data/face_rep_gui')
+root = fullfile(home, 'spmbasics', '/data/face_rep')
 func = spm_select('FPList', fullfile(root,'RawEPI'), '^arsM.*\.img$');
 def = spm_select('FPList', fullfile(root,'Structural'), '^y_sM.*\.nii$'); % y_sM03953_0007.nii
 

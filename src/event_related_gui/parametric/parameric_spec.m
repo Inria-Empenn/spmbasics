@@ -4,21 +4,23 @@
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/data/face_rep_gui')
+root = fullfile(home, 'spmbasics', '/data/face_rep');
 func = spm_select('FPList', fullfile(root,'RawEPI'), '^swarsM.*\.img$');
-scriptdir = fullfile(home, 'spmbasics', '/src/event_related_gui/parametric')
+scriptdir = fullfile(home, 'spmbasics', '/data/output/event_related_gui/parametric');
 txt = spm_select('FPList', fullfile(root,'RawEPI'), '^rp_sM.*\.txt$'); % rp_sM03953_0005_0006.txt
+
+disp('Starting parametric modelling specifications');
 
 matlabbatch{1}.spm.stats.fmri_spec.dir = cellstr(scriptdir);
 matlabbatch{1}.spm.stats.fmri_spec.timing.units = 'scans';
 matlabbatch{1}.spm.stats.fmri_spec.timing.RT = 2;
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t = 24;
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t0 = 12;
-%%
+%
 matlabbatch{1}.spm.stats.fmri_spec.sess.scans = cellstr(func);
-%%
+%
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).name = 'N1';
-%%
+%
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).onset = [6.74996666666667
                                                          15.7499666666667
                                                          17.9999666666667
@@ -209,7 +211,7 @@ matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).pmod.poly = 2;
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).orth = 1;
 matlabbatch{1}.spm.stats.fmri_spec.sess.multi = {''};
 matlabbatch{1}.spm.stats.fmri_spec.sess.regress = struct('name', {}, 'val', {});
-matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = cellstr{txt};
+matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = cellstr(txt);
 matlabbatch{1}.spm.stats.fmri_spec.sess.hpf = 128;
 matlabbatch{1}.spm.stats.fmri_spec.fact(1).name = 'Fam';
 matlabbatch{1}.spm.stats.fmri_spec.fact(1).levels = 2;
@@ -221,6 +223,8 @@ matlabbatch{1}.spm.stats.fmri_spec.global = 'None';
 matlabbatch{1}.spm.stats.fmri_spec.mthresh = 0.8;
 matlabbatch{1}.spm.stats.fmri_spec.mask = {''};
 matlabbatch{1}.spm.stats.fmri_spec.cvi = 'AR(1)';
+
+disp('your spm.mat is made');
 
 save(fullfile(scriptdir,'parametric_spec.mat'),'matlabbatch');
 spm_jobman('run',matlabbatch);

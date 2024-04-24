@@ -6,7 +6,7 @@
 %%
 
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/data/face_rep_gui')
+root = fullfile(home, 'spmbasics', '/data/face_rep')
 func = spm_select('FPList', fullfile(root,'RawEPI'), '^rsM.*\.img$');
 scriptdir = fullfile(home, 'spmbasics', '/src/event_related_gui/preprocessing/matfiles');
 

@@ -184,9 +184,12 @@ Run ```src/event_related_script/event_related_preprocessing_script.m```. And it 
 </details>
 
 <details>
+
 <summary><strong> 2. Categorical Modelling </strong></summary>
+
 <!--#### 2. Categorical Modeliing -->
  <details>
+
  <summary><strong>GUI Interface:</strong></summary>
 
 In ```src/event_related_gui/categorical``` folder,
@@ -197,25 +200,45 @@ The further steps about the inference of the results is on the [event related tu
 The figure highlighting the fstatistics can be seen here : ![ergui_figure](figures/EVENT_RELATED/er_fstat_gui.png)
 
  </details>
- <details>
-<summary><strong>Scripting:</strong></summary>
 
-Run ```src/event_related_script/categorical_modelling.m```. It produces same result with the gui interface.
+ <details>
+
+ <summary><strong>Scripting:</strong></summary>
+
+Run ```src/event_related_script/categorical_modelling.m```. 
+
+It produces same result with the gui interface.
 
 Resulting sample figure can be seen here : ![erscript_figure](figures/EVENT_RELATED/er_fstat_sc.png)
  </details>
+
 </details>
 
 <details>
+
 <summary><strong> 3. Parametric Modelling  </strong></summary>
 
 <!--#### 3. Parametric Modelling-->
+<details>
 
-*  GUI interface:
-   * Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
+<summary><strong>GUI interface:</summary></strong>
+   
+Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
+
 The section describing inference steps to obtain the figure is on the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/parametric/).  
+ 
+ Parametric lag effect can be seen like in this figure : ![eventlag_figure](figures/EVENT_RELATED/famouslag_gui.png)
+ </details>
 
-* Scripting:
+ <details>
+ 
+ <summary><strong>Scripting:</strong></summary>
+
+Run ```src/event_related_script/parametric_modelling.m```. It produces same result with the gui interface in single step.
+
+Resulting figure is here : ![eventlagsc_figure](figures/EVENT_RELATED/famouslag_sc.png)
+ 
+ </details>
 
 </details>
 
