@@ -43,10 +43,19 @@ BATCHDIR="$OUTPUTDIR/MoAEpilot_bids_batch"
 # Output folder of the script interface
 SCRIPTDIR="$OUTPUTDIR/MoAEpilot_bids_script"  
 
-RESULTSDIR="$BASEDIR/results"
+# first level analysis output comparison
 
 FL_GUI="$OUTPUTDIR/first_level_analysis_gui"
 FL_SCRIPT="$OUTPUTDIR/first_level_analysis_script"
+##Event Related data
+# face_rep images preprocessing reference folder
+FACEGUIDIR="$DATADIR/face_rep_gui" 
+# script results face_rep images preprocessing 
+FACESCRIPTDIR="$DATADIR/face_rep_script"  
+
+RESULTSDIR="$BASEDIR/results"
+
+
 
 # defining file extension to search for the defined file extension 
 file_extension=".nii"
@@ -79,15 +88,15 @@ calculate_shasums() {
 
 compare_shasums() {
 # loading text files  
-local output_file="$RESULTSDIR/comparison_result.txt"
+local output_file="$RESULTSDIR/basecomparison_result.txt"
 local reference="$1"
 local file1="$2"
 # compare the loaded text files below
-if cmp -s "$reference_file" "$file1";
+if cmp -s "$reference" "$file1";
 then
-   echo "SHA256sums are identical for $file1 and $reference_file" >> "$output_file"
+   echo "SHA256sums are identical for $reference and $file1" >> "$output_file"
 else
-   echo "SHA256sums are not identical for $file1 and $reference_file" >> "$output_file"
+   echo "SHA256sums are not identical for $reference and $file1" >> "$output_file"
 fi
 }
 ##############################################################
@@ -131,8 +140,13 @@ script_file="$DATADIR/MoAEpilot_script_shasums.txt"
 reference_file2="$OUTPUTDIR/first_level_analysis_gui_shasums.txt"
 flsc_file="$OUTPUTDIR/first_level_analysis_script_shasums.txt"
 
+reference_txt="$DATADIR/face_rep_gui_shasums.txt"
+script_txt="$DATADIR/face_rep_script_shasums.txt"
+
 compare_shasums "$batch_file" "$reference_file"
 compare_shasums "$script_file" "$reference_file"
 compare_shasums "$batch_file" "$script_file"
 
 compare_shasums "$flsc_file" "$reference_file2"
+
+compare_shasums "$script_txt" "$reference_txt"
