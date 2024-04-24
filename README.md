@@ -256,6 +256,8 @@ The inference should be followed at the [original event related tutorial](https:
 
 </details>
 
+### Redoing with Nipype and Pydra.
+
 ## Further on reproducibility
 
 SPM has a display and check reg features to visually inspect the outputs.
