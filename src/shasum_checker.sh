@@ -47,11 +47,26 @@ SCRIPTDIR="$OUTPUTDIR/MoAEpilot_bids_script"
 
 FL_GUI="$OUTPUTDIR/first_level_analysis_gui"
 FL_SCRIPT="$OUTPUTDIR/first_level_analysis_script"
+
+
 ##Event Related data
+
 # face_rep images preprocessing reference folder
 FACEGUIDIR="$DATADIR/face_rep_gui" 
 # script results face_rep images preprocessing 
 FACESCRIPTDIR="$DATADIR/face_rep_script"  
+
+#Categorical Modelling Results
+EVENTCATGUI="$OUTPUTDIR/event_related_gui/categorical"
+
+EVENTCATSCRIPT="$OUTPUTDIR/event_related_script/categorical"
+
+#Parametric Modelling Results 
+EVPARAMGUI="$OUTPUTDIR/event_related_gui/parametric"
+
+EVPARAMSCRIPT="$OUTPUTDIR/event_related_script/parametric"
+
+
 
 RESULTSDIR="$BASEDIR/results"
 
@@ -132,6 +147,31 @@ for flsc_subfolder in "$FL_SCRIPT"; do
     calculate_shasums "$flsc_subfolder"
 done
 
+for fagui_subfolder in "$FACEGUIDIR"; do
+    calculate_shasums "$fagui_subfolder"
+done
+
+for fascript_subfolder in "$FACESCRIPTDIR"; do
+    calculate_shasums "$fascript_subfolder"
+done
+
+
+for eventcatgui_subfolder in "$EVENTCATGUI"; do
+    calculate_shasums "$eventcatgui_subfolder"
+done
+
+for eventcatscript_subfolder in "$EVENTCATSCRIPT"; do
+    calculate_shasums "$eventcatscript_subfolder"
+done
+
+for evparamgui_subfolder in "$EVPARAMGUI"; do
+    calculate_shasums "$evparamgui_subfolder"
+done
+
+for evparamscript_subfolder in "$EVPARAMSCRIPT"; do
+    calculate_shasums "$evparamscript_subfolder"
+done
+
 # TO COMPARE THE SHASUMS WITH EACH OTHER
 reference_file="$DATADIR/MoAEpilot_shasums.txt"
 batch_file="$DATADIR/MoAEpilot_batch_shasums.txt"
@@ -143,6 +183,16 @@ flsc_file="$OUTPUTDIR/first_level_analysis_script_shasums.txt"
 reference_txt="$DATADIR/face_rep_gui_shasums.txt"
 script_txt="$DATADIR/face_rep_script_shasums.txt"
 
+referencesha="$OUTPUTDIR/categorical_gui_shasums.txt" 
+scriptsha="$OUTPUTDIR/categorical_script_shasums.txt"
+
+referencesha="$OUTPUTDIR/categorical_gui_shasums.txt" 
+scriptsha="$OUTPUTDIR/categorical_script_shasums.txt"
+
+refpamsha="$OUTPUTDIR/parametric_gui_shasums.txt"
+scriptpamsha="$OUTPUTDIR/parametric_script_shasums.txt"
+
+
 compare_shasums "$batch_file" "$reference_file"
 compare_shasums "$script_file" "$reference_file"
 compare_shasums "$batch_file" "$script_file"
@@ -150,3 +200,10 @@ compare_shasums "$batch_file" "$script_file"
 compare_shasums "$flsc_file" "$reference_file2"
 
 compare_shasums "$script_txt" "$reference_txt"
+
+compare_shasums "$referencesha" "$scriptsha"
+compare_shasums "$refpamsha" "$scriptpamsha"
+# With this experiment we showed that we can reproduce same
+# results using SPM12 gui, batch and script interfaces for 
+# preprocessing and analysis steps. 
+### END OF THE SCRIPT ###
