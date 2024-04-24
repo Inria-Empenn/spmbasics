@@ -182,8 +182,7 @@ This part is following exact steps of the [original tutorial](https://www.fil.io
 <details>
 <summary><strong> 1-B. Preprocessing via scripting </strong></summary>
 
-Scripting
-
+Scripting: 
 Run ```src/event_related_script/event_related_preprocessing_script.m```. And it should produce the exact same files with the gui interface in one step.
 
 </details>
@@ -191,10 +190,13 @@ Run ```src/event_related_script/event_related_preprocessing_script.m```. And it 
 <summary><strong> 2. Categorical Modelling </strong></summary>
 
 #### 2. Categorical Modelling
+* GUI Interface:
+In ```src/event_related_gui/categorical``` folder,
+Firstly run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
+The further steps about the inference of the results is on the [event related tutorial page](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/).
 
-* Run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
-The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/). 
-
+* Scripting: 
+Run ```src/event_related_script/categorical_modelling.m```. It produces same result with the gui interface including the graphs.* which graphs*
 </details>
 
 <details>
@@ -202,10 +204,11 @@ The inference should be followed at the [original event related tutorial](https:
 
 #### 3. Parametric Modelling
 
-*  GUI interface
+*  GUI interface:
    * Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/parametric/).  
-* Script interface [TODO]
+
+* Scripting:
 
 </details>
 
