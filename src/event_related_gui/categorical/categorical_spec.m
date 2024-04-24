@@ -4,25 +4,27 @@
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/data/face_rep_gui')
+root = fullfile(home, 'spmbasics', '/data/face_rep_gui');
 func = spm_select('FPList', fullfile(root,'RawEPI'), '^swarsM.*\.img$');
 txt = spm_select('FPList', fullfile(root,'RawEPI'), '^rp_sM.*\.txt$'); % rp_sM03953_0005_0006.txt
-scriptdir = fullfile(home, 'spmbasics', '/src/event_related_gui/categorical')
+scriptdir = fullfile(home, 'spmbasics', '/data/output/event_related_gui/categorical');
 % onsets    = load(fullfile(root,'sots.mat'));
 % condnames = {'N1' 'N2' 'F1' 'F2'};
+
+disp('Starting categorical modelling specifications');
 
 matlabbatch{1}.spm.stats.fmri_spec.dir = cellstr(scriptdir);
 matlabbatch{1}.spm.stats.fmri_spec.timing.units = 'scans';
 matlabbatch{1}.spm.stats.fmri_spec.timing.RT = 2;
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t = 24;
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t0 = 12;
-%%
+%
 
 matlabbatch{1}.spm.stats.fmri_spec.sess.scans = cellstr(func);
                                                  
-%%
+%
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).name = 'N1';
-%%
+%
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).onset = [6.74996666666667
                                                          15.7499666666667
                                                          17.9999666666667
@@ -49,7 +51,7 @@ matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).onset = [6.74996666666667
                                                          164.249966666667
                                                          204.749966666667
                                                          238.499966666667];
-%%
+%
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).duration = 0;
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).tmod = 0;
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(1).pmod = struct('name', {}, 'param', {}, 'poly', {});
@@ -148,14 +150,14 @@ matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).onset = [33.7499666666667
                                                          335.249966666667
                                                          337.499966666667
                                                          346.499966666667];
-%%
+%
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).duration = 0;
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).tmod = 0;
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).pmod = struct('name', {}, 'param', {}, 'poly', {});
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond(4).orth = 1;
 matlabbatch{1}.spm.stats.fmri_spec.sess.multi = {''};
 matlabbatch{1}.spm.stats.fmri_spec.sess.regress = struct('name', {}, 'val', {});
-matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = cellstr{txt};
+matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = cellstr(txt);
 matlabbatch{1}.spm.stats.fmri_spec.sess.hpf = 128;
 matlabbatch{1}.spm.stats.fmri_spec.fact(1).name = 'Fam';
 matlabbatch{1}.spm.stats.fmri_spec.fact(1).levels = 2;
@@ -168,5 +170,7 @@ matlabbatch{1}.spm.stats.fmri_spec.mthresh = 0.8;
 matlabbatch{1}.spm.stats.fmri_spec.mask = {''};
 matlabbatch{1}.spm.stats.fmri_spec.cvi = 'AR(1)';
 
+disp('Starting categorical modelling specifications');
 save(fullfile(scriptdir,'categorical_spec.mat'),'matlabbatch');
+
 spm_jobman('run',matlabbatch);
