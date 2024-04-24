@@ -38,9 +38,9 @@ You can find the code in the [src](src) folder.
 
 First thing before the running the pipelines, add SPM to your path in MATLAB, via ```addpath /path/of/your/spm12/```. Because  all the scripts in this repo are calling SPM.
 
-At the first lines of the all scripts, there is a section defining the data root which requires that ```/spmbasics``` folder to be specifically ```to be under your home directory``` directory. If you wish to use any other path, you may need to redefine relative to your ```home``` directory. 
+At the first lines of the all scripts, there is a section defining the data root which requires that ```/spmbasics``` folder to be specifically ```to be under your home directory```. If you wish to use any other path, you may need to redefine relative to your ```home``` directory. 
 
-The parameter in the scripts should be adjusted accordingly to be able to load dataset.
+The corresponding ```root``` variable in the scripts should be adjusted accordingly to be able to load dataset.
 
 Here is an example setting showing the MoAEpilot folder under  ```/data/MoAEpilot``` the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
 
@@ -55,18 +55,17 @@ To be able test the reproducibility afterwards, in your ```/data/``` folder keep
 
 For example ```MoAEpilot_script``` should contain the files to run the script interface. The ```root``` should be edited beforehand according to the pipelines, to avoid overwriting to the same folder.
 
-As a last reminder,  most of the scripts meant to run in a clear window with no parameters. Preprocessing pipelines *may not* cause any issue but analysis pipelines strictly require tto have a clear window to avoid clashing parameters.
-
-So as a rule it would be useful to ```clc``` and ```clear all``` or ```clear matlabbatch``` before and/or after each time running the scripts.
+As a last reminder,  most of the scripts meant to run in a clear window with no parameters. For the preprocessing pipelines there *may not* be any issue. But the analysis and modelling pipelines, strictly require to have a clear window to avoid clashing parameters under the same variable names. So as a rule it would be useful to ```clc``` and ```clear all``` or ```clear matlabbatch``` before, and/or after each time running the scripts.
 
 
 Now steps of running these scripts:
-All the scripts meant to run without loading the gui and all the dependencies are defined and can be adjusted as mentioned above.
+
+All the scripts meant to run without loading the gui and all the dependencies are following the relative paths of your  ```spmbasics``` folder. 
 
 To avoid redundancies in this long README I do not repeat the steps explained at the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/realignment/).
 
 If you want to load the scripts in this repo using the GUI interface it is possible and could be done by selecting data folder in similar methodology in the original tutorial.
-Below, I am explaining running codes in this repo as scripts.
+Below, I am mainly explaining running codes in this repo as scripts.
 
 
 <details>
