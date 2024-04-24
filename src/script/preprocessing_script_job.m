@@ -12,7 +12,7 @@ user = getenv('USER');
 %PATH.SCRIPT = fileparts(mfilename('fullpath')); % path of where the script is 
 %root= cd(fullfile([PATH.SCRIPT, filesep, '..' , filesep, '/data/MoAEpilot/']));
 % path of your data file
-root = fullfile(home, 'spmbasics', '/data/MoAEpilot');
+root = fullfile(home, 'spmbasics', '/data/MoAEpilot_script');
 sub = {'sub-01'}; % specify a list of subjects you want to process
 
 % this loop will perform preprocessing steps for all subjects specified in the list sub

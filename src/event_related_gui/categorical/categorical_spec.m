@@ -4,7 +4,7 @@
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/data/face_rep_gui');
+root = fullfile(home, 'spmbasics', '/data/face_rep');
 func = spm_select('FPList', fullfile(root,'RawEPI'), '^swarsM.*\.img$');
 txt = spm_select('FPList', fullfile(root,'RawEPI'), '^rp_sM.*\.txt$'); % rp_sM03953_0005_0006.txt
 scriptdir = fullfile(home, 'spmbasics', '/data/output/event_related_gui/categorical');

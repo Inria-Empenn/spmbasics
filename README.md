@@ -38,9 +38,9 @@ You can find the code in the [src](src) folder.
 
 First thing before the running the pipelines, add SPM to your path in MATLAB, via ```addpath /path/of/your/spm12/```. Because  all the scripts in this repo are calling SPM.
 
-At the first lines of the all scripts, there is a section defining the data root which requires that ```/spmbasics``` folder to be specifically ```to be under your home directory``` directory. If you wish to use any other path, you may need to redefine relative to your ```home``` directory. 
+At the first lines of the all scripts, there is a section defining the data root which requires that ```/spmbasics``` folder to be specifically ```to be under your home directory```. If you wish to use any other path, you may need to redefine relative to your ```home``` directory. 
 
-The parameter in the scripts should be adjusted accordingly to be able to load dataset.
+The corresponding ```root``` variable in the scripts should be adjusted accordingly to be able to load dataset.
 
 Here is an example setting showing the MoAEpilot folder under  ```/data/MoAEpilot``` the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
 
@@ -55,20 +55,17 @@ To be able test the reproducibility afterwards, in your ```/data/``` folder keep
 
 For example ```MoAEpilot_script``` should contain the files to run the script interface. The ```root``` should be edited beforehand according to the pipelines, to avoid overwriting to the same folder.
 
-As a last reminder,  most of the scripts meant to run in a clear window with no parameters. Preprocessing pipelines may not cause any issue but analysis pipelines strictly require this setting.
-
-So as a rule it would be useful to ```clc``` and ```clear all``` or ```clear matlabbatch``` before and/or after each time running the scripts.
+As a last reminder,  most of the scripts meant to run in a clear window with no parameters. For the preprocessing pipelines there *may not* be any issue. But the analysis and modelling pipelines, strictly require to have a clear window to avoid clashing parameters under the same variable names. So as a rule it would be useful to ```clc``` and ```clear all``` or ```clear matlabbatch``` before, and/or after each time running the scripts.
 
 
 Now steps of running these scripts:
-All the scripts meant to run without loading the gui and all the dependencies are defined and can be adjusted as mentioned above.
+
+All the scripts meant to run without loading the gui and all the dependencies are following the relative paths of your  ```spmbasics``` folder. 
 
 To avoid redundancies in this long README I do not repeat the steps explained at the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/realignment/).
 
 If you want to load the scripts in this repo using the GUI interface it is possible and could be done by selecting data folder in similar methodology in the original tutorial.
-Below I will be explaining running all as a script.
-
-
+Below, I am mainly explaining running codes in this repo as scripts.
 
 
 <details>
@@ -115,7 +112,6 @@ Below I will be explaining running all as a script.
    
    * NOTE: In the ideal setting, ```preprocessing_script.m``` controls the job of [preprocessing_script_job.m](src/preprocessing_job.m), but currently ```preprocessing_script.m``` is redundant so does not exist in this repo.
    
-   * As a rule of the thumb make sure to indicate correct file paths for these files as mention at the very beginning of the tutorial.
 </details>
 
 ### B. Block Design fMRI First Level Analysis Steps
@@ -186,29 +182,63 @@ Scripting:
 Run ```src/event_related_script/event_related_preprocessing_script.m```. And it should produce the exact same files with the gui interface in one step.
 
 </details>
+
 <details>
+
 <summary><strong> 2. Categorical Modelling </strong></summary>
 
-#### 2. Categorical Modelling
-* GUI Interface:
+<!--#### 2. Categorical Modeliing -->
+ <details>
+
+ <summary><strong>GUI Interface:</strong></summary>
+
 In ```src/event_related_gui/categorical``` folder,
-Firstly run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
+Firstly run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```.
+
 The further steps about the inference of the results is on the [event related tutorial page](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/).
 
-* Scripting: 
-Run ```src/event_related_script/categorical_modelling.m```. It produces same result with the gui interface including the graphs.* which graphs*
+The figure highlighting the fstatistics can be seen here : ![ergui_figure](figures/EVENT_RELATED/er_fstat_gui.png)
+
+ </details>
+
+ <details>
+
+ <summary><strong>Scripting:</strong></summary>
+
+Run ```src/event_related_script/categorical_modelling.m```. 
+
+It produces same result with the gui interface.
+
+Resulting sample figure can be seen here : ![erscript_figure](figures/EVENT_RELATED/er_fstat_sc.png)
+ </details>
+
 </details>
 
 <details>
+
 <summary><strong> 3. Parametric Modelling  </strong></summary>
 
-#### 3. Parametric Modelling
+<!--#### 3. Parametric Modelling-->
+<details>
 
-*  GUI interface:
-   * Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
-The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/parametric/).  
+<summary><strong>GUI interface:</summary></strong>
+   
+Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
 
-* Scripting:
+The section describing inference steps to obtain the figure is on the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/parametric/).  
+ 
+ Parametric lag effect can be seen like in this figure : ![eventlag_figure](figures/EVENT_RELATED/famouslag_gui.png)
+ </details>
+
+ <details>
+ 
+ <summary><strong>Scripting:</strong></summary>
+
+Run ```src/event_related_script/parametric_modelling.m```. It produces same result with the gui interface in single step.
+
+Resulting figure is here : ![eventlagsc_figure](figures/EVENT_RELATED/famouslag_sc.png)
+ 
+ </details>
 
 </details>
 
@@ -219,12 +249,14 @@ The inference should be followed at the [original event related tutorial](https:
 <summary> <strong>  4. Bayesian Analysis is omitted for this tutorial. </strong> </summary>
  
 
-#### 4. Bayesian Analysis
+<!--#### 4. Bayesian Analysis-->
 
-   * Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
+* Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/bayesian/).
 
 </details>
+
+### Redoing with Nipype and Pydra.
 
 ## Further on reproducibility
 
@@ -239,6 +271,7 @@ Instructions to check hash values using the provided bash script:
 
 * Important note regarding to the base folder: Base folder should contain the results from the [batch_step](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/introduction/) interface. It is recommended to run the ```shasum_checker.sh``` on it once it is finished and then lock the writing access using ``` chmod a=rx -R filename ``` for linux. 
 
+To avoid loading everything at once it is possible to comment out within the script and perform tasks step by step.
 
 * <u> REMINDER</u>: Make sure to save your results of preprocessing into different folders and direct their paths accordingly.
 
