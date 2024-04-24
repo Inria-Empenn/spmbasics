@@ -269,6 +269,7 @@ Instructions to check hash values using the provided bash script:
 
 * Important note regarding to the base folder: Base folder should contain the results from the [batch_step](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/introduction/) interface. It is recommended to run the ```shasum_checker.sh``` on it once it is finished and then lock the writing access using ``` chmod a=rx -R filename ``` for linux. 
 
+To avoid loading everything at once it is possible to comment out within the script and perform tasks step by step.
 
 * <u> REMINDER</u>: Make sure to save your results of preprocessing into different folders and direct their paths accordingly.
 
