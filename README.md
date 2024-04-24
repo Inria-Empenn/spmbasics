@@ -55,7 +55,7 @@ To be able test the reproducibility afterwards, in your ```/data/``` folder keep
 
 For example ```MoAEpilot_script``` should contain the files to run the script interface. The ```root``` should be edited beforehand according to the pipelines, to avoid overwriting to the same folder.
 
-As a last reminder,  most of the scripts meant to run in a clear window with no parameters. Preprocessing pipelines may not cause any issue but analysis pipelines strictly require this setting.
+As a last reminder,  most of the scripts meant to run in a clear window with no parameters. Preprocessing pipelines *may not* cause any issue but analysis pipelines strictly require tto have a clear window to avoid clashing parameters.
 
 So as a rule it would be useful to ```clc``` and ```clear all``` or ```clear matlabbatch``` before and/or after each time running the scripts.
 
@@ -66,9 +66,7 @@ All the scripts meant to run without loading the gui and all the dependencies ar
 To avoid redundancies in this long README I do not repeat the steps explained at the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/realignment/).
 
 If you want to load the scripts in this repo using the GUI interface it is possible and could be done by selecting data folder in similar methodology in the original tutorial.
-Below I will be explaining running all as a script.
-
-
+Below, I am explaining running codes in this repo as scripts.
 
 
 <details>
@@ -115,7 +113,6 @@ Below I will be explaining running all as a script.
    
    * NOTE: In the ideal setting, ```preprocessing_script.m``` controls the job of [preprocessing_script_job.m](src/preprocessing_job.m), but currently ```preprocessing_script.m``` is redundant so does not exist in this repo.
    
-   * As a rule of the thumb make sure to indicate correct file paths for these files as mention at the very beginning of the tutorial.
 </details>
 
 ### B. Block Design fMRI First Level Analysis Steps
@@ -186,27 +183,38 @@ Scripting:
 Run ```src/event_related_script/event_related_preprocessing_script.m```. And it should produce the exact same files with the gui interface in one step.
 
 </details>
+
 <details>
 <summary><strong> 2. Categorical Modelling </strong></summary>
+<!--#### 2. Categorical Modeliing -->
+ <details>
+ <summary><strong>GUI Interface:</strong></summary>
 
-#### 2. Categorical Modelling
-* GUI Interface:
 In ```src/event_related_gui/categorical``` folder,
-Firstly run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```
+Firstly run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```.
+
 The further steps about the inference of the results is on the [event related tutorial page](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/).
 
-* Scripting: 
+The figure highlighting the fstatistics can be seen here : ![ergui_figure](figures/EVENT_RELATED/er_fstat_gui.png)
+
+ </details>
+ <details>
+<summary><strong>Scripting:</strong></summary>
+
 Run ```src/event_related_script/categorical_modelling.m```. It produces same result with the gui interface.
+
+Resulting sample figure can be seen here : ![erscript_figure](figures/EVENT_RELATED/er_fstat_sc.png)
+ </details>
 </details>
 
 <details>
 <summary><strong> 3. Parametric Modelling  </strong></summary>
 
-#### 3. Parametric Modelling
+<!--#### 3. Parametric Modelling-->
 
 *  GUI interface:
    * Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
-The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/parametric/).  
+The section describing inference steps to obtain the figure is on the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/parametric/).  
 
 * Scripting:
 
@@ -219,9 +227,9 @@ The inference should be followed at the [original event related tutorial](https:
 <summary> <strong>  4. Bayesian Analysis is omitted for this tutorial. </strong> </summary>
  
 
-#### 4. Bayesian Analysis
+<!--#### 4. Bayesian Analysis-->
 
-   * Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
+* Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/bayesian/).
 
 </details>

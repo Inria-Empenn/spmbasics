@@ -185,6 +185,19 @@ matlabbatch{2}.spm.stats.fmri_est.spmmat = cellstr(matfile);
 matlabbatch{2}.spm.stats.fmri_est.write_residuals = 0;
 matlabbatch{2}.spm.stats.fmri_est.method.Classical = 1;
 
+disp('making figures')
+
+
+matlabbatch{3}.spm.stats.results.spmmat = cellstr(matfile);
+matlabbatch{3}.spm.stats.results.conspec.contrasts  = 3;
+matlabbatch{3}.spm.stats.results.conspec.threshdesc = 'none';
+matlabbatch{3}.spm.stats.results.conspec.thresh     = 0.001;
+matlabbatch{3}.spm.stats.results.conspec.extent     = 0;
+matlabbatch{3}.spm.stats.results.conspec.mask.contrasts = 5;
+matlabbatch{3}.spm.stats.results.conspec.mask.thresh    = 0.001;
+matlabbatch{3}.spm.stats.results.conspec.mask.mtype     = 0;
+
+
 save(fullfile(scriptdir,'categorical_modelling.mat'),'matlabbatch');
 
 
