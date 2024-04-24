@@ -196,7 +196,7 @@ Firstly run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` fil
 The further steps about the inference of the results is on the [event related tutorial page](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/).
 
 * Scripting: 
-Run ```src/event_related_script/categorical_modelling.m```. It produces same result with the gui interface including the graphs.* which graphs*
+Run ```src/event_related_script/categorical_modelling.m```. It produces same result with the gui interface.
 </details>
 
 <details>
