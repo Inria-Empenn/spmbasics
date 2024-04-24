@@ -201,10 +201,11 @@ The further steps about the inference of the results is on the [event related tu
 
 #### 3. Parametric Modelling
 
-*  GUI interface
+*  GUI interface:
    * Run ```parametric_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```parametric_est.job.m```
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/parametric/).  
-* Script interface [TODO]
+
+* Scripting:
 
 </details>
 
