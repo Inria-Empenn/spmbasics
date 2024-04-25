@@ -19,6 +19,8 @@
 
       C. [Event-related fMRI Steps](#c-event-related-fmri-steps)
 
+      D. [Nipype Reproduction](#d-nipype-reproduction)
+
    * [Further on reproducibility](#Further-on-reproducibility)
 
 ## Overview
@@ -256,7 +258,9 @@ The inference should be followed at the [original event related tutorial](https:
 
 </details>
 
-### Redoing with Nipype and Pydra.
+### Nipype reproduction.
+
+All of the steps performed using SPM only will be done via nipype interface. 
 
 ## Further on reproducibility
 
