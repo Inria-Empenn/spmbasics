@@ -262,6 +262,8 @@ The inference should be followed at the [original event related tutorial](https:
 
 All of the steps performed using SPM only will be done via nipype interface. 
 
+
+
 ## Further on reproducibility
 
 SPM has a display and check reg features to visually inspect the outputs.
