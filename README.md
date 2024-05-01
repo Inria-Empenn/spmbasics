@@ -189,6 +189,8 @@ Run ```src/event_related_script/event_related_preprocessing_script.m```. And it 
 
 <summary><strong> 2. Categorical Modelling </strong></summary>
 
+As a start, make sure that the file containing stimulus onset times in the dataset folder named ```sots.mat```  is loaded in the workspace. The scripting file is automatically loading it. 
+
 <!--#### 2. Categorical Modeliing -->
  <details>
 
@@ -219,7 +221,7 @@ Resulting sample figure can be seen here : ![erscript_figure](figures/EVENT_RELA
 <details>
 
 <summary><strong> 3. Parametric Modelling  </strong></summary>
-
+Similar to the categorical modelling,  ```sots.mat```  is necessary to be loaded in the workspace. 
 <!--#### 3. Parametric Modelling-->
 <details>
 
@@ -238,7 +240,8 @@ The section describing inference steps to obtain the figure is on the [original 
 
 Run ```src/event_related_script/parametric_modelling.m```. It produces same result with the gui interface in single step.
 
-Resulting figure is here : ![eventlagsc_figure](figures/EVENT_RELATED/famouslag_sc.png)
+Resulting figure is here : 
+![eventlagsc_figure](figures/EVENT_RELATED/famouslag_sc.png)
  
  </details>
 
@@ -253,7 +256,8 @@ Resulting figure is here : ![eventlagsc_figure](figures/EVENT_RELATED/famouslag_
 
 <!--#### 4. Bayesian Analysis-->
 
-* Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
+* Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```.
+
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/bayesian/).
 
 </details>

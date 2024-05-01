@@ -1,3 +1,5 @@
+
+load('./spmbasics/data/face_rep_gui/sots.mat') % load the sots.mat file
 home = getenv('HOME');
 root = fullfile(home, 'spmbasics', '/data/face_rep');
 func = spm_select('FPList', fullfile(root,'RawEPI'), '^swarsM.*\.img$');
