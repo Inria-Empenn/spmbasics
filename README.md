@@ -150,14 +150,14 @@ Resulting render can be seen here : ![script_figure](figures/FIRST_LEVEL/first_l
 
 ### C. Event-related fMRI Steps
 
-I followed all the tutorial for sake of completion but focused on making event related preprocessing and parametric modelling mainly. 
+I followed all the tutorial for sake of completion but focused on making event related preprocessing, categorical and parametric modelling steps mainly. 
 
 <details>
 
 <summary> <strong> 1-A. GUI Interface Preprocessing </strong> </summary>
 
 <!-- #### 1. Preprocessing -->
-GUI interface: 
+ 
 This part is following exact steps of the [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/preprocessing/). All the code files exported from the saved ```mat``` files.
 
  *   All the, ```.m``` files in the folder ```src/event_related_gui/preprocessing``` and they must be run subsequently. 
@@ -179,8 +179,7 @@ This part is following exact steps of the [original tutorial](https://www.fil.io
 
 <details>
 <summary><strong> 1-B. Preprocessing via scripting </strong></summary>
-
-Scripting: 
+ 
 Run ```src/event_related_script/event_related_preprocessing_script.m```. And it should produce the exact same files with the gui interface in one step.
 
 </details>
@@ -221,7 +220,8 @@ Resulting sample figure can be seen here : ![erscript_figure](figures/EVENT_RELA
 <details>
 
 <summary><strong> 3. Parametric Modelling  </strong></summary>
-Similar to the categorical modelling,  ```sots.mat```  is necessary to be loaded in the workspace. 
+
+Similar to the categorical modelling,  ```sots.mat```   is necessary to be loaded in the workspace. 
 <!--#### 3. Parametric Modelling-->
 <details>
 
