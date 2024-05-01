@@ -271,7 +271,9 @@ To install nipype [this guide](https://miykael.github.io/nipype_tutorial/noteboo
 
 Using the ```spmbasics.yml``` file,  it is possible to set the  exact environment used during these experiments. 
 
-To be able to run functions of SPM from nipype we need to make sure that MATLAB is reachable. To test the setup and connection between Nipype and MATLAB, you may use this ```src/Nipype/nipype_mlab_hello.py``` script. 
+To be able to run functions of SPM from nipype we need to make sure that MATLAB is reachable. To test the setup and connection between Nipype and MATLAB, you may use this ```src/Nipype/nipype_mlab_hello.py``` script. If it is working it should print:
+
+![hello_world](figures/nipype_hello.png)
 
 <details> 
 <summary> <strong> 1. Block Design fMRI Preprocessing via Nipype-SPM</strong> </summary>
