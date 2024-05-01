@@ -275,6 +275,8 @@ To be able to run functions of SPM from nipype we need to make sure that MATLAB 
 
 ![hello_world](figures/nipype_hello.png)
 
+Having an output without error means that we can run python code in MATLAB, with the help of Nipype. :partying_face:
+
 <details> 
 <summary> <strong> 1. Block Design fMRI Preprocessing via Nipype-SPM</strong> </summary>
 
