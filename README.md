@@ -19,7 +19,7 @@
 
       C. [Event-related fMRI Steps](#c-event-related-fmri-steps)
 
-      D. [Nipype Reproduction](#d-nipype-reproduction)
+      D. [Nipype-SPM Reproduction Steps](#d-nipype-reproduction-steps)
 
    * [Further on reproducibility](#Further-on-reproducibility)
 
@@ -258,14 +258,32 @@ The inference should be followed at the [original event related tutorial](https:
 
 </details>
 
-### Nipype reproduction.
+### D. Nipype reproduction steps
 
-All of the steps performed using SPM only will be done via nipype interface. 
+Nipype is a python interface for multiple neuroimaging analysis packages to enable interoperability of the workflows. Using Nipype SPM interface all the aforementioned steps are re-implemented. 
 
+<details> 
+<summary> <strong> 1. Block Design fMRI Preprocessing via Nipype-SPM</strong> </summary>
 
+This is the code
+
+</details>
+
+<details>
+
+<summary> <strong>  2. Block Design fMRI First Level Analysis via Nipype-SPM</strong> </summary>
+
+Run
+</details>
+
+<details>
+<summary> <strong> 3. Event-related fMRI via Nipype-SPM</strong></summary>
+To reproduce run this
+</details>
 
 ## Further on reproducibility
 
+### Using Bash Script
 SPM has a display and check reg features to visually inspect the outputs.
 Visual inspection does not guarantee that all the results are the same.
 To ensure about all of the steps producing same results after the same preprocessing steps, you can use [this](/src/shasum_checker.sh) *bash* script.
@@ -284,6 +302,15 @@ To avoid loading everything at once it is possible to comment out within the scr
 * For example, for results which obtained from  interface create a ```BATCH``` folder with the input data and make SPM run from there so it will create results of the  batch interface.
 
 * You can see the results of your shasum comparisons as a text file in the [/results](results/comparison_result.txt) folder.
+
+### Using python script
+
+To keep every implementation in python, I re-implemented the bash code in python. 
+
+Here are the steps how to use python script to obtain and compare shasums of the analysis outputs.
+
+
+
 
 Lastly keep in mind that every  instruction in this repo can change and serves the purpose of  my learning and testing. 
 
