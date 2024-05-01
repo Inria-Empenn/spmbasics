@@ -262,10 +262,14 @@ The inference should be followed at the [original event related tutorial](https:
 
 Nipype is a python interface for multiple neuroimaging analysis packages to enable interoperability of the workflows. Using Nipype SPM interface all the aforementioned steps are re-implemented. 
 
+To install nipype [this guide](https://miykael.github.io/nipype_tutorial/notebooks/resources_installation.html) and setting [these dependencies](http://miykael.github.io/nipype-beginner-s-guide/installation.html#download-and-install-interfaces) used. It is also recommmended to check the [nipype documentation](https://nipype.readthedocs.io/en/latest/users/install.html)
+
+
 <details> 
 <summary> <strong> 1. Block Design fMRI Preprocessing via Nipype-SPM</strong> </summary>
 
-This is the code
+To reproduce the block design preprocessing using nipype run ```src/Nipype/nipype_spm_preproc.py```  using ``` python nipype_spm_preproc.py``` command or your IDE. 
+
 
 </details>
 
@@ -309,6 +313,7 @@ To keep every implementation in python, I re-implemented the bash code in python
 
 Here are the steps how to use python script to obtain and compare shasums of the analysis outputs.
 
+* steps to be written...[TODO]
 
 
 
