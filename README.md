@@ -266,8 +266,10 @@ The inference should be followed at the [original event related tutorial](https:
 
 Nipype is a python interface for multiple neuroimaging analysis packages to enable interoperability of the workflows. Using Nipype SPM interface all the aforementioned steps are re-implemented. 
 
-To install nipype [this guide](https://miykael.github.io/nipype_tutorial/notebooks/resources_installation.html) and setting [these dependencies](http://miykael.github.io/nipype-beginner-s-guide/installation.html#download-and-install-interfaces) used. It is also recommmended to check the [nipype documentation](https://nipype.readthedocs.io/en/latest/users/install.html)
+As the main environment manager [conda](https://conda.io/projects/conda/en/latest/index.html) is used. 
+To install nipype [this guide](https://miykael.github.io/nipype_tutorial/notebooks/resources_installation.html) and setting [these dependencies](http://miykael.github.io/nipype-beginner-s-guide/installation.html#download-and-install-interfaces) recommended. It is also recommmended to check the [nipype documentation](https://nipype.readthedocs.io/en/latest/users/install.html)
 
+Using the ```spmbasics.yml``` file,  it is possible to set the  exact environment used during these experiments. 
 
 <details> 
 <summary> <strong> 1. Block Design fMRI Preprocessing via Nipype-SPM</strong> </summary>
