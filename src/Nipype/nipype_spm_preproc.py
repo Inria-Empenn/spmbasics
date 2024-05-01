@@ -67,7 +67,7 @@ slicetimed.inputs.out_prefix = 'a'
 
 coregister = Node(spm.Coregister(), name="coregister")
 coregister.inputs.jobtype = 'estimate'
-coregister.inputs.cost_function = 'nmi'
+coregister.inputs.cost_function = 'nmi'# normalized mutual information
 coregister.inputs.fwhm = [7.0, 7.0]
 coregister.inputs.separation = [4.0, 2.0]
 coregister.inputs.tolerance = [0.02, 0.02, 0.02, 0.001, 0.001, 0.001, 0.01, 0.01, 0.01, 0.001, 0.001, 0.001]
