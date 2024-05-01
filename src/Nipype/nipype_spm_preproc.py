@@ -115,11 +115,17 @@ preproc.connect([(realigner, slicetimed, [('realigned_files', 'in_files')]),
                     (seg, normalize, [('transformation_mat', 'parameter_file')]), # check this
                     (normalize, smooth, [('normalized_files', 'in_files')])])
 
-# selecting input data
+# selecting and assigning input data
+# this part is not final yet, it needs careful thinking and tests 
 
 datasink = Node(nio.DataSink(), name='sinker')
 datasink.inputs.base_directory = os.path.abspath('./spmbasics/data/output')
 preproc.connect([(realigner, datasink, [('in_files', 'realign.@in_files')]),]) # check this
+
+
+# writing the workflow graph
+
+preproc.write_graph(graph2use='colored', format='png', simple_form=True)
 
 # running the workflow
 
