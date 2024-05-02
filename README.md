@@ -287,7 +287,13 @@ Having these outputs without any error means that, Nipype interface is connected
 
 To reproduce the block design preprocessing using nipype run ```src/Nipype/nipype_spm_preproc.py```  using ``` python nipype_spm_preproc.py``` command or your IDE. 
 
+In addition to resulting preprocessed files, Nipype writes the worflow as graphs.
 
+![Nipype First Figure](figures/preproc_basicgraph.png)
+
+A more detailed figure to check connections.
+
+![Nipype Detailed](figures/graph_detailed.png)
 </details>
 
 <details>
