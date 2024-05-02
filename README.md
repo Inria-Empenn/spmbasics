@@ -280,7 +280,7 @@ To be able to run functions of SPM from nipype we need to make sure that MATLAB 
 
 The script also shows the SPM version, if ```spm.SPMCommand().version``` prints ```12.7771``` or the same version of yours, it indicates that SPM is found by Nipype. 
 
-Having an output without any error means that, we can run the python code in MATLAB, with the help of Nipype. :partying_face:
+Having these outputs without any error means that, Nipype interface is connected with SPM and MATLAB. :partying_face:
 
 <details> 
 <summary> <strong> 1. Block Design fMRI Preprocessing via Nipype-SPM</strong> </summary>
