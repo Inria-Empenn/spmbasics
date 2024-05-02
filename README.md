@@ -19,7 +19,7 @@
 
       C. [Event-related fMRI Steps](#c-event-related-fmri-steps)
 
-      D. [Nipype-SPM Reproduction Steps](#d-nipype-reproduction-steps)
+      D. [Nipype-SPM Reproduction Steps](#d-nipype-spm-reproduction-steps)
 
    * [Further on reproducibility](#Further-on-reproducibility)
 
@@ -262,7 +262,7 @@ The inference should be followed at the [original event related tutorial](https:
 
 </details>
 
-### D. Nipype reproduction steps
+### D. Nipype-SPM reproduction steps
 
 Nipype is a python interface for multiple neuroimaging analysis packages to enable interoperability of the workflows. Using Nipype SPM interface all the aforementioned steps are re-implemented. 
 
