@@ -17,4 +17,4 @@ For more detalied information and study design visit: https://www.fil.ion.ucl.ac
 
 The folder order is ```data>output``` where data folder containing raw data files and preprocessed data files to be used as a reference. 
 
-output folder contains the output from batch interface, scripting or the results of the analysis.
+The output folder contains the output from batch interface, scripting or the results of the analysis.

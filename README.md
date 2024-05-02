@@ -150,14 +150,14 @@ Resulting render can be seen here : ![script_figure](figures/FIRST_LEVEL/first_l
 
 ### C. Event-related fMRI Steps
 
-I followed all the tutorial for sake of completion but focused on making event related preprocessing and parametric modelling mainly. 
+I followed all the tutorial for sake of completion but focused on making event related preprocessing, categorical and parametric modelling steps mainly. 
 
 <details>
 
 <summary> <strong> 1-A. GUI Interface Preprocessing </strong> </summary>
 
 <!-- #### 1. Preprocessing -->
-GUI interface: 
+ 
 This part is following exact steps of the [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/preprocessing/). All the code files exported from the saved ```mat``` files.
 
  *   All the, ```.m``` files in the folder ```src/event_related_gui/preprocessing``` and they must be run subsequently. 
@@ -179,8 +179,7 @@ This part is following exact steps of the [original tutorial](https://www.fil.io
 
 <details>
 <summary><strong> 1-B. Preprocessing via scripting </strong></summary>
-
-Scripting: 
+ 
 Run ```src/event_related_script/event_related_preprocessing_script.m```. And it should produce the exact same files with the gui interface in one step.
 
 </details>
@@ -188,6 +187,8 @@ Run ```src/event_related_script/event_related_preprocessing_script.m```. And it 
 <details>
 
 <summary><strong> 2. Categorical Modelling </strong></summary>
+
+As a start, make sure that the file containing stimulus onset times in the dataset folder named ```sots.mat```  is loaded in the workspace. The scripting file is automatically loading it. 
 
 <!--#### 2. Categorical Modeliing -->
  <details>
@@ -220,6 +221,7 @@ Resulting sample figure can be seen here : ![erscript_figure](figures/EVENT_RELA
 
 <summary><strong> 3. Parametric Modelling  </strong></summary>
 
+Similar to the categorical modelling,  ```sots.mat```   is necessary to be loaded in the workspace. 
 <!--#### 3. Parametric Modelling-->
 <details>
 
@@ -238,7 +240,8 @@ The section describing inference steps to obtain the figure is on the [original 
 
 Run ```src/event_related_script/parametric_modelling.m```. It produces same result with the gui interface in single step.
 
-Resulting figure is here : ![eventlagsc_figure](figures/EVENT_RELATED/famouslag_sc.png)
+Resulting figure is here : 
+![eventlagsc_figure](figures/EVENT_RELATED/famouslag_sc.png)
  
  </details>
 
@@ -253,7 +256,8 @@ Resulting figure is here : ![eventlagsc_figure](figures/EVENT_RELATED/famouslag_
 
 <!--#### 4. Bayesian Analysis-->
 
-* Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```
+* Run ```bayesian_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```bayesian_est.job.m```.
+
 The inference should be followed at the [original event related tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/bayesian/).
 
 </details>
@@ -262,10 +266,27 @@ The inference should be followed at the [original event related tutorial](https:
 
 Nipype is a python interface for multiple neuroimaging analysis packages to enable interoperability of the workflows. Using Nipype SPM interface all the aforementioned steps are re-implemented. 
 
+As the main environment manager [conda](https://conda.io/projects/conda/en/latest/index.html) is used. 
+To install nipype [this guide](https://miykael.github.io/nipype_tutorial/notebooks/resources_installation.html) and setting [these dependencies](http://miykael.github.io/nipype-beginner-s-guide/installation.html#download-and-install-interfaces) recommended. It is also recommmended to check the [nipype documentation](https://nipype.readthedocs.io/en/latest/users/install.html)
+
+Using the ```spmbasics.yml``` file,  it is possible to set the  exact environment used during these experiments. 
+
+Note: The conda environment set as a general container to use when needed. Hence it has many other packages which are not directly relevant to this repo.
+
+
+To be able to run functions of SPM from nipype we need to make sure that MATLAB is reachable. To test the setup and connection between Nipype and MATLAB, you may use this ```src/Nipype/nipype_mlab_hello.py``` script. If it is working it should print:
+
+![hello_world](figures/nipype_hello.png)
+
+The script also shows the SPM version, if ```spm.SPMCommand().version``` prints ```12.7771``` or the same version of yours, it indicates that SPM is found by Nipype. 
+
+Having these outputs without any error means that, Nipype interface is connected with SPM and MATLAB. :partying_face:
+
 <details> 
 <summary> <strong> 1. Block Design fMRI Preprocessing via Nipype-SPM</strong> </summary>
 
-This is the code
+To reproduce the block design preprocessing using nipype run ```src/Nipype/nipype_spm_preproc.py```  using ``` python nipype_spm_preproc.py``` command or your IDE. 
+
 
 </details>
 
@@ -309,6 +330,7 @@ To keep every implementation in python, I re-implemented the bash code in python
 
 Here are the steps how to use python script to obtain and compare shasums of the analysis outputs.
 
+* steps to be written...[TODO]
 
 
 

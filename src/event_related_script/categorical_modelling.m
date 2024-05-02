@@ -4,7 +4,7 @@
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
 % load sots
-% load('/home/user/spmbasics/data/face_rep_gui/sots.mat')
+load('./spmbasics/data/face_rep_gui/sots.mat')
 
 home = getenv('HOME');
 root = fullfile(home, 'spmbasics', '/data/face_rep');
