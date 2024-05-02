@@ -271,9 +271,14 @@ To install nipype [this guide](https://miykael.github.io/nipype_tutorial/noteboo
 
 Using the ```spmbasics.yml``` file,  it is possible to set the  exact environment used during these experiments. 
 
+Note: The conda environment set as a general container to use when needed. Hence it has many other packages which are not directly relevant to this repo.
+
+
 To be able to run functions of SPM from nipype we need to make sure that MATLAB is reachable. To test the setup and connection between Nipype and MATLAB, you may use this ```src/Nipype/nipype_mlab_hello.py``` script. If it is working it should print:
 
 ![hello_world](figures/nipype_hello.png)
+
+The script also shows the SPM version, if ```spm.SPMCommand().version``` prints ```12.7771``` or the same version of yours, it indicates that SPM is found by Nipype. 
 
 Having an output without any error means that, we can run the python code in MATLAB, with the help of Nipype. :partying_face:
 
