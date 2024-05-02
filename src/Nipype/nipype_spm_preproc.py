@@ -130,7 +130,6 @@ smooth.inputs.out_prefix = 's'
 sink = Node(interface=DataSink(),
                    name='sink')
 sink.inputs.base_directory = os.path.join(base_dir, 'output')
-sink.inputs.regexp_substitutions = [('_\w+\d+', '.')]
 
 
 
