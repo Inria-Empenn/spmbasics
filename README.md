@@ -19,7 +19,7 @@
 
       C. [Event-related fMRI Steps](#c-event-related-fmri-steps)
 
-      D. [Nipype-SPM Reproduction Steps](#d-nipype-reproduction-steps)
+      D. [Nipype-SPM Reproduction Steps](#d-nipype-spm-reproduction-steps)
 
    * [Further on reproducibility](#Further-on-reproducibility)
 
@@ -262,7 +262,7 @@ The inference should be followed at the [original event related tutorial](https:
 
 </details>
 
-### D. Nipype reproduction steps
+### D. Nipype-SPM reproduction steps
 
 Nipype is a python interface for multiple neuroimaging analysis packages to enable interoperability of the workflows. Using Nipype SPM interface all the aforementioned steps are re-implemented. 
 
@@ -287,7 +287,13 @@ Having these outputs without any error means that, Nipype interface is connected
 
 To reproduce the block design preprocessing using nipype run ```src/Nipype/nipype_spm_preproc.py```  using ``` python nipype_spm_preproc.py``` command or your IDE. 
 
+In addition to resulting preprocessed files, Nipype writes the worflow as graphs.
 
+![Nipype First Figure](figures/preproc_basicgraph.png)
+
+A more detailed figure to check connections.
+
+![Nipype Detailed](figures/graph_detailed.png)
 </details>
 
 <details>
