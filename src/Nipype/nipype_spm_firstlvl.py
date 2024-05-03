@@ -145,12 +145,11 @@ infosource = Node(IdentityInterface(fields=['subject_id',
                                             'contrasts'],
                                     contrasts=contrast_list),
                   name="infosource")
-infosource.iterables = [('subject_id', subject_list),
-                        ('fwhm_id', fwhm)]
+infosource.iterables = [('subject_id', subject_list)]
 
 # SelectFiles - to grab the data (alternativ to DataGrabber)
 templates = {'func': os.path.join(output_dir, 'preproc', 'sub-{subject_id}', 'task-{task_id}',
-                         'fwhm-{fwhm_id}_sub-{subject_id}_task-{task_id}_bold.nii'),
+                         'sub-{subject_id}_task-{task_id}_bold.nii'),
              'mc_param': os.path.join(output_dir, 'preproc', 'sub-{subject_id}', 'task-{task_id}',
                              'sub-{subject_id}_task-{task_id}_bold.par'),
              'outliers': os.path.join(output_dir, 'preproc', 'sub-{subject_id}', 'task-{task_id}', 
