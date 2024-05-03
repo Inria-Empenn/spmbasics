@@ -143,6 +143,7 @@ preproc.connect([(grabber, realigner, [('func', 'in_files')]),
                  (realigner, coregister, [('mean_image', 'target')]),
                  (realigner, sink, [('realignment_parameters', 'preproc.@realignement_parameters')]),
                  (grabber, coregister, [('anat', 'source')]), 
+                 (coregister, sink, [('coregistered_source', 'preproc.@coregisered_source')]),
                  (coregister, segment, [('coregistered_source', 'channel_files')]),
                  (segment, sink, [('bias_corrected_images', 'preproc.@bias_corrected_images'), 
                                  ('transformation_mat', 'preproc.@transformation_mat'),
@@ -162,4 +163,4 @@ preproc.write_graph(graph2use='colored', format='png', dotfilename='flat_graph.d
 # running the workflow
 
 
-preproc.run()
+preproc.run('MultiProc', plugin_args={'n_procs': 4})
