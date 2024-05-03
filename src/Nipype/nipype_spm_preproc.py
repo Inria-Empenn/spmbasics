@@ -20,7 +20,7 @@ from nipype import DataGrabber, Workflow, Node
 spm.SPMCommand.set_mlab_paths(paths=os.path.abspath('./Documents/MATLAB/spm12/'), matlab_cmd='/soft/matlab_hd/R2020b/bin//glnxa64/MATLAB -nodesktop -nosplash')
 # alternative to the above line just as a reminder and to let matlab know about SPM path
 
-mlab.MatlabCommand.set_default_paths(os.path.abspath('./Documents/MATLAB/spm12/')
+mlab.MatlabCommand.set_default_paths(os.path.abspath('./Documents/MATLAB/spm12/'))
 mlab.MatlabCommand.set_default_matlab_cmd("/soft/matlab_hd/R2020b/bin/glnxa64/MATLAB  -nodesktop -nosplash") # set default matlab location to be used by spm
 spm.SPMCommand().version  # checking spm version to be sure it is imported.
 
