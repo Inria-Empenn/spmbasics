@@ -49,7 +49,7 @@ with open(os.path.join(base_dir, 'MoAEpilot/task-auditory_bold.json'), 'rt') as 
 TR = task_info['RepetitionTime']
 
 # Smoothing width used during preprocessing
-fwhm = 6
+fwhm = [6]
 
 
 
@@ -142,3 +142,37 @@ infosource = Node(IdentityInterface(fields=['subject_id',
                   name="infosource")
 infosource.iterables = [('subject_id', subject_list),
                         ('fwhm_id', fwhm)]
+
+infosource = Node(IdentityInterface(fields=['subject_id',
+                                            'fwhm_id',
+                                            'contrasts'],
+                                    contrasts=contrast_list),
+                  name="infosource")
+infosource.iterables = [('subject_id', subject_list),
+                        ('fwhm_id', fwhm)]
+
+# SelectFiles - to grab the data (alternativ to DataGrabber)
+templates = {'func': os.path.join(output_dir, 'preproc', 'sub-{subject_id}', 'task-{task_id}',
+                         'fwhm-{fwhm_id}_sub-{subject_id}_task-{task_id}_bold.nii'),
+             'mc_param': os.path.join(output_dir, 'preproc', 'sub-{subject_id}', 'task-{task_id}',
+                             'sub-{subject_id}_task-{task_id}_bold.par'),
+             'outliers': os.path.join(output_dir, 'preproc', 'sub-{subject_id}', 'task-{task_id}', 
+                             'art.sub-{subject_id}_task-{task_id}_bold_outliers.txt')}
+selectfiles = Node(SelectFiles(templates,
+                               base_directory=experiment_dir,
+                               sort_filelist=True),
+                   name="selectfiles")
+selectfiles.inputs.task_id = 'auditory'
+
+# Datasink - creates output folder for important outputs
+datasink = Node(DataSink(base_directory=experiment_dir,
+                         container=output_dir),
+                name="datasink")
+
+# Use the following DataSink output substitutions
+substitutions = [('_subject_id_', 'sub-')]
+subjFolders = [('_fwhm_id_%ssub-%s' % (f, sub), 'sub-%s/fwhm-%s' % (sub, f))
+               for f in fwhm
+               for sub in subject_list]
+substitutions.extend(subjFolders)
+datasink.inputs.substitutions = substitutions
