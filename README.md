@@ -307,7 +307,13 @@ A more detailed figure to check connections.
 
 <summary> <strong>  2. Block Design fMRI First Level Analysis via Nipype-SPM</strong> </summary>
 
-[TODO]
+Run [first level analysis code](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/nipype_spm_firstlvl.py) to have the results.
+
+Note: This code has some :bug: 
+
+Connection graph:
+
+![first level](figures/colored_l1analysis.png)
 
 </details>
 
