@@ -136,15 +136,12 @@ getsubjectinfo = Node(Function(input_names=['subject_id'],
 
 # Infosource - a function free node to iterate over the list of subject names
 infosource = Node(IdentityInterface(fields=['subject_id',
-                                            'fwhm_id',
                                             'contrasts'],
                                     contrasts=contrast_list),
                   name="infosource")
-infosource.iterables = [('subject_id', subject_list),
-                        ('fwhm_id', fwhm)]
+infosource.iterables = [('subject_id', subject_list)]
 
 infosource = Node(IdentityInterface(fields=['subject_id',
-                                            'fwhm_id',
                                             'contrasts'],
                                     contrasts=contrast_list),
                   name="infosource")
@@ -169,11 +166,6 @@ datasink = Node(DataSink(base_directory=experiment_dir,
                          container=output_dir),
                 name="datasink")
 
-
-substitutions = [('_subject_id_', 'sub-')]
-
-substitutions.extend(subjFolders)
-datasink.inputs.substitutions = substitutions
 
 l1analysis = Workflow(name='l1analysis')
 l1analysis.base_dir = os.path.join(experiment_dir, working_dir)
