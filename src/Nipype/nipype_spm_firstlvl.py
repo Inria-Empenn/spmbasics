@@ -169,10 +169,43 @@ datasink = Node(DataSink(base_directory=experiment_dir,
                          container=output_dir),
                 name="datasink")
 
-# Use the following DataSink output substitutions
+
 substitutions = [('_subject_id_', 'sub-')]
-subjFolders = [('_fwhm_id_%ssub-%s' % (f, sub), 'sub-%s/fwhm-%s' % (sub, f))
-               for f in fwhm
-               for sub in subject_list]
+
 substitutions.extend(subjFolders)
 datasink.inputs.substitutions = substitutions
+
+l1analysis = Workflow(name='l1analysis')
+l1analysis.base_dir = os.path.join(experiment_dir, working_dir)
+
+
+l1analysis.connect([(infosource, selectfiles, [('subject_id', 'subject_id')]),
+                    (infosource, getsubjectinfo, [('subject_id',
+                                                   'subject_id')]),
+                    (getsubjectinfo, modelspec, [('subject_info',
+                                                  'subject_info')]),
+                    (infosource, level1conest, [('contrasts', 'contrasts')]),
+                    (selectfiles, modelspec, [('func', 'functional_runs')]),
+                    (selectfiles, modelspec, [('mc_param', 'realignment_parameters'),
+                                              ('outliers', 'outlier_files')]),
+                    (modelspec, level1design, [('session_info',
+                                                'session_info')]),
+                    (level1design, level1estimate, [('spm_mat_file',
+                                                     'spm_mat_file')]),
+                    (level1estimate, level1conest, [('spm_mat_file',
+                                                     'spm_mat_file'),
+                                                    ('beta_images',
+                                                     'beta_images'),
+                                                    ('residual_image',
+                                                     'residual_image')]),
+                    (level1conest, datasink, [('spm_mat_file', '1stLevel.@spm_mat'),
+                                              ('spmT_images', '1stLevel.@T'),
+                                              ('con_images', '1stLevel.@con'),
+                                              ('ess_images', '1stLevel.@ess'),
+                                              ]),
+                    ])
+
+
+l1analysis.write_graph(graph2use='colored', format='png', dotfilename='colored_l1analysis.dot', simple_form=True)
+
+l1analysis.run('MultiProc', plugin_args={'n_procs': 4})
