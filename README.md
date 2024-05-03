@@ -300,12 +300,15 @@ A more detailed figure to check connections.
 
 <summary> <strong>  2. Block Design fMRI First Level Analysis via Nipype-SPM</strong> </summary>
 
-Run
+[TODO]
+
 </details>
 
 <details>
 <summary> <strong> 3. Event-related fMRI via Nipype-SPM</strong></summary>
-To reproduce run this
+
+[TODO]
+
 </details>
 
 ## Further on reproducibility
