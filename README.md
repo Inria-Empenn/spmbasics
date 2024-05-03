@@ -280,6 +280,11 @@ To be able to run functions of SPM from nipype we need to make sure that MATLAB 
 
 The script also shows the SPM version, if ```spm.SPMCommand().version``` prints ```12.7771``` or the same version of yours, it indicates that SPM is found by Nipype. 
 
+For the modelling step, to avoid the common error of ```SPM is not on the MATLAB path, it may be necessary to also let matlab know about SPMs path.
+
+```mlab.MatlabCommand.set_default_paths('/your/path/of/MATLAB/spm12/')```
+
+
 Having these outputs without any error means that, Nipype interface is connected with SPM and MATLAB. :partying_face:
 
 <details> 
