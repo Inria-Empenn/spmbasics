@@ -24,7 +24,6 @@ mean = spm_select('ExtFPList', func_dir, '^meansub-.*\.nii$', NaN); % this will 
 
 matlabbatch{1}.spm.spatial.coreg.estimate.ref(1) = cellstr(mean);
 matlabbatch{1}.spm.spatial.coreg.estimate.source = cellstr(anat);
-matlabbatch{1}.spm.spatial.coreg.estimate.other = {''};
 matlabbatch{1}.spm.spatial.coreg.estimate.eoptions.cost_fun = 'nmi';
 matlabbatch{1}.spm.spatial.coreg.estimate.eoptions.sep = [4 2];
 matlabbatch{1}.spm.spatial.coreg.estimate.eoptions.tol = [0.02 0.02 0.02 0.001 0.001 0.001 0.01 0.01 0.01 0.001 0.001 0.001];
