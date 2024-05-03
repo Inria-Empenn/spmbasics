@@ -30,9 +30,6 @@ spm.SPMCommand().version
 fsl.FSLCommand.set_default_output_type('NIFTI')
 
 
-preproc = Workflow(name='block_1stlvl', base_dir=os.path.abspath('./spmbasics/data/output'))
-
-
 base_dir = os.path.join(os.environ['HOME'], 'spmbasics/data/')
 
 
@@ -192,7 +189,7 @@ l1analysis.connect([(infosource, selectfiles, [('subject_id', 'subject_id')]),
                     (level1conest, datasink, [('spm_mat_file', '1stLevel.@spm_mat'),
                                               ('spmT_images', '1stLevel.@T'),
                                               ('con_images', '1stLevel.@con'),
-                                              ('ess_images', '1stLevel.@ess'),
+                                              ('ess_images', '1stLevel.@ess')
                                               ]),
                     ])
 
