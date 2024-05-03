@@ -5,6 +5,7 @@ from nilearn import plotting
 
 import os
 import json
+import pandas as pd
 from nipype.interfaces.spm import Level1Design, EstimateModel, EstimateContrast
 from nipype.algorithms.modelgen import SpecifySPMModel
 from nipype.interfaces.utility import Function, IdentityInterface
@@ -90,7 +91,7 @@ cont01 = ['listening > rest','T', condition_names, [1, 0]]
 
 contrast_list = [cont01]
 
-
+trialinfo = pd.read_table(os.path.join(base_dir, 'MoAEpilot/sub-01/func/sub-01_task-auditory_events.tsv'))
 
 
 for group in trialinfo.groupby('trial_type'):
