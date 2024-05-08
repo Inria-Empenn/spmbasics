@@ -280,14 +280,21 @@ To be able to run functions of SPM from nipype we need to make sure that MATLAB 
 
 The script also shows the SPM version, if ```spm.SPMCommand().version``` prints ```12.7771``` or the same version of yours, it indicates that SPM is found by Nipype. 
 
+For the modelling step, to avoid the common error of ```SPM is not on the MATLAB path, it may be necessary to also let matlab know about SPMs path.
+
+```mlab.MatlabCommand.set_default_paths('/your/path/of/MATLAB/spm12/')```
+
+
 Having these outputs without any error means that, Nipype interface is connected with SPM and MATLAB. :partying_face:
 
 <details> 
 <summary> <strong> 1. Block Design fMRI Preprocessing via Nipype-SPM</strong> </summary>
 
-To reproduce the block design preprocessing using nipype run ```src/Nipype/nipype_spm_preproc.py```  using ``` python nipype_spm_preproc.py``` command or your IDE. 
+To reproduce the block design preprocessing using nipype run ```src/Nipype/nipype_spm_preproc.py```  using ``` python nipype_spm_preproc.py``` command or your IDE. [Notebook](src/Nipype/nipype_spm_preproc.ipynb) version is also available as an alternative.
 
 In addition to resulting preprocessed files, Nipype writes the worflow as graphs.
+
+
 
 ![Nipype First Figure](figures/preproc_basicgraph.png)
 
@@ -300,12 +307,21 @@ A more detailed figure to check connections.
 
 <summary> <strong>  2. Block Design fMRI First Level Analysis via Nipype-SPM</strong> </summary>
 
-Run
+Run [first level analysis code](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/nipype_spm_firstlvl.py) to have the results.
+
+Note: This code has some  bugs... :bug: :bug: :bug:
+
+Connection graph:
+
+![first level](figures/colored_l1analysis.png)
+
 </details>
 
 <details>
 <summary> <strong> 3. Event-related fMRI via Nipype-SPM</strong></summary>
-To reproduce run this
+
+[TODO]
+
 </details>
 
 ## Further on reproducibility

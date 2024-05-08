@@ -25,7 +25,6 @@ matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.fwhm = 5;
 matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.rtm = 1;
 matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.interp = 2;
 matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.wrap = [0 0 0];
-matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.weight = '';
 matlabbatch{1}.spm.spatial.realign.estwrite.roptions.which = [2 1];
 matlabbatch{1}.spm.spatial.realign.estwrite.roptions.interp = 4;
 matlabbatch{1}.spm.spatial.realign.estwrite.roptions.wrap = [0 0 0];

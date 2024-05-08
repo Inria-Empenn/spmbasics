@@ -18,11 +18,12 @@ from nipype import DataGrabber, Workflow, Node
 
 
 spm.SPMCommand.set_mlab_paths(paths=os.path.abspath('./Documents/MATLAB/spm12/'), matlab_cmd='/soft/matlab_hd/R2020b/bin//glnxa64/MATLAB -nodesktop -nosplash')
-# alternative to the above line just as a reminder
+# alternative to the above line just as a reminder and to let matlab know about SPM path
 
-# mlab.MatlabCommand.set_default_paths(os.path.abspath('./Documents/MATLAB/spm12/')
-# mlab.MatlabCommand.set_default_matlab_cmd("/soft/matlab_hd/R2020b/bin/glnxa64/MATLAB  -nodesktop -nosplash") # set default matlab location to be used by spm
-# spm.SPMCommand().version  # checking spm version to be sure it is imported.
+mlab.MatlabCommand.set_default_paths(os.path.abspath('./Documents/MATLAB/spm12/'))
+mlab.MatlabCommand.set_default_matlab_cmd("/soft/matlab_hd/R2020b/bin/glnxa64/MATLAB  -nodesktop -nosplash") # set default matlab location to be used by spm
+spm.SPMCommand().version  # checking spm version to be sure it is imported.
+
 fsl.FSLCommand.set_default_output_type('NIFTI') # to make sure output type is NIFTI
 
 # defining workflow name and base direction
@@ -54,7 +55,7 @@ grabber.inputs.task_name = "auditory"
 # realigning the functional images
 
 realigner = Node(interface=Realign(), name='realign')
-# realigner.inputs.in_files = func_file # this can change
+
 realigner.inputs.register_to_mean = True
 realigner.inputs.fwhm = 5
 realigner.inputs.interp = 2
@@ -64,15 +65,17 @@ realigner.inputs.wrap = [0, 0, 0]
 realigner.inputs.write_which = [2, 1]
 realigner.inputs.write_interp = 4 
 realigner.inputs.write_wrap = [0, 0, 0]
+realigner.inputs.write_mask = True
 realigner.inputs.jobtype = 'estwrite'
 realigner.inputs.out_prefix = 'r'
+realigner.config = {'execution': {'keep_unnecessary_outputs': 'true'}}
 
 # slice timing settings
 
 slicetiming = Node(interface=SliceTiming(), name = 'slicetiming')
-# st.inputs.in_files = anat_file
+
 slicetiming.inputs.num_slices = 64
-slicetiming.inputs.time_repetition = 7.
+slicetiming.inputs.time_repetition = 7.0
 slicetiming.inputs.time_acquisition = 6.8906
 slicetiming.inputs.slice_order = list(range(64,0,-1))
 slicetiming.inputs.ref_slice = 32
@@ -82,6 +85,7 @@ slicetiming.inputs.out_prefix = 'a'
 # coregistration settings
 
 coregister = Node(Coregister(), name="coregister")
+
 coregister.inputs.jobtype = 'estimate'
 coregister.inputs.cost_function = 'nmi'# normalized mutual information
 coregister.inputs.fwhm = [7.0, 7.0]
@@ -111,6 +115,7 @@ segment.inputs.write_deformation_fields = [False, True]
 # normalization settings
 
 normalize = Node(Normalize12(), name="normalize")
+
 normalize.inputs.jobtype = 'write'
 normalize.inputs.write_bounding_box =  [[-78, -112, -70], [78, 76, 85]]
 normalize.inputs.write_voxel_sizes = [3, 3, 3]
@@ -130,26 +135,32 @@ smooth.inputs.out_prefix = 's'
 sink = Node(interface=DataSink(),
                    name='sink')
 sink.inputs.base_directory = os.path.join(base_dir, 'output')
-sink.inputs.regexp_substitutions = [('_\w+\d+', '.')]
 
 
 
 preproc.connect([(grabber, realigner, [('func', 'in_files')]),
                  (realigner, slicetiming, [('realigned_files', 'in_files')]),
                  (realigner, coregister, [('mean_image', 'target')]),
+                 (realigner, sink, [('realignment_parameters', 'preproc.@realignement_parameters')]),
                  (grabber, coregister, [('anat', 'source')]), 
-                (coregister, segment, [('coregistered_source', 'channel_files')]),
-                (segment, normalize, [('forward_deformation_field', 'deformation_file')]),
-                (slicetiming, normalize, [('timecorrected_files', 'apply_to_files')]),
+                 (coregister, sink, [('coregistered_source', 'preproc.@coregisered_source')]),
+                 (coregister, segment, [('coregistered_source', 'channel_files')]),
+                 (segment, sink, [('bias_corrected_images', 'preproc.@bias_corrected_images'), 
+                                 ('transformation_mat', 'preproc.@transformation_mat'),
+                                 ('native_class_images', 'preproc.@native_class_images')]),
+                 (segment, normalize, [('forward_deformation_field', 'deformation_file')]),
+                 (slicetiming, normalize, [('timecorrected_files', 'apply_to_files')]),
                  (normalize, smooth, [('normalized_files', 'in_files')]),
 ])
-
 # writing the workflow graph
 
-preproc.write_graph(graph2use='colored', format='png', simple_form=True)
+# flat graph, which also creates an exteded graph
+preproc.write_graph(graph2use='flat', format='png', dotfilename='colored_graph.dot', simple_form=True)
 
+# colored graph
+preproc.write_graph(graph2use='colored', format='png', dotfilename='flat_graph.dot', simple_form=True)
 
 # running the workflow
 
 
-preproc.run()
+preproc.run('MultiProc', plugin_args={'n_procs': 4})

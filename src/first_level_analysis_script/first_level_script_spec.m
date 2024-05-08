@@ -37,16 +37,13 @@ matlabbatch{1}.spm.stats.fmri_spec.sess.cond.duration = 6;
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond.tmod = 0;
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond.pmod = struct('name', {}, 'param', {}, 'poly', {});
 matlabbatch{1}.spm.stats.fmri_spec.sess.cond.orth = 1;
-matlabbatch{1}.spm.stats.fmri_spec.sess.multi = {''};
 matlabbatch{1}.spm.stats.fmri_spec.sess.regress = struct('name', {}, 'val', {});
-matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = {''};
 matlabbatch{1}.spm.stats.fmri_spec.sess.hpf = 128;
 matlabbatch{1}.spm.stats.fmri_spec.fact = struct('name', {}, 'levels', {});
 matlabbatch{1}.spm.stats.fmri_spec.bases.hrf.derivs = [0 0];
 matlabbatch{1}.spm.stats.fmri_spec.volt = 1;
 matlabbatch{1}.spm.stats.fmri_spec.global = 'None';
 matlabbatch{1}.spm.stats.fmri_spec.mthresh = 0.8;
-matlabbatch{1}.spm.stats.fmri_spec.mask = {''};
 matlabbatch{1}.spm.stats.fmri_spec.cvi = 'AR(1)';
 
 disp(['Created SPM.mat file for ', sub]) 
