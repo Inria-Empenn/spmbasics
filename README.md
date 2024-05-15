@@ -320,7 +320,22 @@ Connection graph:
 <details>
 <summary> <strong> 3. Event-related fMRI via Nipype-SPM</strong></summary>
 
+<details>
+   <summary>3a. Preprocessing </summary> 
 [TODO]
+
+</details>
+<details>
+   <summary>3b. Categorical Modelling </summary> 
+[TODO]
+
+</details>
+
+<details>
+   <summary>3c. Parametric Modelling </summary> 
+[TODO]
+
+</details>
 
 </details>
 
