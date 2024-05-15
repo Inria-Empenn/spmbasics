@@ -11,8 +11,9 @@ data/output/*
 data/to_be_deleted/*
 data/MoAEpilot_raw/*
 data/*
-/src/Nipype/.ipynb_checkpoints/*
-/src/shasum_checker_event.sh
-/src/event_related_gui/preprocessing/matfiles/*
-/src/event_related_script/matfiles/*
-/results/basecomparison_result.txt
+src/Nipype/.ipynb_checkpoints/*
+src/shasum_checker_event.sh
+src/event_related_gui/preprocessing/matfiles/*
+src/event_related_script/matfiles/*
+results/basecomparison_result.txt
+src/Nipype/.ipynb_checkpoints
