@@ -15,4 +15,6 @@ data/*
 /src/event_related_gui/preprocessing/matfiles/*
 /src/event_related_script/matfiles/*
 /src/.ipynb_checkpoints/*
+/src/spm_firstlevel.ipynb
+/src/..ipynb_checkpoints/spm_firstlevel-checkpoint.ipynb
 /results/basecomparison_result.txt
