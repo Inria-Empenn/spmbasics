@@ -5,7 +5,6 @@ from nilearn import plotting
 
 import os
 import json
-import pandas as pd
 from nipype.interfaces.spm import Level1Design, EstimateModel, EstimateContrast
 from nipype.algorithms.modelgen import SpecifySPMModel
 from nipype.interfaces.utility import Function, IdentityInterface
@@ -15,6 +14,7 @@ from nipype.interfaces import spm
 from nipype.interfaces import fsl
 from nipype.interfaces import matlab as mlab
 
+# matlab may requre absolute paths to work properly
 
 spm.SPMCommand.set_mlab_paths(paths=os.path.abspath('./Documents/MATLAB/spm12/'), matlab_cmd='/soft/matlab_hd/R2020b/bin/glnxa64/MATLAB -nodesktop -nosplash')
 
@@ -29,9 +29,7 @@ spm.SPMCommand().version
 
 fsl.FSLCommand.set_default_output_type('NIFTI')
 
-
 base_dir = os.path.join(os.environ['HOME'], 'spmbasics/data/')
-
 
 experiment_dir = os.path.join(base_dir, 'output')
 output_dir = 'datasink'
@@ -39,6 +37,7 @@ working_dir = 'workingdir'
 
 # list of subject identifiers
 subject_list = ['01']
+task_id = ['auditory']
 
 # TR of functional images
 with open(os.path.join(base_dir, 'MoAEpilot/task-auditory_bold.json'), 'rt') as fp:
@@ -48,8 +47,6 @@ TR = task_info['RepetitionTime']
 # Smoothing width used during preprocessing
 fwhm = [6]
 
-
-
 # SpecifyModel - Generates SPM-specific Model
 modelspec = Node(SpecifySPMModel(concatenate_runs=False,
                                  input_units='scans',
@@ -58,7 +55,7 @@ modelspec = Node(SpecifySPMModel(concatenate_runs=False,
                                  high_pass_filter_cutoff=128),
                  name="modelspec")
 
-# Level1Design - Generates an SPM design matrix
+# Level1Design - Generates an SPM design matrix same as the first level tutorial
 level1design = Node(Level1Design(bases={'hrf': {'derivs': [0, 0]}},
                                  timing_units='scans',
                                  interscan_interval=TR,
@@ -79,28 +76,18 @@ level1estimate = Node(EstimateModel(estimation_method={'Classical': 1}),
 level1conest = Node(EstimateContrast(), name="level1conest")
 
 
-# Condition names
 condition_names = ['listening']
-#onsets = [6,18, 30, 42, 54, 66, 78]
-# Contrasts
-#onsets = ['listening',      'T', condition_names, [6, 18, 30, 42, 54, 66, 78]
+
 cont01 = ['listening > rest','T', condition_names, [1, 0]]
 
 contrast_list = [cont01]
 
-trialinfo = pd.read_table(os.path.join(base_dir, 'MoAEpilot/sub-01/func/sub-01_task-auditory_events.tsv'))
-
-
-for group in trialinfo.groupby('trial_type'):
-    print(group)
-    print("")
-
-
 def subjectinfo(subject_id):
 
     import pandas as pd
+    import os
     from nipype.interfaces.base import Bunch
-    
+    base_dir = os.path.join(os.environ['HOME'], 'spmbasics/data/')
     trialinfo = pd.read_table(os.path.join(base_dir, 'MoAEpilot/sub-01/func/sub-01_task-auditory_events.tsv'))
     trialinfo.head()
     conditions = []
@@ -131,6 +118,8 @@ getsubjectinfo = Node(Function(input_names=['subject_id'],
                       name='getsubjectinfo')
 
 
+
+
 # Infosource - a function free node to iterate over the list of subject names
 infosource = Node(IdentityInterface(fields=['subject_id',
                                             'contrasts'],
@@ -138,19 +127,13 @@ infosource = Node(IdentityInterface(fields=['subject_id',
                   name="infosource")
 infosource.iterables = [('subject_id', subject_list)]
 
-infosource = Node(IdentityInterface(fields=['subject_id',
-                                            'contrasts'],
-                                    contrasts=contrast_list),
-                  name="infosource")
-infosource.iterables = [('subject_id', subject_list)]
-
 # SelectFiles - to grab the data (alternativ to DataGrabber)
-templates = {'func': os.path.join(output_dir, 'preproc', 'sub-{subject_id}', 'task-{task_id}',
+templates = {'func': os.path.join(working_dir, 'block_preproc_art', '_subject_id_{subject_id}_task_name_{task_id}',
                          'sub-{subject_id}_task-{task_id}_bold.nii'),
-             'mc_param': os.path.join(output_dir, 'preproc', 'sub-{subject_id}', 'task-{task_id}',
-                             'sub-{subject_id}_task-{task_id}_bold.par'),
-             'outliers': os.path.join(output_dir, 'preproc', 'sub-{subject_id}', 'task-{task_id}', 
-                             'art.sub-{subject_id}_task-{task_id}_bold_outliers.txt')}
+             'rptxt': os.path.join(working_dir, 'block_preproc_art', '_subject_id_{subject_id}_task_name_{task_id}', 'realign/'
+                             'rp_sub-{subject_id}_task-{task_id}_bold.txt'),
+             'outliers': os.path.join(working_dir, 'block_preproc_art', '_subject_id_{subject_id}_task_name_{task_id}', 'art/',
+                             'art.warsub-{subject_id}_task-{task_id}_bold_outliers.txt')}
 selectfiles = Node(SelectFiles(templates,
                                base_directory=experiment_dir,
                                sort_filelist=True),
@@ -163,10 +146,13 @@ datasink = Node(DataSink(base_directory=experiment_dir,
                 name="datasink")
 
 
-l1analysis = Workflow(name='l1analysis')
+
+
+# Initiation of the 1st-level analysis workflow
+l1analysis = Workflow(name='l1analysis_out')
 l1analysis.base_dir = os.path.join(experiment_dir, working_dir)
 
-
+# Connect up the 1st-level analysis components
 l1analysis.connect([(infosource, selectfiles, [('subject_id', 'subject_id')]),
                     (infosource, getsubjectinfo, [('subject_id',
                                                    'subject_id')]),
@@ -174,8 +160,8 @@ l1analysis.connect([(infosource, selectfiles, [('subject_id', 'subject_id')]),
                                                   'subject_info')]),
                     (infosource, level1conest, [('contrasts', 'contrasts')]),
                     (selectfiles, modelspec, [('func', 'functional_runs')]),
-                    (selectfiles, modelspec, [('mc_param', 'realignment_parameters'),
-                                              ('outliers', 'outlier_files')]),
+                    (selectfiles, modelspec, [('rptxt', 'realignment_parameters'),
+                                             ('outliers', 'outlier_files')]),
                     (modelspec, level1design, [('session_info',
                                                 'session_info')]),
                     (level1design, level1estimate, [('spm_mat_file',
@@ -185,15 +171,23 @@ l1analysis.connect([(infosource, selectfiles, [('subject_id', 'subject_id')]),
                                                     ('beta_images',
                                                      'beta_images'),
                                                     ('residual_image',
-                                                     'residual_image')]),
+                                                  'residual_image')]),
                     (level1conest, datasink, [('spm_mat_file', '1stLevel.@spm_mat'),
                                               ('spmT_images', '1stLevel.@T'),
                                               ('con_images', '1stLevel.@con'),
-                                              ('ess_images', '1stLevel.@ess')
+                                              ('spmF_images', '1stLevel.@F'),
+                                              ('ess_images', '1stLevel.@ess'),
                                               ]),
+    
                     ])
 
 
+
+# Create 1st-level analysis output graph
 l1analysis.write_graph(graph2use='colored', format='png', dotfilename='colored_l1analysis.dot', simple_form=True)
 
+
 l1analysis.run('MultiProc', plugin_args={'n_procs': 4})
+
+
+
