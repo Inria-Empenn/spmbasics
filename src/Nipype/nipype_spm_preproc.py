@@ -173,10 +173,12 @@ preproc.connect([(infosource, selectfiles, [('subject_id', 'subject_id'),
                                             ('task_name', 'task_name')]),
                  (selectfiles, realigner, [('func', 'in_files')]),
                  (realigner, slicetiming, [('realigned_files', 'in_files')]),
-                 (realigner, coregister, [('mean_image', 'target')]),
+                 (realigner, coregister, [('mean_image', 'source'), 
+                                          ('realigned_files', 'apply_to_files')]),
                  (realigner, datasink, [('realignment_parameters', 'preproc.@realignement_parameters')]),
-                 (selectfiles, coregister, [('anat', 'source')]), 
-                 (coregister, datasink, [('coregistered_source', 'preproc.@coregisered_source')]),
+                 (selectfiles, coregister, [('anat', 'target')]), 
+                 (coregister, datasink, [('coregistered_source', 'preproc.@coregisered_source'),
+                                         ('coregistered_files', 'preproc.@coregistered_files')]),
                  (coregister, segment, [('coregistered_source', 'channel_files')]),
                  (segment, datasink, [('bias_corrected_images', 'preproc.@bias_corrected_images'), 
                                  ('transformation_mat', 'preproc.@transformation_mat'),
@@ -194,6 +196,7 @@ preproc.connect([(infosource, selectfiles, [('subject_id', 'subject_id'),
 
 
 preproc.write_graph(graph2use='colored', format='png', dotfilename='colored_graph.dot', simple_form=True)
+preproc.write_graph(graph2use='flat', format='png', dotfilename='colored_graph.dot', simple_form=True)
 
 
 
