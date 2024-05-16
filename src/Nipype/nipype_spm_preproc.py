@@ -65,8 +65,8 @@ infosource = Node(IdentityInterface(fields=['subject_id', 'task_name']),
 infosource.iterables = [('subject_id', subject_id),
                         ('task_name', task_id)]
 # SelectFiles - to grab the data (alternativ to DataGrabber)
-anat_file = os.path.join( base_dir, 'zero/MoAEpilot/', 'sub-{subject_id}', 'anat',  'sub-{subject_id}_T1w.nii' )
-func_file = os.path.join( base_dir, 'zero/MoAEpilot/', 'sub-{subject_id}', 'func',
+anat_file = os.path.join( base_dir, 'MoAEpilot/', 'sub-{subject_id}', 'anat',  'sub-{subject_id}_T1w.nii' )
+func_file = os.path.join( base_dir, 'MoAEpilot/', 'sub-{subject_id}', 'func',
                 'sub-{subject_id}_task-{task_name}_bold.nii')
 
 templates = {'anat': anat_file,
