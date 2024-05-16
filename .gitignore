@@ -17,4 +17,4 @@ src/event_related_gui/preprocessing/matfiles/*
 src/event_related_script/matfiles/*
 results/basecomparison_result.txt
 src/Nipype/.ipynb_checkpoints
-
+src/Nipype/spm_firstlevel.ipynb
