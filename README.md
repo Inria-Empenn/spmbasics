@@ -322,18 +322,25 @@ Connection graph:
 
 <details>
    <summary>3a. Preprocessing </summary> 
-[TODO]
+
+Run [Event related preprocessing code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_preproc.py) to have the results.
+
+Difference: Originally functional data is in analyze format, for convenience of the pipeline, it is merged as a 4D nifti.
+
+![preprocess event](figures/event_graph.png)
 
 </details>
 <details>
    <summary>3b. Categorical Modelling </summary> 
-[TODO]
+
+
+Run [Event related categorical modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.ipynb) to have the results.
 
 </details>
 
 <details>
    <summary>3c. Parametric Modelling </summary> 
-[TODO]
+Run [Event related parametric modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_parametric.ipynb) to have the results.
 
 </details>
 
