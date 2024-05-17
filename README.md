@@ -334,13 +334,17 @@ Difference: Originally functional data is in analyze format, for convenience of 
    <summary>3b. Categorical Modelling </summary> 
 
 
-Run [Event related categorical modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.ipynb) to have the results.
+Run [Event related categorical modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.ipynb) to have the results. 
+
+NOTE: THIS IS THE INITAL SETTING, NODES ARE NOT PROPERLY CONNECTED.
 
 </details>
 
 <details>
    <summary>3c. Parametric Modelling </summary> 
 Run [Event related parametric modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_parametric.ipynb) to have the results.
+
+NOTE: THIS IS THE INITAL SETTING, NODES ARE NOT PROPERLY CONNECTED.
 
 </details>
 
