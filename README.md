@@ -301,6 +301,11 @@ In addition to resulting preprocessed files, Nipype writes the worflow as graphs
 A more detailed figure to check connections.
 
 ![Nipype Detailed](figures/graph_detailed.png)
+
+When it works properly, datasink creates a separate folder of the desired outputs:
+
+![datasinked folder](figures/propersink.png)
+
 </details>
 
 <details>
