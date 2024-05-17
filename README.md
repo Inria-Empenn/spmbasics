@@ -248,7 +248,6 @@ Resulting figure is here :
 </details>
 
 
-
 <details>
 
 <summary> <strong>  4. Bayesian Analysis is omitted for this tutorial. </strong> </summary>
@@ -301,15 +300,20 @@ In addition to resulting preprocessed files, Nipype writes the worflow as graphs
 A more detailed figure to check connections.
 
 ![Nipype Detailed](figures/graph_detailed.png)
+
+When it works properly, datasink creates a separate folder of the desired outputs:
+
+![datasinked folder](figures/propersink.png)
+
 </details>
 
 <details>
 
 <summary> <strong>  2. Block Design fMRI First Level Analysis via Nipype-SPM</strong> </summary>
 
-Run [first level analysis code](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/nipype_spm_firstlvl.py) to have the results.
+Run [first level analysis code](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/nipype_spm_firstlvl.py) file or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/spm_firstlevel.ipynb) to have the results.
 
-Note: Notebook and code works but they are not producing the same figures.
+Note: Notebook and code works but they are not producing the same figures with the SPM.
 
 Connection graph:
 
@@ -323,7 +327,7 @@ Connection graph:
 <details>
    <summary>3a. Preprocessing </summary> 
 
-Run [Event related preprocessing code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_preproc.py) to have the results.
+Run [Event related preprocessing code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_preproc.py) or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_preproc.ipynb) .
 
 Difference: Originally functional data is in analyze format, for convenience of the pipeline, it is merged as a 4D nifti.
 
