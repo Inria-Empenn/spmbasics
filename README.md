@@ -338,7 +338,7 @@ Difference: Originally functional data is in analyze format, for convenience of 
    <summary>3b. Categorical Modelling </summary> 
 
 
-Run [Event related categorical modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.ipynb) to have the results. 
+Run [Event related categorical modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.py) [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.ipynb) to have the results. 
 
 ![categorical graph](figures/event_cat.png)
 
@@ -381,7 +381,7 @@ To avoid loading everything at once it is possible to comment out within the scr
 To keep every implementation in python, I re-implemented the bash code in python. 
 
 Here are the steps how to use python script to obtain and compare shasums of the analysis outputs.
-
+* The script is in ```/src``` folder, named as ```shacheck.py``` 
 * Run [shasum checking python file](src/shacheck.py) via ```python shaceck.py``` 
 * It will generate [a new results file](results/all_results.txt).
 
