@@ -202,7 +202,7 @@ preproc.write_graph(graph2use='flat', format='png', simple_form=True, dotfilenam
 
 
 
-preproc.run()
+preproc.run('MultiProc', plugin_args={'n_procs': 4})
 
 
 
