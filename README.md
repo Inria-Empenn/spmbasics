@@ -340,7 +340,7 @@ Difference: Originally functional data is in analyze format, for convenience of 
 
 Run [Event related categorical modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.ipynb) to have the results. 
 
-NOTE: THIS IS THE INITAL SETTING, NODES ARE NOT PROPERLY CONNECTED.
+![categorical graph](figures/event_cat.png)
 
 </details>
 
@@ -382,9 +382,10 @@ To keep every implementation in python, I re-implemented the bash code in python
 
 Here are the steps how to use python script to obtain and compare shasums of the analysis outputs.
 
-* steps to be written...[TODO]
+* Run [shasum checking python file](src/shacheck.py) via ```python shaceck.py``` 
+* It will generate [a new results file](results/all_results.txt).
 
-
+### Last words/Notes
 
 Lastly keep in mind that every  instruction in this repo can change and serves the purpose of  my learning and testing. 
 
