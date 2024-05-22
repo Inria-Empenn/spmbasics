@@ -52,5 +52,8 @@ def compare_shasums(reference, file1):
         f.write('\n'.join(outputs))
     return output_file
 
-compare_shasums('data_shasums.txt', 'reference_shasums.txt')       
+reference_file= os.path.join(referencedata_dir, "MoAEpilot_shasums.txt")
+nipype_file = os.path.join(output_dir, "nipype_shasums.txt")
+compare_shasums(nipype_file, reference_file) 
+
 
