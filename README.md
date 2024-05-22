@@ -286,10 +286,11 @@ For the modelling step, to avoid the common error of ```SPM is not on the MATLAB
 
 Having these outputs without any error means that, Nipype interface is connected with SPM and MATLAB. :partying_face:
 
+
 <details> 
 <summary> <strong> 1. Block Design fMRI Preprocessing via Nipype-SPM</strong> </summary>
 
-To reproduce the block design preprocessing using nipype run ```src/Nipype/nipype_spm_preproc.py```  using ``` python nipype_spm_preproc.py``` command or your IDE. [Notebook](src/Nipype/nipype_spm_preproc.ipynb) version is also available as an alternative.
+To reproduce the block design preprocessing using nipype run ```src/Nipype/nipype_spm_preproc.py```  using ``` python nipype_spm_preproc.py``` command or your IDE. [Notebook](src/Nipype/Notebooks/nipype_spm_preproc.ipynb) version is also available as an alternative.
 
 In addition to resulting preprocessed files, Nipype writes the worflow as graphs.
 
@@ -311,7 +312,7 @@ When it works properly, datasink creates a separate folder of the desired output
 
 <summary> <strong>  2. Block Design fMRI First Level Analysis via Nipype-SPM</strong> </summary>
 
-Run [first level analysis code](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/nipype_spm_firstlvl.py) file or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/spm_firstlevel.ipynb) to have the results.
+Run [first level analysis code](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/nipype_spm_firstlvl.py) file or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/Notebooks/spm_firstlevel.ipynb) to have the results.
 
 Note: Notebook and code works but they are not producing the same figures with the SPM.
 
@@ -327,7 +328,7 @@ Connection graph:
 <details>
    <summary>3a. Preprocessing </summary> 
 
-Run [Event related preprocessing code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_preproc.py) or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_preproc.ipynb) .
+Run [Event related preprocessing code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_preproc.py) or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/Notebooks/spm_event_preproc.ipynb) .
 
 Difference: Originally functional data is in analyze format, for convenience of the pipeline, it is merged as a 4D nifti.
 
@@ -338,7 +339,7 @@ Difference: Originally functional data is in analyze format, for convenience of 
    <summary>3b. Categorical Modelling </summary> 
 
 
-Run [Event related categorical modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.py) or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.ipynb). 
+Run [Event related categorical modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.py) or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/Notebooks/spm_event_categorical.ipynb). 
 
 ![categorical graph](figures/event_cat.png)
 
@@ -346,9 +347,9 @@ Run [Event related categorical modelling code](https://github.com/mselimata/spmb
 
 <details>
    <summary>3c. Parametric Modelling </summary> 
-Run [Event related parametric modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_parametric.ipynb) to have the results.
 
-NOTE: THIS IS THE INITAL SETTING, NODES ARE NOT PROPERLY CONNECTED.
+Run [Event related parametric modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_parametric.ipynb).
+
 
 </details>
 
