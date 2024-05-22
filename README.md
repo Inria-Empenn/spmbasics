@@ -350,6 +350,7 @@ Run [Event related categorical modelling code](https://github.com/mselimata/spmb
 
 Run [Event related parametric modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_parametric.ipynb).
 
+![Parametric graph](figures/event_param.png)
 
 </details>
 
