@@ -290,7 +290,7 @@ Having these outputs without any error means that, Nipype interface is connected
 <details> 
 <summary> <strong> 1. Block Design fMRI Preprocessing via Nipype-SPM</strong> </summary>
 
-To reproduce the block design preprocessing using nipype run ```src/Nipype/nipype_spm_preproc.py```  using ``` python nipype_spm_preproc.py``` command or your IDE. [Notebook](src/Nipype/Notebooks/nipype_spm_preproc.ipynb) version is also available as an alternative.
+To reproduce the block design preprocessing using [nipype preprocessing code](src/Nipype/nipype_spm_preproc.py) run  ``` python nipype_spm_preproc.py``` command. [Notebook](src/Nipype/Notebooks/nipype_spm_preproc.ipynb) version is also available as an alternative.
 
 In addition to resulting preprocessed files, Nipype writes the worflow as graphs.
 
@@ -312,11 +312,11 @@ When it works properly, datasink creates a separate folder of the desired output
 
 <summary> <strong>  2. Block Design fMRI First Level Analysis via Nipype-SPM</strong> </summary>
 
-Run [first level analysis code](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/nipype_spm_firstlvl.py) file or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/Notebooks/spm_firstlevel.ipynb) to have the results.
+Run the [first level analysis code](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/nipype_spm_firstlvl.py) file with  ``` python spm_firstlevel.py``` command. Or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeFirstlvl/src/Nipype/Notebooks/spm_firstlevel.ipynb) to have the results.
 
 Note: Notebook and code works but they are not producing the same figures with the SPM.
 
-Connection graph:
+Workflow graph:
 
 ![first level](figures/colored_l1analysis.png)
 
@@ -328,10 +328,11 @@ Connection graph:
 <details>
    <summary>3a. Preprocessing </summary> 
 
-Run [Event related preprocessing code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_preproc.py) or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/Notebooks/spm_event_preproc.ipynb) .
+Run the [event related preprocessing code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_preproc.py) file using ``` python spm_event_preproc.py``` command. Alternatively from [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/Notebooks/spm_event_preproc.ipynb) you can obtain the same results.
 
 Difference: Originally functional data is in analyze format, for convenience of the pipeline, it is merged as a 4D nifti.
 
+Workflow graph:
 ![preprocess event](figures/event_graph.png)
 
 </details>
@@ -339,8 +340,9 @@ Difference: Originally functional data is in analyze format, for convenience of 
    <summary>3b. Categorical Modelling </summary> 
 
 
-Run [Event related categorical modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.py) or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/Notebooks/spm_event_categorical.ipynb). 
+Run [Event related categorical modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_categorical.py) file via  ``` python spm_event_categorical.py``` command. or the [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/Notebooks/spm_event_categorical.ipynb). 
 
+Workflow graph:
 ![categorical graph](figures/event_cat.png)
 
 </details>
@@ -348,8 +350,9 @@ Run [Event related categorical modelling code](https://github.com/mselimata/spmb
 <details>
    <summary>3c. Parametric Modelling </summary> 
 
-Run [Event related parametric modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_parametric.ipynb).
+Run the [event related parametric modelling code](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_parametric.py) using ``` python spm_event_categorical.py```  command. [Notebook](https://github.com/mselimata/spmbasics/blob/NipypeEvent/src/Nipype/spm_event_parametric.ipynb) is also availabe as an alternative.
 
+Workflow graph:
 ![Parametric graph](figures/event_param.png)
 
 </details>
