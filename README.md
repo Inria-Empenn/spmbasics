@@ -320,6 +320,9 @@ Workflow graph:
 
 ![first level](figures/colored_l1analysis.png)
 
+Intensity graph of the normalized output: 
+
+![intensity graph](figures/normalized_plot.svg)
 </details>
 
 <details>
