@@ -16,7 +16,7 @@ eventgui_dir = os.path.join(output_dir, 'face_rep_gui')
 eventbatch_dir = os.path.join(output_dir, 'face_rep_batch')
 eventscript_dir = os.path.join(output_dir, 'face_rep_script')
 
-nipype_dir = os.path.join(src_dir, 'nipype')
+nipype_event_dir = os.path.join(output_dir, 'nipype/event_preproc/_subject_id_M03953')
 results_dir = os.path.join(base_dir, 'results')
 
 file_extension = ['.nii', '.img']
@@ -59,7 +59,7 @@ calculate_shasums(eventdata_dir)
 calculate_shasums(eventgui_dir)
 calculate_shasums(eventbatch_dir)
 calculate_shasums(eventscript_dir)
-
+calculate_shasums(nipype_event_dir)
 
 
 def compare_shasums(reference, file1):
