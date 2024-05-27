@@ -31,8 +31,12 @@ Version of the software used:```MATLAB R2020b```[reffered as MATLAB] & ```SPM12 
 This repo contains my reproduction of the SPM12 tutorials with MATLAB R020b and they will be reffered as [original tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/) from now on. 
 
 You can download the data used for preprocessing in this tutorial from [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/MoAEpilot/MoAEpilot.bids.zip). And the data used for event related fMRI analysis [here](https://www.fil.ion.ucl.ac.uk/spm/download/data/face_rep/face_rep.zip). 
-You can find the code in the [src](src) folder.
 
+You can find all the code in the [src](src) folder.
+
+By running [data downloading and copying](src/workflowsetup.py) code, you can get all the necessery data. To be able test the reproducibility afterwards, the script creates three copies of the original data, in your ```/data/output/``` folder. 
+
+For example ```MoAEpilot_script``` should contain the files to run the script interface.
 
 ## How to Reproduce Each Step
 
@@ -47,15 +51,15 @@ The corresponding ```root``` variable in the scripts should be adjusted accordin
 Here is an example setting showing the MoAEpilot folder under  ```/data/MoAEpilot``` the corresponding line in your script should look like ```root = fullfile(home, 'spmbasics', '/data/MoAEpilot')```. 
 
 For the face fMRI data ```root = fullfile(home, 'spmbasics', '/data/face_rep)```.
+
 If you edit the folder names keep the edits in the code as well. 
 
 Your folder structure should look like the example below:
 
 ![folder_basics](/figures/folder_basics.png)
 
-To be able test the reproducibility afterwards, in your ```/data/``` folder keep three different copies of your original data, named according to the processes.  
-
-For example ```MoAEpilot_script``` should contain the files to run the script interface. The ```root``` should be edited beforehand according to the pipelines, to avoid overwriting to the same folder.
+ 
+The data folder name in the  ```root``` should be edited beforehand according to the pipelines, to avoid overwriting to the same folder. 
 
 As a last reminder,  most of the scripts meant to run in a clear window with no parameters. For the preprocessing pipelines there *may not* be any issue. But the analysis and modelling pipelines, strictly require to have a clear window to avoid clashing parameters under the same variable names. So as a rule it would be useful to ```clc``` and ```clear all``` or ```clear matlabbatch``` before, and/or after each time running the scripts.
 
@@ -64,7 +68,7 @@ Now steps of running these scripts:
 
 All the scripts meant to run without loading the gui and all the dependencies are following the relative paths of your  ```spmbasics``` folder. 
 
-To avoid redundancies in this long README I do not repeat the steps explained at the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/realignment/).
+To avoid redundancies in this long README, I do not repeat the steps explained at the [original preprocessing tutorial](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/realignment/).
 
 If you want to load the scripts in this repo using the GUI interface it is possible and could be done by selecting data folder in similar methodology in the original tutorial.
 Below, I am mainly explaining running codes in this repo as scripts.
@@ -81,9 +85,9 @@ Below, I am mainly explaining running codes in this repo as scripts.
   Then run the script. It should produce a file starting with ```mean``` and ```r```. 
   2. Then run [slice timing_batch.m](src/batch_step/slice_timing_batch.m) 
       Run the script. It should produce a file starting with and ```ar```. 
-  3. Follow by [coregistration_batch.m](src/batch_step/coregistration_batch.m).  Run the script and your anatomical images now be coregistered to the ```mean``` that we obtained at the realignment step. Deformation field is generated under ```/anat``` folder, with the name of ```y_sub-01_T1w.nii```
+  3. Follow by [coregistration_batch.m](src/batch_step/coregistration_batch.m).  Run the script and your anatomical images now be coregistered to the ```mean``` that we obtained at the realignment step. That means the header of the anatomical file changed after this step. 
   4. Continue by running [segmentation_batch.m](src/batch_step/segmentation_batch.m)
-      Segmentation script produce different segmentations  in the ```/anat/``` folder according to the predefined tissue probability maps. 
+      Segmentation script produce different segmentations and the deformation field ```y_sub-01_T1w.nii```  in the ```/anat/``` folder according to the predefined tissue probability maps. 
    5. Load and run [normalization_batch.m](src/batch_step/normalisation_batch.m) 
       This script produces files starting with ```war```
    6. Lastly [smoothing_batch.m](src/batch_step/smoothing_batch.m) This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar```
@@ -118,7 +122,7 @@ Below, I am mainly explaining running codes in this repo as scripts.
 
 ### B. Block Design fMRI First Level Analysis Steps
 
-Relative path settings are the same as [Block Design fMRI Preprocessing](Block_Design_fMRI_Preprocessing) for the ```first_level_analysis.sh``` The rest of the two scripts are depending on the resulting ```SPM.mat``` under the ```/first_level_analysis_script``` folder.
+Relative path settings are the same as [Block Design fMRI Preprocessing](Block_Design_fMRI_Preprocessing) for the first_level_analysis. [First level analysis design script](src/first_level_analysis_script/first_level_script_spec.m) is setting all the necessary parameters and the rest of the two scripts are depending on the resulting ```SPM.mat``` under the ```/first_level_analysis_script``` folder.
 
 <details> 
 
@@ -167,9 +171,9 @@ This part is following exact steps of the [original tutorial](https://www.fil.io
       2. Then run [slice timing.m](src/event_related_gui/preprocessing/slice_timing.m) 
       Run the script. It should produce a file starting with and ```ar```. 
 
-      3. Follow it by [coreg.job.m](src/event_related_gui/preprocessing/coreg.job.m).  Run the script and your anatomical images now be coregistered to the ```mean``` that we obtained at the realignment step. Deformation field is generated under ```/anat``` folder, with the name of ```y_sub-01_T1w.nii```
+      3. Follow it by [coreg.job.m](src/event_related_gui/preprocessing/coreg.job.m).  Run the script and your anatomical images now be coregistered to the ```mean``` that we obtained at the realignment step. 
       4. Continue by running [segmentat.m](src/event_related_gui/preprocessing/segment.m)
-      Segmentation script produce different segmentations  in the ```/anat/``` folder according to the predefined tissue probability maps. 
+      Segmentation script produce different segmentations and the deformation field, in the ```/anat/``` folder according to the predefined tissue probability maps. 
       5. Run [normalise.m](src/event_related_gui/preprocessing/normalise.m) 
       This script produces files starting with ```war```
       6. Lastly [smooth.m](src/event_related_gui/preprocessing/smooth.m)
@@ -196,7 +200,7 @@ As a start, make sure that the file containing stimulus onset times in the datas
  <summary><strong>GUI Interface:</strong></summary>
 
 In ```src/event_related_gui/categorical``` folder,
-Firstly run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m```.
+Firstly run ```categorical_spec.m```  firstly it will form the ```SPM.mat``` file, at the ```/event_related_gui``` folder. And then run ```categorical_est.job.m``` to do model estimation.
 
 The further steps about the inference of the results is on the [event related tutorial page](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/event/categorical/).
 
@@ -374,11 +378,12 @@ Instructions to check hash values using the provided bash script:
 
 * The script is in ```/src``` folder, named as ```shasum_checker.sh``` 
 
-* Important note regarding to the base folder: Base folder should contain the results from the [batch_step](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/introduction/) interface. It is recommended to run the ```shasum_checker.sh``` on it once it is finished and then lock the writing access using ``` chmod a=rx -R filename ``` for linux. 
+* Important note regarding to the base folder: Base folder should contain the results from the [bstep by step gui interface](https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/fmri/block/preprocessing/introduction/) interface. It is recommended to run the ```shasum_checker.sh``` on it once it is finished and then lock the writing access using ``` chmod a=rx -R filename ``` for linux. 
 
 To avoid loading everything at once it is possible to comment out within the script and perform tasks step by step.
 
-* <u> REMINDER</u>: Make sure to save your results of preprocessing into different folders and direct their paths accordingly.
+* <u> REMINDER</u>: Make sure to save your results of preprocessing into different folders and direct their paths accordingly. [workflow setup script](src/workflowsetup.py) can be used to make sure about the input and output folder structure.
+
 
 * For example, for results which obtained from  interface create a ```BATCH``` folder with the input data and make SPM run from there so it will create results of the  batch interface.
 
@@ -391,7 +396,9 @@ To keep every implementation in python, I re-implemented the bash code in python
 Here are the steps how to use python script to obtain and compare shasums of the analysis outputs.
 * The script is in ```/src``` folder, named as ```shacheck.py``` 
 * Run [shasum checking python file](src/shacheck.py) via ```python shaceck.py``` 
-* It will generate [a new results file](results/all_results.txt).
+* It will generate and append new results to [a new results file](results/all_results.txt).
+
+
 
 ### Last words/Notes
 
