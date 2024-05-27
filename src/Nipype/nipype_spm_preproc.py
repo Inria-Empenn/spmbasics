@@ -3,10 +3,6 @@
 
 # ## Preprocessing
 
-# In[1]:
-
-
-from nilearn import plotting
 import os
 import json
 from nipype.interfaces import fsl 
@@ -20,20 +16,14 @@ from nipype import Workflow, Node
 
 # necessary to let nipype know about matlab path
 
-
-
 spm.SPMCommand.set_mlab_paths(paths=os.path.abspath(os.path.join(os.environ['HOME'], 'Documents/MATLAB/spm12/')), matlab_cmd='/soft/matlab_hd/R2020b/bin/glnxa64/MATLAB -nodesktop -nosplash')
-
 
 
 mlab.MatlabCommand.set_default_matlab_cmd("/soft/matlab_hd/R2020b/bin/glnxa64/MATLAB  -nodesktop -nosplash")
 mlab.MatlabCommand.set_default_paths(os.path.abspath(os.path.join(os.environ['HOME'], 'Documents/MATLAB/spm12/')))
 
 
-
-
 # spm.SPMCommand().version
-
 
 
 
@@ -41,10 +31,7 @@ fsl.FSLCommand.set_default_output_type('NIFTI')
 
 
 
-
-
 base_dir = os.path.join(os.environ['HOME'], 'spmbasics/data/')
-
 
 
 
@@ -58,7 +45,7 @@ subject_id = ['01']
 
 task_id = ['auditory']
 
-
+# task_id = ['auditory']
 # TR of functional images
 with open(os.path.join(base_dir, 'MoAEpilot/task-auditory_bold.json'), 'rt') as fp:
     task_info = json.load(fp)
@@ -108,6 +95,7 @@ realigner.inputs.out_prefix = 'r'
 
 
 
+
 slicetiming = Node(interface=SliceTiming(), name = 'slicetiming')
 slicetiming.inputs.num_slices = 64
 slicetiming.inputs.time_repetition = 7.
@@ -115,6 +103,9 @@ slicetiming.inputs.time_acquisition = 6.8906
 slicetiming.inputs.slice_order = list(range(64,0,-1))
 slicetiming.inputs.ref_slice = 32
 slicetiming.inputs.out_prefix = 'a'
+
+
+# https://github.com/nipy/nipype/issues/2697 check this
 
 
 coregister = Node(Coregister(), name="coregister")
@@ -130,7 +121,6 @@ coregister.inputs.out_prefix = 'c'
 tpm_path = os.path.abspath(os.path.join(os.environ['HOME'], 'Documents/MATLAB/spm12/tpm/', 'TPM.nii'))
 
 
-
 segment =  Node(NewSegment(), name="newsegment")
 segment.inputs.affine_regularization = 'mni'
 segment.inputs.channel_info = (0.001, 60, (False, True)) #save bias corrected map
@@ -144,6 +134,7 @@ segment.inputs.tissues = [tissue1, tissue2, tissue3, tissue4, tissue5, tissue6]
 segment.inputs.warping_regularization = [0, 0.001, 0.5, 0.05, 0.2]
 segment.inputs.sampling_distance = 3
 segment.inputs.write_deformation_fields = [False, True] 
+
 
 
 
@@ -175,15 +166,6 @@ art.inputs.bound_by_brainmask = True
 art.inputs.parameter_source = 'SPM'
 art.inputs.plot_type='png'
 
-
-def get_vox_dims(volume):
-    import nibabel as nb
-    if isinstance(volume, list):
-        volume = volume[0]
-    nii = nb.load(volume)
-    hdr = nii.header
-    voxdims = hdr.get_zooms()
-    return [float(voxdims[0]), float(voxdims[1]), float(voxdims[2])]
 
 
 block_preprocess = Workflow(name='nipype_block_preprocess')
@@ -234,5 +216,11 @@ block_preprocess.write_graph(graph2use='flat', format='png', dotfilename='flat_b
 
 
 
+
 block_preprocess.run('MultiProc', plugin_args={'n_procs': 4})
+
+
+
+
+
 
