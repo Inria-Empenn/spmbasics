@@ -4,33 +4,61 @@ import os
 
 base_dir = os.path.join(os.environ['HOME'], 'spmbasics')
 data_dir = os.path.join(base_dir, 'data')
-output_dir = os.path.join(base_dir, 'output')
+output_dir = os.path.join(data_dir, 'output')
 src_dir = os.path.join(base_dir, 'src')
-referencedata_dir = os.path.join(base_dir, 'facerep') #MoAEpilot
+blockdata_dir = os.path.join(data_dir, 'MoAEpilot')
+guiblockref_dir = os.path.join(output_dir, 'MoAEpilot_gui')
+batchblock_dir = os.path.join(output_dir, 'MoAEpilot_batch')
+scriptblock_dir = os.path.join(output_dir, 'MoAEpilot_script')
+
+eventdata_dir = os.path.join(data_dir, 'face_rep') 
+eventgui_dir = os.path.join(output_dir, 'face_rep_gui')
+eventbatch_dir = os.path.join(output_dir, 'face_rep_batch')
+eventscript_dir = os.path.join(output_dir, 'face_rep_script')
+
 nipype_dir = os.path.join(src_dir, 'nipype')
 results_dir = os.path.join(base_dir, 'results')
 
-file_extension = '.nii'
+file_extension = ['.nii', '.img']
 
-def calculate_shasums(input_folder, file_extension):
-    output_file = f"{os.path.splitext(input_folder)[0]}_shasums.txt"
+def calculate_shasums(input_folder):
+    if not os.path.isdir(input_folder):
+        raise Exception(f"Input folder {input_folder} does not exist")
 
+    #init_output_filename = f"{os.path.splitext(input_folder)[0]}_init_shasums.txt" 
+    # to get the initial values of the shasums
+    output_filename = f"{os.path.splitext(input_folder)[0]}_shasums.txt"
+    #init_output_file = open(init_output_filename, 'w')
+    output_file = open(output_filename, 'w')
+    
     shasums = []
+    file_extension = ['.nii', '.img']
 
-    for root, files in os.walk(input_folder):
+    for root, dirs, files in os.walk(input_folder):
         for file in files:
-            if file.endswith(file_extension):
+            if any(file.endswith(ext) for ext in file_extension):
                 file_path = os.path.join(root, file)
                 with open(file_path, 'rb') as f:
                     sha_sum = hashlib.sha256(f.read()).hexdigest()
                     shasums.append(sha_sum)
 
-    with open(output_file, 'w') as f:
-        f.write('\n'.join(shasums)) # check if it knows output folder
-    return output_file
+    # Write the checksums to the file
+    for sha_sum in shasums:
+        #init_output_file.write(f"{sha_sum}\n")
+        output_file.write(f"{sha_sum}\n")
 
-calculate_shasums(data_dir)
+    output_file.close()
+    #init_output_file.close()
+    return output_filename 
 
+calculate_shasums(blockdata_dir)
+calculate_shasums(guiblockref_dir)
+calculate_shasums(batchblock_dir)
+calculate_shasums(scriptblock_dir)
+calculate_shasums(eventdata_dir)
+calculate_shasums(eventgui_dir)
+calculate_shasums(eventbatch_dir)
+calculate_shasums(eventscript_dir)
 
 
 
@@ -52,8 +80,11 @@ def compare_shasums(reference, file1):
         f.write('\n'.join(outputs))
     return output_file
 
-reference_file= os.path.join(referencedata_dir, "MoAEpilot_shasums.txt")
-nipype_file = os.path.join(output_dir, "nipype_shasums.txt")
-compare_shasums(nipype_file, reference_file) 
+#reference_file= os.path.join(output_dir, "MoAEpilot_shasums.txt")
+#nipype_file = os.path.join(output_dir, "nipype_shasums.txt")
+#compare_shasums(nipype_file, reference_file) 
 
+# compare shasums
+# get mse
+# get corelation from nipype
 
