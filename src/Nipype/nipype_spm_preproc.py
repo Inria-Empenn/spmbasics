@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-### Preprocessing with artifact detect for analysis
-
-
-#from nilearn import plotting
+# ## Preprocessing
 
 import os
 import json
@@ -17,15 +14,13 @@ from nipype.algorithms import rapidart as ra
 from nipype.interfaces.utility import IdentityInterface
 from nipype import Workflow, Node
 
-
+# necessary to let nipype know about matlab path
 
 spm.SPMCommand.set_mlab_paths(paths=os.path.abspath(os.path.join(os.environ['HOME'], 'Documents/MATLAB/spm12/')), matlab_cmd='/soft/matlab_hd/R2020b/bin/glnxa64/MATLAB -nodesktop -nosplash')
 
 
-
 mlab.MatlabCommand.set_default_matlab_cmd("/soft/matlab_hd/R2020b/bin/glnxa64/MATLAB  -nodesktop -nosplash")
 mlab.MatlabCommand.set_default_paths(os.path.abspath(os.path.join(os.environ['HOME'], 'Documents/MATLAB/spm12/')))
-
 
 
 # spm.SPMCommand().version
@@ -42,7 +37,7 @@ base_dir = os.path.join(os.environ['HOME'], 'spmbasics/data/')
 
 
 experiment_dir = os.path.join(base_dir, 'output')
-output_dir = 'datasink'
+output_dir = 'nipype'
 working_dir = 'workingdir'
 
 # list of subject identifiers
@@ -50,6 +45,7 @@ subject_id = ['01']
 
 task_id = ['auditory']
 
+# task_id = ['auditory']
 # TR of functional images
 with open(os.path.join(base_dir, 'MoAEpilot/task-auditory_bold.json'), 'rt') as fp:
     task_info = json.load(fp)
@@ -57,6 +53,7 @@ TR = task_info['RepetitionTime']
 
 # Smoothing width used during preprocessing
 fwhm = [6]
+
 
 
 # Infosource - a function free node to iterate over the list of subject names
@@ -75,11 +72,10 @@ selectfiles = Node(SelectFiles(templates,
                                base_directory=base_dir),
                    name="selectfiles")
 
-# Datasink - creates output folder for important outputs
+# Datasink - creates output folder for the needed outputs
 datasink = Node(DataSink(base_directory=experiment_dir,
                          container=output_dir),
                 name="datasink")
-
 
 
 
@@ -99,6 +95,7 @@ realigner.inputs.out_prefix = 'r'
 
 
 
+
 slicetiming = Node(interface=SliceTiming(), name = 'slicetiming')
 slicetiming.inputs.num_slices = 64
 slicetiming.inputs.time_repetition = 7.
@@ -108,6 +105,8 @@ slicetiming.inputs.ref_slice = 32
 slicetiming.inputs.out_prefix = 'a'
 
 
+# https://github.com/nipy/nipype/issues/2697 check this
+
 
 coregister = Node(Coregister(), name="coregister")
 coregister.inputs.jobtype = 'estimate'
@@ -115,16 +114,14 @@ coregister.inputs.cost_function = 'nmi'
 coregister.inputs.fwhm = [7.0, 7.0]
 coregister.inputs.separation = [4.0, 2.0]
 coregister.inputs.tolerance = [0.02, 0.02, 0.02, 0.001, 0.001, 0.001, 0.01, 0.01, 0.01, 0.001, 0.001, 0.001]
+coregister.inputs.out_prefix = 'c'
 
 
 
 tpm_path = os.path.abspath(os.path.join(os.environ['HOME'], 'Documents/MATLAB/spm12/tpm/', 'TPM.nii'))
 
 
-
 segment =  Node(NewSegment(), name="newsegment")
-# seg.inputs.channel_files = '/data/preproc/coregister/sub-01_T1w.nii'
-#seg.inputs.channel_files = '/data/MoAEpilot_raw/sub-01/anat/sub-01_T1w.nii'
 segment.inputs.affine_regularization = 'mni'
 segment.inputs.channel_info = (0.001, 60, (False, True)) #save bias corrected map
 tissue1 = ((tpm_path, 1), 1, (True, False), (False, False))
@@ -137,6 +134,8 @@ segment.inputs.tissues = [tissue1, tissue2, tissue3, tissue4, tissue5, tissue6]
 segment.inputs.warping_regularization = [0, 0.001, 0.5, 0.05, 0.2]
 segment.inputs.sampling_distance = 3
 segment.inputs.write_deformation_fields = [False, True] 
+
+
 
 
 normalize = Node(Normalize12(), name="normalize") #old normalize now
@@ -155,53 +154,71 @@ smooth.inputs.implicit_masking = False
 smooth.inputs.out_prefix = 's'
 
 
+
 art = Node(ra.ArtifactDetect(), name="art")
-art.inputs.use_differences = [True, False]
+art.inputs.use_differences = [True, False] # successive motion, # intensity parameter
 art.inputs.use_norm = True
 art.inputs.norm_threshold = 1
 art.inputs.zintensity_threshold = 3
-art.inputs.mask_type = 'spm_global' # explore the optons
+art.inputs.mask_type = 'spm_global'
+art.inputs.intersect_mask = True
+art.inputs.bound_by_brainmask = True
 art.inputs.parameter_source = 'SPM'
-art.inputs.plot_type='svg'
+art.inputs.plot_type='png'
 
 
-preproc = Workflow(name='block_preproc_art')
-preproc.base_dir = os.path.join(experiment_dir, working_dir)
+
+block_preprocess = Workflow(name='nipype_block_preprocess')
+block_preprocess.base_dir = os.path.join(experiment_dir, working_dir)
 
 
-preproc.connect([(infosource, selectfiles, [('subject_id', 'subject_id'),
-                                            ('task_name', 'task_name')]),
+
+block_preprocess.connect([(infosource, selectfiles, [('subject_id', 'subject_id'),
+                                              ('task_name', 'task_name')]),
                  (selectfiles, realigner, [('func', 'in_files')]),
-                 (realigner, slicetiming, [('realigned_files', 'in_files')]),
-                 (realigner, coregister, [('mean_image', 'source'), 
-                                          ('realigned_files', 'apply_to_files')]),
-                 (realigner, datasink, [('realignment_parameters', 'preproc.@realignement_parameters')]),
-                 (selectfiles, coregister, [('anat', 'target')]), 
-                 (coregister, datasink, [('coregistered_source', 'preproc.@coregisered_source'),
-                                         ('coregistered_files', 'preproc.@coregistered_files')]),
+                 (selectfiles, datasink, [('func', 'block_preprocess.@func'),
+                                          ('anat', 'block_preprocess.@anat')]),  
+                 (realigner, datasink, [('realignment_parameters', 'block_preprocess.@realignement_parameters'),
+                                        ('realigned_files', 'block_preprocess.@realigned_files'),
+                                        ('mean_image', 'block_preprocess.@mean_image')]),
+                 (realigner, slicetiming, [('realigned_files', 'in_files')]),  
+                 (slicetiming, datasink, [('timecorrected_files', 'block_preprocess.@timecorrected_files')]),
+                 (realigner, coregister, [('mean_image', 'target')]),
+                 (selectfiles, coregister, [('anat', 'source')]), 
+                 (coregister, datasink, [('coregistered_source', 'block_preprocess.@coregisered_source')]),
                  (coregister, segment, [('coregistered_source', 'channel_files')]),
-                 (segment, datasink, [('bias_corrected_images', 'preproc.@bias_corrected_images'), 
-                                 ('transformation_mat', 'preproc.@transformation_mat'),
-                                 ('native_class_images', 'preproc.@native_class_images')]),
+                 (segment, datasink, [('bias_corrected_images', 'block_preprocess.@bias_corrected_images'),
+                                      ('transformation_mat', 'block_preprocess.@transformation_mat'),
+                                      ('native_class_images', 'block_preprocess.@native_class_images'),
+                                      ('forward_deformation_field', 'block_preprocess.@forward_deformation_field')]),
                  (segment, normalize, [('forward_deformation_field', 'deformation_file')]),
-                 (slicetiming, normalize, [('timecorrected_files', 'apply_to_files')]),
+                 (slicetiming, normalize, [('timecorrected_files', 'apply_to_files')]), 
+                 (normalize, datasink, [('normalized_files', 'block_preprocess.@normalized_files')]),
                  (normalize, smooth, [('normalized_files', 'in_files')]),
-                 
+                 (smooth, datasink, [('smoothed_files', 'block_preprocess.@smoothed_files')]),
                  (realigner, art, [('realignment_parameters', 'realignment_parameters')]),
                  (normalize, art, [('normalized_files', 'realigned_files')]),
-                 (art, datasink, [('outlier_files', 'preproc.@outlier_files'),
-                                  ('plot_files', 'preproc.@plot_files')]),
+                 (art, datasink, [('outlier_files', 'block_preprocess.@outlier_files'),
+                                  ('plot_files', 'block_preprocess.@plot_files')])
 ])
 
 
 
-preproc.write_graph(graph2use='colored', format='png', dotfilename='colored_graph.dot', simple_form=True)
-preproc.write_graph(graph2use='flat', format='png', dotfilename='colored_graph.dot', simple_form=True)
+# Create 1st-level analysis output graph
+block_preprocess.write_graph(graph2use='colored', format='png', dotfilename='colored_block.dot', simple_form=True)
+
+
+
+# Create 1st-level analysis output graph
+block_preprocess.write_graph(graph2use='flat', format='png', dotfilename='flat_block.dot', simple_form=True)
 
 
 
 
-preproc.write_graph(graph2use='flat', format='png', simple_form=True, dotfilename='flat_graph.dot')
+
+
+block_preprocess.run('MultiProc', plugin_args={'n_procs': 4})
+
 
 
 
