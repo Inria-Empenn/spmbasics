@@ -4,22 +4,19 @@
 # ## Categorical Modelling
 
 
-from nilearn import plotting
 
 import os
-import json
+
 from nipype.interfaces import fsl 
 from nipype.interfaces import spm
-from nipype.interfaces.spm import (Realign, SliceTiming, Coregister,  NewSegment,  Normalize12, Smooth)
 from nipype.interfaces.spm import Level1Design, EstimateModel, EstimateContrast
 from nipype.algorithms.modelgen import SpecifySPMModel
 from nipype.interfaces import matlab as mlab
 from nipype.interfaces.io import SelectFiles, DataSink
-import nipype.interfaces.utility as util 
-from nipype.algorithms import rapidart as ra
+
+
 from nipype.interfaces.utility import Function, IdentityInterface
-import nipype.pipeline.engine as pe
-import nipype.interfaces.io as nio
+
 from nipype.interfaces.base import Bunch
 from nipype import DataGrabber, Workflow, Node
 from scipy.io.matlab import loadmat

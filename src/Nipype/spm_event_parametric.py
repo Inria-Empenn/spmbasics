@@ -4,6 +4,7 @@
 # ## Parametric Modelling
 
 
+
 from nilearn import plotting
 import os
 import json
@@ -28,7 +29,6 @@ from scipy.io.matlab import loadmat
 # necessary to let nipype know about matlab path
 
 
-
 spm.SPMCommand.set_mlab_paths(paths=os.path.abspath(os.path.join(os.environ['HOME'], 'Documents/MATLAB/spm12/')), matlab_cmd='/soft/matlab_hd/R2020b/bin/glnxa64/MATLAB -nodesktop -nosplash')
 
 
@@ -37,9 +37,7 @@ mlab.MatlabCommand.set_default_matlab_cmd("/soft/matlab_hd/R2020b/bin/glnxa64/MA
 mlab.MatlabCommand.set_default_paths(os.path.abspath(os.path.join(os.environ['HOME'], 'Documents/MATLAB/spm12/')))
 
 
-
 # spm.SPMCommand().version
-
 
 
 fsl.FSLCommand.set_default_output_type('NIFTI')
@@ -49,10 +47,9 @@ fsl.FSLCommand.set_default_output_type('NIFTI')
 base_dir = os.path.join(os.environ['HOME'], 'spmbasics/data/')
 
 
-
 experiment_dir = os.path.join(base_dir, 'output')
 data_dir = os.path.abspath(os.path.join(base_dir, 'face_rep'))
-output_dir = 'datasink'
+output_dir = 'nipype'
 working_dir = 'workingdir'
 
 # list of subject identifiers
@@ -66,15 +63,13 @@ TR = 2.
 fwhm = [8]
 
 
+
+
 # add how to refer sots
-
-
 
 
 #mat0 = mat = loadmat(os.path.join(data_dir, "sots.mat"), mat_dtype=True, matlab_compatible=True, struct_as_record=True)
 
-
-# In[11]:
 
 
 #mat = loadmat(os.path.join(data_dir, "sots.mat"), mat_dtype=True, matlab_compatible=True, struct_as_record=True, simplify_cells=True)
@@ -83,7 +78,6 @@ fwhm = [8]
 #itemlag = mat['itemlag'][0]
 #onsets=[sot[0], sot[1], sot[2], sot[3]],
 # itemlag = mat['itemlag']
-
 
 
 
@@ -102,9 +96,9 @@ subjectinfo_param = [
         tmod=None,
         pmod=[
             None,
-            Bunch(name=['Lag'], param=itemlag[1].astype(dtype='float64').tolist(), poly=[2]),
+            Bunch(name=['Lag'], param=[itemlag[1].astype(dtype='float64').tolist()], poly=[2]),
             None,
-            Bunch(name=['Lag'], param=itemlag[3].astype(dtype='float64').tolist(), poly=[2])
+            Bunch(name=['Lag'], param=[itemlag[3].astype(dtype='float64').tolist()], poly=[2])
         ],
         regressor_names=None,
         regressors=None)
@@ -112,12 +106,14 @@ subjectinfo_param = [
 
 
 
-cont1 = ('Famous_lag1', 'T', ['F2xLag^1'], [1])
+# design matrix setting
+
+
+
+cont1 = ('Famous_lag1', 'T', ['F2xLag^1'], [1]) # does not correspond to the design
 cont2 = ('Famous_lag2', 'T', ['F2xLag^2'], [1])
 fcont1 = ('Famous Lag', 'F', [cont1, cont2])
 paramcontrasts = [cont1, cont2, fcont1]
-
-
 
 
 # SpecifyModel - Generates SPM-specific Model
@@ -154,7 +150,6 @@ paramconest = Node(EstimateContrast(contrasts = paramcontrasts),
                     name="paramconest")
 
 
-
 # Infosource - a function free node to iterate over the list of subject names
 infosource = Node(IdentityInterface(fields=['subject_id',
                                             'contrasts'],
@@ -163,14 +158,10 @@ infosource = Node(IdentityInterface(fields=['subject_id',
 infosource.iterables = [('subject_id', subject_list)]
 
 
-templates = {'func': os.path.join(output_dir, 'preproc', '_subject_id_{subject_id}',
-                         's{subject_id}_0005_0006_merged.nii'),
-             'mc_param': os.path.join(output_dir, 'preproc', '_subject_id_{subject_id}',
-                         'rp_s{subject_id}_0005_0006_merged.txt'),
-             'outliers': os.path.join(output_dir, 'preproc', '_subject_id_{subject_id}', 
-                             'art.wars{subject_id}_0005_0006_merged_outliers.txt'),
-             'smooths': os.path.join(output_dir, 'preproc', '_subject_id_{subject_id}',
-                         'swars{subject_id}_0005_0006_merged.nii')}
+templates = {'func': os.path.join(output_dir, 'event_preproc', '_subject_id_{subject_id}',
+                         'swars{subject_id}_0005_*.img'),#sM03953_0005_*.img
+             'mc_param': os.path.join(output_dir, 'event_preproc', '_subject_id_{subject_id}',
+                         'rp_s{subject_id}_0005_0006.txt')}
 selectfiles = Node(SelectFiles(templates,
                                base_directory=experiment_dir,
                                sort_filelist=True),
@@ -183,13 +174,8 @@ datasink = Node(DataSink(base_directory=experiment_dir,
 
 
 
-
-
-
-
 def makelist(item):
     return [item]
-
 
 
 
@@ -197,35 +183,35 @@ def makelist(item):
 event_param = Workflow(name='event_param')
 event_param.base_dir = os.path.join(experiment_dir, working_dir)
 
+
 # Connect up the 1st-level analysis components
 event_param.connect([(infosource, selectfiles, [('subject_id', 'subject_id')]),
                     (infosource, paramconest, [('contrasts', 'contrasts')]),
                     (selectfiles, specmodel, [(('func', makelist),  'functional_runs')]), 
-                    (selectfiles, specmodel, [('mc_param', 'realignment_parameters'),
-                                                ('outliers', 'outlier_files')]),
+                    (selectfiles, specmodel, [('mc_param', 'realignment_parameters')]),
                     (specmodel, eventparam, [('session_info','session_info')]),
                     (eventparam, paramestimate, [('spm_mat_file','spm_mat_file')]),                    
                     (paramestimate, paramconest, [('spm_mat_file','spm_mat_file'),
                                                   ('beta_images','beta_images'),
                                                   ('residual_image', 'residual_image')]),
-                    (paramconest, datasink, [('spm_mat_file', 'event_param.@spm_mat'),
-                                              ('spmT_images', 'event_param.@T'),
-                                              ('con_images', 'event_param.@con'),
-                                              ('spmF_images', 'event_param.@F'),
-                                              ('ess_images', 'event_param.@ess')]),
+                    (paramestimate, datasink, [('mask_image','event_param.@mask_image'),
+                                                    ('beta_images','event_param.@beta_images'),
+                                                    ('residual_images','event_param.@residual_images'),
+                                                    ('residual_image','event_param.@residual_image'),
+                                                    ('RPVimage', 'event_param.@RPVimage')]), 
+                    (paramconest, datasink, [('spm_mat_file', 'event_param.@spm_mat_file'),
+                                              ('spmT_images', 'event_param.@spmT_images'),
+                                              ('con_images', 'event_param.@con_images'),
+                                              ('spmF_images', 'event_param.@spmF_images'),
+                                              ('ess_images', 'event_param.@ess_images')]),
                     ])
 
 
-
-event_param.write_graph(graph2use='colored', format='png', dotfilename='colored_graph.dot', simple_form=True)
-
-
-
-event_param.write_graph(graph2use='flat', format='png', dotfilename='flat_graph.dot', simple_form=True)
+event_param.write_graph(graph2use='colored', format='png', dotfilename='colored_param.dot', simple_form=True)
 
 
 
-
+event_param.write_graph(graph2use='flat', format='png', dotfilename='flat_param.dot', simple_form=True)
 
 
 
