@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## Preprocessing
+# ## Categorical Modelling
 
 
 from nilearn import plotting
@@ -46,7 +46,7 @@ base_dir = os.path.join(os.environ['HOME'], 'spmbasics/data/')
 
 experiment_dir = os.path.join(base_dir, 'output')
 data_dir = os.path.abspath(os.path.join(base_dir, 'face_rep'))
-output_dir = 'datasink'
+output_dir = 'nipype'
 working_dir = 'workingdir'
 
 # list of subject identifiers
@@ -60,7 +60,7 @@ TR = 2.
 fwhm = [8]
 
 
-#mat0 = mat = loadmat(os.path.join(data_dir, "sots.mat"), mat_dtype=True, matlab_compatible=True, struct_as_record=True)
+#mat =  loadmat(os.path.join(data_dir, "sots.mat"), mat_dtype=True, matlab_compatible=True, struct_as_record=True)
 
 
 mat = loadmat(os.path.join(data_dir, "sots.mat"), mat_dtype=True, matlab_compatible=True, struct_as_record=True, simplify_cells=True)
@@ -68,6 +68,22 @@ mat = loadmat(os.path.join(data_dir, "sots.mat"), mat_dtype=True, matlab_compati
 
 #itemlag = mat['itemlag'][0]
 #onsets=[sot[0], sot[1], sot[2], sot[3]],
+
+#mat = loadmat(os.path.join(data_dir, "sots.mat"), struct_as_record=False)
+#sot = mat['sot'][0]
+#itemlag = mat['itemlag'][0]
+
+#subjectinfo = [
+#    Bunch(
+#        conditions=['N1', 'N2', 'F1', 'F2'],
+#        onsets=[sot[0], sot[1], sot[2], sot[3]],
+#        durations=[[0], [0], [0], [0]],
+#        amplitudes=None,
+#        tmod=None,
+#        pmod=None,
+#        regressor_names=None,
+#        regressors=None)
+#]
 
 
 subjectinfo = [
@@ -81,9 +97,6 @@ subjectinfo = [
         regressor_names=None,
         regressors=None)
 ]
-
-
-
 
 # design matrix setting
 
