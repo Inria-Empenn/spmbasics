@@ -34,9 +34,15 @@ You can download the data used for preprocessing in this tutorial from [here](ht
 
 You can find all the code in the [src](src) folder.
 
-By running [data downloading and copying](src/workflowsetup.py) code, you can get all the necessery data. To be able test the reproducibility afterwards, the script creates three copies of the original data, in your ```/data/output/``` folder. 
+By running [data downloading and copying](src/workflowsetup.py) code, you  download and unzip all the data. 
+
+Input data folder general view:
+![data folder](figures/workflowfolder.png)
+To be able test the reproducibility afterwards, the script creates three copies of the original data, in your ```/data/output/``` folder. 
 
 For example ```MoAEpilot_script``` should contain the files to run the script interface.
+Output data folder with differently named copies of the input data. 
+![output folder](figures/workflow_output.png)
 
 ## How to Reproduce Each Step
 
