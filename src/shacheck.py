@@ -60,28 +60,7 @@ def correlation(dataA, dataB):
     corr_coef = np.corrcoef(arrayA.flatten(), arrayB.flatten())[0, 1]
     return corr_coef
 
-def mse_corr_output(dataA, dataB):
-    output_filename = f"{os.path.splitext(dataA)[0]}_comparison.txt"
-    with open(output_filename, 'w') as f:
-        mse_value = mse(dataA, dataB)
-        corr_value = correlation(dataA, dataB)
-        f.write(f"Mean Squared Error is {mse_value}\n")
-        f.write(f"Correlation Coefficient is {corr_value}\n")
 
-def load_data(input_folder):
-    if not os.path.isdir(input_folder):
-        raise Exception(f"Input folder {input_folder} does not exist")
-
-    data_files ={}
-    file_extension = ['.nii', '.img']
-    for root, dirs, files in os.walk(input_folder):
-        for file in files:
-            if any(file.endswith(ext) for ext in file_extension):
-                file_path = os.path.join(root, file)
-                data_file = nb.load(file_path)
-                data_array = data_file.get_fdata() # making an array of image
-                data_files[file_path] = { "data_array": data_array}
-                return data_files
 
 # calculate_shasums(blockdata_dir)
 # calculate_shasums(guiblockref_dir)
@@ -116,7 +95,66 @@ def compare_shasums(reference, file1):
 #nipype_file = os.path.join(output_dir, "nipype_shasums.txt")
 #compare_shasums(nipype_file, reference_file) 
 
-# compare shasums and all measures.
 
+def calculate_compare(input_folder1, input_folder2):
+    if not os.path.isdir(input_folder1):
+        raise Exception(f"Input folder {input_folder1} does not exist")
+    else :
+        if not os.path.isdir(input_folder2):
+         raise Exception(f"Input folder {input_folder2} does not exist")
+        
+    head, output_tail = os.path.split(f"{os.path.splitext(input_folder1)[0]}_comparisons.txt")    
+    output_filepath = os.path.join(results_dir, output_tail)
+    output_file = open(output_filepath, 'w')
+    
+    #with open(output_filepath, 'w') as f:
+        
+    mse = [] # to store mse
+    corr = []
+    shasums1 = []
+    shasums2 = []
+    shasums = []
+    # data_files ={}
+    file_extension = ['.nii', '.img']
+    for root1, dirs, files1 in os.walk(input_folder1):
+        for file1 in files1:
+            if any(file1.endswith(ext) for ext in file_extension):
+                file1_path = os.path.join(root1, file1)
+                with open (file1_path, 'rb') as f:
+                    sha1_sum = hashlib.sha256(f.read()).hexdigest()
+                    shasums1.append(sha1_sum)
+                data_file1 = nb.load(file1_path)
+                data_array1 = data_file1.get_fdata() # making an array of image
+    for root2, dirs2, files2 in os.walk(input_folder2):
+        for file2 in files2:
+            if any(file2.endswith(ext) for ext in file_extension):
+                file2_path = os.path.join(root2, file2)
+                with open (file2_path, 'rb') as f:
+                    sha2_sum = hashlib.sha256(f.read()).hexdigest()
+                    shasums2.append(sha2_sum)
+                data_file2 = nb.load(file2_path)
+                data_array2 = data_file2.get_fdata() # making an array of image            
+    if data_array1.size != data_array2.size:
+        raise Exception("input data must have the same size")
+    error =np.sum((data_array1.astype("float") - data_array2.astype("float")) ** 2)
+    error /= float(data_array1.shape[0] * data_array2.shape[1])
+    mse.append(error)
+    for error in mse:
+        output_file.write(f"The Mean Square Error (MSE) calculation of the {file1_path} and {file2_path}, is = {error}\n")
+    corr_coef = np.corrcoef(data_array1.flatten(), data_array2.flatten())[0, 1]
+    corr.append(corr_coef)
+    for corr_coef in corr:
+        output_file.write(f"The correlation coefficient of the {file1_path} and {file2_path}, is ={corr_coef}\n")
+                # data_files[file_path] = { "data_array": data_array}
+    if shasums1 == shasums2:
+        output_file.write(f"SHA256sums are identical for {file1_path} and {file2_path}\n")
+        shasums.append(output_file)
+    else:
+            output_file.write(f"SHA256sums are not identical for {file1_path} and {file2_path}\n")
+            shasums.append(output_file)
+    # f.write('\n'.join(shasums))    
+    return  output_filepath
 
-
+#calculate_compare(blockdata_dir, guiblockref_dir)
+#calculate_compare(blockdata_dir, batchblock_dir)
+# above code only compares anatomical data, not functional data need to specify dirs neatly.
