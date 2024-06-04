@@ -4,17 +4,12 @@ import hashlib
 import numpy as np
 import nibabel as nb
 
-
 base_dir = os.path.join(os.environ['HOME'], 'spmbasics')
 data_dir = os.path.join(base_dir, 'data')
 output_dir = os.path.join(data_dir, 'output')
 src_dir = os.path.join(base_dir, 'src')
 blockdata_dir = os.path.join(data_dir, 'MoAEpilot')
-blockanat_dir = os.path.join(data_dir, 'MoAEpilot/sub-01/anat')
-blockfunc_dir = os.path.join(data_dir, 'MoAEpilot/sub-01/func')
 guiblockref_dir = os.path.join(output_dir, 'MoAEpilot_gui')
-guiblockrefa_dir = os.path.join(output_dir, 'MoAEpilot_gui/sub-01/anat')
-guiblockreff_dir = os.path.join(output_dir, 'MoAEpilot_gui/sub-01/func')
 batchblock_dir = os.path.join(output_dir, 'MoAEpilot_batch')
 scriptblock_dir = os.path.join(output_dir, 'MoAEpilot_script')
 
@@ -48,18 +43,57 @@ def calculate_shasums(input_folder):
     #init_output_file.close()
     return output_filename
 
+def mse(dataA, dataB):
+    if dataA.size != dataB.size:
+        raise Exception("input data must have the same size")
+    arrayA = np.array(dataA)
+    arrayB = np.array(dataB)
+    error =np.sum((arrayA.astype("float") - arrayB.astype("float")) ** 2)
+    error /= float(arrayA.shape[0] * arrayA.shape[1])
+    return error
+
+def correlation(dataA, dataB):
+    if dataA.size != dataB.size:
+        raise Exception("input data must have the same size")
+    arrayA = np.array(dataA)
+    arrayB = np.array(dataB)
+    corr_coef = np.corrcoef(arrayA.flatten(), arrayB.flatten())[0, 1]
+    return corr_coef
+
 
 
 # calculate_shasums(blockdata_dir)
 # calculate_shasums(guiblockref_dir)
 # calculate_shasums(batchblock_dir)
 # calculate_shasums(scriptblock_dir)
-#calculate_shasums(eventdata_dir)
-#calculate_shasums(eventgui_dir)
-#calculate_shasums(eventbatch_dir)
-#calculate_shasums(eventscript_dir)
-#calculate_shasums(nipype_event_dir)
+calculate_shasums(eventdata_dir)
+calculate_shasums(eventgui_dir)
+calculate_shasums(eventbatch_dir)
+calculate_shasums(eventscript_dir)
+calculate_shasums(nipype_event_dir)
 
+
+def compare_shasums(reference, file1):
+    output_file = os.path.join(results_dir, 'all_results.txt')
+    outputs = []
+    with open(reference, 'r') as ref_file, open(file1, 'r') as file1:
+        ref_content = ref_file.read()
+        file1_content = file1.read()
+        if ref_content == file1_content:
+            with open(output_file, 'a') as output:
+                output.write(f"SHA256sums are identical for {reference} and {file1}\n")
+                outputs.append(output)
+        else:
+            with open(output_file, 'a') as output:
+                output.write(f"SHA256sums are not identical for {reference} and {file1}\n")
+                outputs.append(output)
+    with open(output_file, 'w') as f:
+        f.write('\n'.join(outputs))
+    return output_file
+
+#reference_file= os.path.join(output_dir, "MoAEpilot_shasums.txt")
+#nipype_file = os.path.join(output_dir, "nipype_shasums.txt")
+#compare_shasums(nipype_file, reference_file) 
 
 
 def calculate_compare(input_folder1, input_folder2):
@@ -123,4 +157,4 @@ def calculate_compare(input_folder1, input_folder2):
 
 #calculate_compare(blockdata_dir, guiblockref_dir)
 #calculate_compare(blockdata_dir, batchblock_dir)
-# above code works on given directory but not in subdirectories, currently subdirectories needs to be addressed explicitly which is not neat, I know...
+# above code only compares anatomical data, not functional data need to specify dirs neatly.
