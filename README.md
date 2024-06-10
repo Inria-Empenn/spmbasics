@@ -397,12 +397,15 @@ To avoid loading everything at once it is possible to comment out within the scr
 
 ### Using python script
 
-To keep every implementation in python, I re-implemented the bash code in python. 
+To keep every implementation in python, I present a revamped version of the the bash code.
+This script can calculate MSE, correlation coefficient and shasums. If requested it can work similar fashion with the aforementioned bash script, such as creating intermediate txt files of shasum values, comparing them, resulting with a output txt file.
+Ideally it is giving one output txt with the summary of all computations and comparisons.  
 
 Here are the steps how to use python script to obtain and compare shasums of the analysis outputs.
-* The script is in ```/src``` folder, named as ```shacheck.py``` 
-* Run [shasum checking python file](src/shacheck.py) via ```python shaceck.py``` 
-* It will generate and append new results to [a new results file](results/all_results.txt).
+* The script is in ```/src``` folder, named as ```compare_files.py``` 
+* Run [shasum checking python file](src/compare_files.py) via ```python compare_files.py``` or call a version of the script via ```calculate_compare_twolvl(input_folder1, input_folder2)``` depending on the input folder hierarchy.
+
+* It will generate and append new results to [a new results file](results/results/MoAEpilot_gui_comparisons.txt).
 
 
 
