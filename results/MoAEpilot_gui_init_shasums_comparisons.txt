@@ -1,0 +1,1 @@
+SHA256sums are identical for /home/matay/spmbasics/data/MoAEpilot_init_shasums.txt and /home/matay/spmbasics/data/output/MoAEpilot_gui_init_shasums.txt
