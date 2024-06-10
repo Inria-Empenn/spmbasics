@@ -1,0 +1,6 @@
+The Mean Square Error (MSE) calculation of the /home/matay/spmbasics/data/face_rep/RawEPI/sM03953_0005_0324.img and /home/matay/spmbasics/data/output/face_rep_gui/RawEPI/sM03953_0005_0324.img, is = 0.0
+The correlation coefficient of the /home/matay/spmbasics/data/face_rep/RawEPI/sM03953_0005_0324.img and /home/matay/spmbasics/data/output/face_rep_gui/RawEPI/sM03953_0005_0324.img, is =1.0
+SHA256sums are identical for /home/matay/spmbasics/data/face_rep/RawEPI/sM03953_0005_0324.img and /home/matay/spmbasics/data/output/face_rep_gui/RawEPI/sM03953_0005_0324.img
+The Mean Square Error (MSE) calculation of the /home/matay/spmbasics/data/face_rep/Structural/sM03953_0007.img and /home/matay/spmbasics/data/output/face_rep_gui/Structural/sM03953_0007.img, is = 0.0
+The correlation coefficient of the /home/matay/spmbasics/data/face_rep/Structural/sM03953_0007.img and /home/matay/spmbasics/data/output/face_rep_gui/Structural/sM03953_0007.img, is =1.0
+SHA256sums are identical for /home/matay/spmbasics/data/face_rep/Structural/sM03953_0007.img and /home/matay/spmbasics/data/output/face_rep_gui/Structural/sM03953_0007.img

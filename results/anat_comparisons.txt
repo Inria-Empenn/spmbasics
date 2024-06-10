@@ -1,3 +1,0 @@
-The Mean Square Error (MSE) calculation of the /home/matay/spmbasics/data/MoAEpilot/sub-01/anat/sub-01_T1w.nii and /home/matay/spmbasics/data/output/MoAEpilot_gui/sub-01/anat/sub-01_T1w.nii, is = 0.0
-The correlation coefficient of the /home/matay/spmbasics/data/MoAEpilot/sub-01/anat/sub-01_T1w.nii and /home/matay/spmbasics/data/output/MoAEpilot_gui/sub-01/anat/sub-01_T1w.nii, is =1.0
-SHA256sums are identical for /home/matay/spmbasics/data/MoAEpilot/sub-01/anat/sub-01_T1w.nii and /home/matay/spmbasics/data/output/MoAEpilot_gui/sub-01/anat/sub-01_T1w.nii
