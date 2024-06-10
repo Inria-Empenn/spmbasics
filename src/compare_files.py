@@ -10,8 +10,6 @@ data_dir = os.path.join(base_dir, 'data')
 output_dir = os.path.join(data_dir, 'output')
 src_dir = os.path.join(base_dir, 'src')
 blockdata_dir = os.path.join(data_dir, 'MoAEpilot')
-blockanat_dir = os.path.join(data_dir, 'MoAEpilot/sub-01/anat')
-blockfunc_dir = os.path.join(data_dir, 'MoAEpilot/sub-01/func')
 guiblockref_dir = os.path.join(output_dir, 'MoAEpilot_gui')
 batchblock_dir = os.path.join(output_dir, 'MoAEpilot_batch')
 scriptblock_dir = os.path.join(output_dir, 'MoAEpilot_script')
@@ -37,7 +35,12 @@ def calculate_shasums(input_folder):
     #init_output_file = open(init_output_filename, 'w')
     output_file = open(output_filename, 'w')
     shasums = [] # to store the shasums
-    with open(input_folder, 'rb') as f:
+
+    for root, dir, files in os.walk(input_folder):
+        for file in files:
+            if any(file.endswith(ext) for ext in file_extension):
+                file_path = os.path.join(root, file)
+                with open(file_path, 'rb') as f:
                     sha_sum = hashlib.sha256(f.read()).hexdigest()
                     shasums.append(sha_sum)
 
@@ -48,21 +51,56 @@ def calculate_shasums(input_folder):
 
     output_file.close()
     #init_output_file.close()
+    # return init_output_filename
     return output_filename
 
 
 
-# calculate_shasums(blockdata_dir)
-# calculate_shasums(guiblockref_dir)
-# calculate_shasums(batchblock_dir)
-# calculate_shasums(scriptblock_dir)
+#calculate_shasums(blockdata_dir)
+#calculate_shasums(guiblockref_dir)
+#calculate_shasums(batchblock_dir)
+#calculate_shasums(scriptblock_dir)
 #calculate_shasums(eventdata_dir)
 #calculate_shasums(eventgui_dir)
 #calculate_shasums(eventbatch_dir)
 #calculate_shasums(eventscript_dir)
 #calculate_shasums(nipype_event_dir)
 
+def comparetxtfiles(input_file1, input_file2):
+    '''
+    This function compares the SHA256sums of the files in the input directories and writes the results to a text file.
+    '''
+    if not os.path.isfile(input_file1):
+        raise Exception(f"Input file {input_file1} does not exist")
+    else :
+        if not os.path.isfile(input_file2):
+         raise Exception(f"Input file {input_file2} does not exist")
+        
+    _, output_tail = os.path.split(f"{os.path.splitext(input_file2)[0]}_comparisons.txt")    
+    output_filepath = os.path.join(results_dir, output_tail)
+    output_file = open(output_filepath, 'w')
+    
+    #with open(output_filepath, 'w') as f:
+    shasums1 = []
+    shasums2 = []
+    shasums = []
+    with open(input_file1, 'r') as f:
+        for line in f:
+            shasums1.append(line.strip())
+    with open(input_file2, 'r') as f:
+        for line in f:
+            shasums2.append(line.strip())
+    if shasums1 == shasums2:
+        output_file.write(f"SHA256sums are identical for {input_file1} and {input_file2}\n")
+        shasums.append(output_file)
+    else:
+        output_file.write(f"SHA256sums are not identical for {input_file1} and {input_file2}\n")
+        shasums.append(output_file)
+    return output_filepath
 
+#comparetxtfiles(f"{blockdata_dir}_init_shasums.txt", f"{guiblockref_dir}_init_shasums.txt")
+#comparetxtfiles(f"{blockdata_dir}_init_shasums.txt", f"{batchblock_dir}_init_shasums.txt")
+#comparetxtfiles(f"{blockdata_dir}_init_shasums.txt", f"{scriptblock_dir}_init_shasums.txt")
 
 def calculate_compare_old(input_folder1, input_folder2):
     '''
@@ -125,8 +163,8 @@ def calculate_compare_old(input_folder1, input_folder2):
             shasums.append(output_file) 
     return  output_filepath
 
-#calculate_compare(blockdata_dir, guiblockref_dir)
-#calculate_compare(blockdata_dir, batchblock_dir)
+#calculate_compare_old(blockdata_dir, guiblockref_dir)
+#calculate_compare_old(blockdata_dir, batchblock_dir)
 #
 
 def calculate_compare_twolvl(input_folder1, input_folder2):
