@@ -120,21 +120,35 @@ coregister.inputs.out_prefix = 'c'
 
 tpm_path = os.path.abspath(os.path.join(os.environ['HOME'], 'Documents/MATLAB/spm12/tpm/', 'TPM.nii'))
 
+# original segment settings
+# segment =  Node(NewSegment(), name="newsegment")
+#segment.inputs.affine_regularization = 'mni'
+#segment.inputs.channel_info = (0.001, 60, (False, True)) #save bias corrected map
+#tissue1 = ((tpm_path, 1), 1, (True, False), (False, False))
+#tissue2 = ((tpm_path, 2), 1, (True, False), (False, False))
+#tissue3 = ((tpm_path, 3), 2, (True, False), (False, False))
+#tissue4 = ((tpm_path, 4), 3, (True, False), (False, False))
+#tissue5 = ((tpm_path, 5), 4, (True, False), (False, False))
+#tissue6 = ((tpm_path, 6), 2, (False, False), (False, False))
+#segment.inputs.tissues = [tissue1, tissue2, tissue3, tissue4, tissue5, tissue6]
+#segment.inputs.warping_regularization = [0, 0.001, 0.5, 0.05, 0.2]
+#segment.inputs.sampling_distance = 3
+#segment.inputs.write_deformation_fields = [False, True] 
 
+# reproducible segment settings
 segment =  Node(NewSegment(), name="newsegment")
 segment.inputs.affine_regularization = 'mni'
 segment.inputs.channel_info = (0.001, 60, (False, True)) #save bias corrected map
 tissue1 = ((tpm_path, 1), 1, (True, False), (False, False))
 tissue2 = ((tpm_path, 2), 1, (True, False), (False, False))
 tissue3 = ((tpm_path, 3), 2, (True, False), (False, False))
-tissue4 = ((tpm_path, 4), 3, (True, False), (False, False))
-tissue5 = ((tpm_path, 5), 4, (True, False), (False, False))
+tissue4 = ((tpm_path, 4), 3, (False, False), (False, False))
+tissue5 = ((tpm_path, 5), 4, (False, False), (False, False))
 tissue6 = ((tpm_path, 6), 2, (False, False), (False, False))
 segment.inputs.tissues = [tissue1, tissue2, tissue3, tissue4, tissue5, tissue6]
 segment.inputs.warping_regularization = [0, 0.001, 0.5, 0.05, 0.2]
 segment.inputs.sampling_distance = 3
 segment.inputs.write_deformation_fields = [False, True] 
-
 
 
 
