@@ -180,10 +180,13 @@ This part is following exact steps of the [original tutorial](https://www.fil.io
       3. Follow it by [coreg.job.m](src/event_related_gui/preprocessing/coreg.job.m).  Run the script and your anatomical images now be coregistered to the ```mean``` that we obtained at the realignment step. 
       4. Continue by running [segmentat.m](src/event_related_gui/preprocessing/segment.m)
       Segmentation script produce different segmentations and the deformation field, in the ```/anat/``` folder according to the predefined tissue probability maps. 
+      4a. To make segmentation results same as Nipype, there are some tweaks necessary. We are not calculating deformation field and the bias corrected images and the relative segmentations, to active this run: [segmentation nipype tweak]src/batch_step/(segmentation_nipype_adjust.m)
+      5a. To achive Nipype reproduciblity, run [file copy script](src/filecopy.py) to copy the nipype calculated deformation field and bias corrected files*. Then move to the next step.
       5. Run [normalise.m](src/event_related_gui/preprocessing/normalise.m) 
       This script produces files starting with ```war```
       6. Lastly [smooth.m](src/event_related_gui/preprocessing/smooth.m)
       This script produces the files starting with ```s``` and at the end in the ```/func``` folder there must be a version of the subject file starting with ```swar```
+      * Note: Due to a possible template difference between Nipype and SPM, we are tweaking some settings to achive reproducibility. 
 
 </details>
 
@@ -407,8 +410,20 @@ Here are the steps how to use python script to obtain and compare shasums of the
 
 * It will generate and append new results to [a new results file](results/results/MoAEpilot_gui_comparisons.txt).
 
+## Comparing reproducibility with Nipype
 
+For earlier steps, reproducibility comparison is basically comparing folders, with Nipype it is initially comparing folders but requires some dependency adjustements and edits. Those edited scripts are also provided with additional details.
 
+### Block preprocessing 
+
+#### Segmentation
+In this step we are not saving deformation field and bias corrected file and relevant segmentation results. [nipype adjusted script](src/batch_step/segmentation_nipype_adjust.m)
+We use deformation field from nipype using [copying script](src/filecopy.py).
+
+Normalization
+
+Once it is done, you may see something similar to [nipype block preproc reproduced](results/_subject_id_01_task_name_auditory_comparisons.txt)
+file.
 ### Last words/Notes
 
 Lastly keep in mind that every  instruction in this repo can change and serves the purpose of  my learning and testing. 
