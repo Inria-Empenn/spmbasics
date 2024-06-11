@@ -10,7 +10,7 @@ data_dir = os.path.join(base_dir, 'data')
 output_dir = os.path.join(data_dir, 'output')
 src_dir = os.path.join(base_dir, 'src')
 blockdata_dir = os.path.join(data_dir, 'MoAEpilot')
-guiblockref_dir = os.path.join(output_dir, 'MoAEpilot_gui')
+guiblock_dir = os.path.join(output_dir, 'MoAEpilot_gui')
 batchblock_dir = os.path.join(output_dir, 'MoAEpilot_batch')
 scriptblock_dir = os.path.join(output_dir, 'MoAEpilot_script')
 nipype_block_dir = os.path.join(output_dir, 'nipype/block_preprocesss/_subject_id_01_task_name_auditory')
@@ -57,7 +57,7 @@ def calculate_shasums(input_folder):
 
 
 #calculate_shasums(blockdata_dir)
-#calculate_shasums(guiblockref_dir)
+#calculate_shasums(guiblock_dir)
 #calculate_shasums(batchblock_dir)
 #calculate_shasums(scriptblock_dir)
 #calculate_shasums(eventdata_dir)
@@ -98,7 +98,7 @@ def comparetxtfiles(input_file1, input_file2):
         shasums.append(output_file)
     return output_filepath
 
-#comparetxtfiles(f"{blockdata_dir}_init_shasums.txt", f"{guiblockref_dir}_init_shasums.txt")
+#comparetxtfiles(f"{blockdata_dir}_init_shasums.txt", f"{guiblock_dir}_init_shasums.txt")
 #comparetxtfiles(f"{blockdata_dir}_init_shasums.txt", f"{batchblock_dir}_init_shasums.txt")
 #comparetxtfiles(f"{blockdata_dir}_init_shasums.txt", f"{scriptblock_dir}_init_shasums.txt")
 
@@ -163,7 +163,7 @@ def calculate_compare_old(input_folder1, input_folder2):
             shasums.append(output_file) 
     return  output_filepath
 
-#calculate_compare_old(blockdata_dir, guiblockref_dir)
+#calculate_compare_old(blockdata_dir, guiblock_dir)
 #calculate_compare_old(blockdata_dir, batchblock_dir)
 #
 
@@ -282,9 +282,9 @@ def calculate_compare_twolvl(input_folder1, input_folder2):
         output_file.write(f"SHA256sums are not identical for {file2_path} and {file4_path}\n")
         shasums.append(output_file)    
     return  output_filepath  
-#calculate_compare_twolvl(blockdata_dir, guiblockref_dir)
-#calculate_compare_twolvl(blockdata_dir, batchblock_dir)
-#calculate_compare_twolvl(blockdata_dir, scriptblock_dir)
+#calculate_compare_twolvl(blockdata_dir, guiblock_dir)
+calculate_compare_twolvl(blockdata_dir, batchblock_dir)
+calculate_compare_twolvl(blockdata_dir, scriptblock_dir)
 
 def calculate_compare_nipype(input_folder1, input_folder2):
     '''
@@ -401,7 +401,7 @@ def calculate_compare_nipype(input_folder1, input_folder2):
         shasums.append(output_file)    
     return  output_filepath 
 
-calculate_compare_nipype(blockdata_dir, nipype_block_dir)
+#calculate_compare_nipype(blockdata_dir, nipype_block_dir)
 
 def calculate_compare(input_folder1, input_folder2):
     '''
