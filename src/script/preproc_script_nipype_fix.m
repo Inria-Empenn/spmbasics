@@ -15,7 +15,7 @@ user = getenv('USER');
 root = fullfile(home, 'spmbasics', '/data/output/MoAEpilot_script');
 sub = {'sub-01'}; % specify a list of subjects you want to process
 deformationdir = fullfile(home, 'spmbasics', '/data/output/nipype/block_preprocesss/_subject_id_01_task_name_auditory');
-deformation = spm_select('DFList', deformationdir, '^y_sub-01_T1w.nii$');
+deformation = spm_select('FPList', deformationdir, '^y_sub-01_T1w.nii$');
 
 % this loop will perform preprocessing steps for all subjects specified in the list sub
 for i = 1:numel(sub)
