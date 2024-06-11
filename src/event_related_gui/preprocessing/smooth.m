@@ -5,7 +5,7 @@
 %-----------------------------------------------------------------------
 %%
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/data/face_rep')
+root = fullfile(home, 'spmbasics', '/data/output/face_rep_gui')
 func = spm_select('FPList', fullfile(root,'RawEPI'), '^warsM.*\.img$');
 
 

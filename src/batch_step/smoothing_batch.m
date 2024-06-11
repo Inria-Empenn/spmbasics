@@ -6,7 +6,7 @@
 home = getenv('HOME');
 user = getenv('USER');
 % path of your data file
-root = fullfile(home, 'spmbasics', '/data/MoAEpilot'); % must be edited according to the name of the data folder
+root = fullfile(home, 'spmbasics', '/data/output/MoAEpilot_gui'); % must be edited according to the name of the data folder
 sub = {'sub-01'}; 
 
 
