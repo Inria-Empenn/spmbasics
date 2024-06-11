@@ -12,7 +12,7 @@ tpm_dir = fullfile(spmDir, 'tpm');
 
 
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/output/data/face_rep_gui');
+root = fullfile(home, 'spmbasics', '/data/output/face_rep_script');
 
 func_dir = fullfile(root,'RawEPI');
 
@@ -20,7 +20,7 @@ anat = spm_select('FPList', fullfile(root,'Structural'), '^sM.*\.img$');
 func = spm_select('ExtFPList', fullfile(root,'RawEPI'), '^sM.*\.img$');
 scriptdir = fullfile(home, 'spmbasics', '/src/event_related_script/matfiles');
 deformationdir = fullfile(home, 'spmbasics', '/data/output/nipype/event_preprocess/_subject_id_M03953');
-deformation = spm_select('FPList', deformationdir, '^y_sub-01_T1w.nii$');
+deformation = spm_select('FPList', deformationdir, '^y_sM03953_0007.nii$');
 
 disp('Starting preprocessing...'); 
 

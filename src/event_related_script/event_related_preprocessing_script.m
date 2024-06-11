@@ -12,7 +12,7 @@ tpm_dir = fullfile(spmDir, 'tpm');
 
 
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/data/face_rep');
+root = fullfile(home, 'spmbasics', '/data/output/face_rep_batch');
 
 func_dir = fullfile(root,'RawEPI');
 
