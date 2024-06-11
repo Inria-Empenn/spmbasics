@@ -1,28 +1,37 @@
 %-----------------------------------------------------------------------
-% Job saved on 16-Apr-2024 15:47:47 by cfg_util (rev $Rev: 7345 $)
+% Job saved on 16-Apr-2024 15:22:10 by cfg_util (rev $Rev: 7345 $)
 % spm SPM - SPM12 (7771)
 % cfg_basicio BasicIO - Unknown
-%-----------------------------------------------------------------------
+% specify the relative directory where your data lives 
 spmDir = fullfile(userpath, 'spm12');
 tpm_dir = fullfile(spmDir, 'tpm');
+%%%could not figure out changing TPM directory right now
+% TPM does not have relative path right now it needs to have absolute paths?
 home = getenv('HOME');
 user = getenv('USER');
+%PATH.SCRIPT = fileparts(mfilename('fullpath')); % path of where the script is 
+%root= cd(fullfile([PATH.SCRIPT, filesep, '..' , filesep, '/data/output/MoAEpilot_script/']));
 % path of your data file
-root = fullfile(home, 'spmbasics', '/data/output/MoAEpilot_batch'); % must be edited according to the name of the data folder
-sub = {'sub-01'}; 
-disp(['Starting preprocessing for ', sub]); % add a print statement to tell you which subject is being processed
+root = fullfile(home, 'spmbasics', '/data/output/MoAEpilot_script');
+sub = {'sub-01'}; % specify a list of subjects you want to process
+deformationdir = fullfile(home, 'spmbasics', '/data/output/nipype/block_preprocesss/_subject_id_01_task_name_auditory');
+deformation = spm_select('DFList', deformationdir, '^y_sub-01_T1w.nii$');
 
-anat_dir = fullfile(root, sub, 'anat'); % this combines the root with a specific subject directory to create the full path to the folder containing anatomical data
+% this loop will perform preprocessing steps for all subjects specified in the list sub
+for i = 1:numel(sub)
 
-func_dir = fullfile(root, sub, 'func'); % this combines the root with a specific subject directory to create the full path to the folder containing functional data
+    disp(['Starting preprocessing for ', sub{i}]); % add a print statement to tell you which subject is being processed
 
- % find the structural file
-anat = spm_select('FPList', anat_dir, '^sub-01_T1w.nii$'); % this will return the full path (FP) to the T1 file from the anat directory
+    anat_dir = fullfile(root, sub{i}, 'anat'); % this combines the root with a specific subject directory to create the full path to the folder containing anatomical data
+    func_dir = fullfile(root, sub{i}, 'func'); % this combines the root with a specific subject directory to create the full path to the folder containing functional data
+
+    % find the structural file
+    anat = spm_select('FPList', anat_dir, '^sub-*.*_T1w.nii$'); % this will return the full path (FP) to the T1 file from the anat directory
 
     %find and select the functional data
-func = spm_select('ExtFPList', func_dir, '^sub-01_task-auditory_bold.nii$', NaN); % this will give the full path to the task data, NaN will ensure you are loading all volumes present (i.e. consider the 4D file as a whole)
+    func = spm_select('ExtFPList', func_dir, '^sub-*.*_task-auditory_bold.nii$', NaN); % this will give the full path to the task data, NaN will ensure you are loading all volumes present (i.e. consider the 4D file as a whole)
 
-%cd(func_dir) % move into the subject specific folder containing the functional data
+    cd(func_dir) % move into the subject specific folder containing the functional data
 
 matlabbatch{1}.spm.spatial.realign.estwrite.data{1} = cellstr(func);
 matlabbatch{1}.spm.spatial.realign.estwrite.eoptions.quality = 0.9;
@@ -52,7 +61,7 @@ matlabbatch{3}.spm.spatial.coreg.estimate.eoptions.fwhm = [7 7];
 matlabbatch{4}.spm.spatial.preproc.channel.vols(1) = cfg_dep('Coregister: Estimate: Coregistered Images', substruct('.','val', '{}',{3}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','cfiles'));
 matlabbatch{4}.spm.spatial.preproc.channel.biasreg = 0.001;
 matlabbatch{4}.spm.spatial.preproc.channel.biasfwhm = 60;
-matlabbatch{4}.spm.spatial.preproc.channel.write = [0 1];
+matlabbatch{4}.spm.spatial.preproc.channel.write = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(1).tpm = {[ tpm_dir '/TPM.nii,1']};
 matlabbatch{4}.spm.spatial.preproc.tissue(1).ngaus = 1;
 matlabbatch{4}.spm.spatial.preproc.tissue(1).native = [1 0];
@@ -67,11 +76,11 @@ matlabbatch{4}.spm.spatial.preproc.tissue(3).native = [1 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(3).warped = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(4).tpm = {[ tpm_dir '/TPM.nii,4']};
 matlabbatch{4}.spm.spatial.preproc.tissue(4).ngaus = 3;
-matlabbatch{4}.spm.spatial.preproc.tissue(4).native = [1 0];
+matlabbatch{4}.spm.spatial.preproc.tissue(4).native = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(4).warped = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(5).tpm = {[ tpm_dir '/TPM.nii,5']};
 matlabbatch{4}.spm.spatial.preproc.tissue(5).ngaus = 4;
-matlabbatch{4}.spm.spatial.preproc.tissue(5).native = [1 0];
+matlabbatch{4}.spm.spatial.preproc.tissue(5).native = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(5).warped = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(6).tpm = {[ tpm_dir '/TPM.nii,6']};
 matlabbatch{4}.spm.spatial.preproc.tissue(6).ngaus = 2;
@@ -83,11 +92,11 @@ matlabbatch{4}.spm.spatial.preproc.warp.reg = [0 0.001 0.5 0.05 0.2];
 matlabbatch{4}.spm.spatial.preproc.warp.affreg = 'mni';
 matlabbatch{4}.spm.spatial.preproc.warp.fwhm = 0;
 matlabbatch{4}.spm.spatial.preproc.warp.samp = 3;
-matlabbatch{4}.spm.spatial.preproc.warp.write = [0 1];
+matlabbatch{4}.spm.spatial.preproc.warp.write = [0 0];
 matlabbatch{4}.spm.spatial.preproc.warp.vox = NaN;
 matlabbatch{4}.spm.spatial.preproc.warp.bb = [NaN NaN NaN
                                               NaN NaN NaN];
-matlabbatch{5}.spm.spatial.normalise.write.subj.def(1) = cfg_dep('Segment: Forward Deformations', substruct('.','val', '{}',{4}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','fordef', '()',{':'}));
+matlabbatch{5}.spm.spatial.normalise.write.subj.def(1) = cellstr(deformation);
 matlabbatch{5}.spm.spatial.normalise.write.subj.resample(1) = cfg_dep('Slice Timing: Slice Timing Corr. Images (Sess 1)', substruct('.','val', '{}',{2}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('()',{1}, '.','files'));
 matlabbatch{5}.spm.spatial.normalise.write.woptions.bb = [-78 -112 -70
                                                           78 76 85];
@@ -102,3 +111,5 @@ matlabbatch{6}.spm.spatial.smooth.prefix = 's';
 disp(['Completed preprocessing for ', sub]) % add a print statement telling you which subject has been processed
 save preprocessing_batch matlabbatch % save the setup into a matfile called preprocessing_batch.mat
 spm_jobman('run',matlabbatch) % execute the batch
+
+end

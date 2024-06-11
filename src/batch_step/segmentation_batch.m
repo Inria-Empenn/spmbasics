@@ -8,7 +8,7 @@ spmwhere = fullfile(spmDir);
 home = getenv('HOME');
 user = getenv('USER');
 
-root = fullfile(home, 'spmbasics', '/data/MoAEpilot'); % must be edited according to the name of the data folder
+root = fullfile(home, 'spmbasics', '/data/output/MoAEpilot_gui'); % must be edited according to the name of the data folder
 sub = {'sub-01'}; 
 
 disp(['Starting preprocessing for ', sub]); % add a print statement to tell you which subject is being processed

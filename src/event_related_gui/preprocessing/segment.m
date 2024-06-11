@@ -5,7 +5,7 @@
 %-----------------------------------------------------------------------
 spmDir = fullfile(userpath, 'spm12');
 home = getenv('HOME');
-root = fullfile(home, 'spmbasics', '/data/face_rep');
+root = fullfile(home, 'spmbasics', '/data/output/face_rep_gui');
 anat = spm_select('FPList', fullfile(root,'Structural'), '^sM.*\.img$');
 
 scriptdir = fullfile(home, 'spmbasics', '/src/event_related_gui/preprocessing/matfiles');

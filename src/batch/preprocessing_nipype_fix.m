@@ -9,6 +9,7 @@ home = getenv('HOME');
 user = getenv('USER');
 % path of your data file
 root = fullfile(home, 'spmbasics', '/data/output/MoAEpilot_batch'); % must be edited according to the name of the data folder
+deformationdir = fullfile(home, 'spmbasics', '/data/output/nipype/block_preprocesss/_subject_id_01_task_name_auditory');
 sub = {'sub-01'}; 
 disp(['Starting preprocessing for ', sub]); % add a print statement to tell you which subject is being processed
 
@@ -21,6 +22,9 @@ anat = spm_select('FPList', anat_dir, '^sub-01_T1w.nii$'); % this will return th
 
     %find and select the functional data
 func = spm_select('ExtFPList', func_dir, '^sub-01_task-auditory_bold.nii$', NaN); % this will give the full path to the task data, NaN will ensure you are loading all volumes present (i.e. consider the 4D file as a whole)
+
+% find and select deformation file
+deformation = spm_select('DFList', deformationdir, '^y_sub-01_T1w.nii$');
 
 %cd(func_dir) % move into the subject specific folder containing the functional data
 
@@ -52,7 +56,7 @@ matlabbatch{3}.spm.spatial.coreg.estimate.eoptions.fwhm = [7 7];
 matlabbatch{4}.spm.spatial.preproc.channel.vols(1) = cfg_dep('Coregister: Estimate: Coregistered Images', substruct('.','val', '{}',{3}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','cfiles'));
 matlabbatch{4}.spm.spatial.preproc.channel.biasreg = 0.001;
 matlabbatch{4}.spm.spatial.preproc.channel.biasfwhm = 60;
-matlabbatch{4}.spm.spatial.preproc.channel.write = [0 1];
+matlabbatch{4}.spm.spatial.preproc.channel.write = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(1).tpm = {[ tpm_dir '/TPM.nii,1']};
 matlabbatch{4}.spm.spatial.preproc.tissue(1).ngaus = 1;
 matlabbatch{4}.spm.spatial.preproc.tissue(1).native = [1 0];
@@ -67,11 +71,11 @@ matlabbatch{4}.spm.spatial.preproc.tissue(3).native = [1 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(3).warped = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(4).tpm = {[ tpm_dir '/TPM.nii,4']};
 matlabbatch{4}.spm.spatial.preproc.tissue(4).ngaus = 3;
-matlabbatch{4}.spm.spatial.preproc.tissue(4).native = [1 0];
+matlabbatch{4}.spm.spatial.preproc.tissue(4).native = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(4).warped = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(5).tpm = {[ tpm_dir '/TPM.nii,5']};
 matlabbatch{4}.spm.spatial.preproc.tissue(5).ngaus = 4;
-matlabbatch{4}.spm.spatial.preproc.tissue(5).native = [1 0];
+matlabbatch{4}.spm.spatial.preproc.tissue(5).native = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(5).warped = [0 0];
 matlabbatch{4}.spm.spatial.preproc.tissue(6).tpm = {[ tpm_dir '/TPM.nii,6']};
 matlabbatch{4}.spm.spatial.preproc.tissue(6).ngaus = 2;
@@ -83,11 +87,11 @@ matlabbatch{4}.spm.spatial.preproc.warp.reg = [0 0.001 0.5 0.05 0.2];
 matlabbatch{4}.spm.spatial.preproc.warp.affreg = 'mni';
 matlabbatch{4}.spm.spatial.preproc.warp.fwhm = 0;
 matlabbatch{4}.spm.spatial.preproc.warp.samp = 3;
-matlabbatch{4}.spm.spatial.preproc.warp.write = [0 1];
+matlabbatch{4}.spm.spatial.preproc.warp.write = [0 0];
 matlabbatch{4}.spm.spatial.preproc.warp.vox = NaN;
 matlabbatch{4}.spm.spatial.preproc.warp.bb = [NaN NaN NaN
                                               NaN NaN NaN];
-matlabbatch{5}.spm.spatial.normalise.write.subj.def(1) = cfg_dep('Segment: Forward Deformations', substruct('.','val', '{}',{4}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','fordef', '()',{':'}));
+matlabbatch{5}.spm.spatial.normalise.write.subj.def(1) = cellstr(deformation);
 matlabbatch{5}.spm.spatial.normalise.write.subj.resample(1) = cfg_dep('Slice Timing: Slice Timing Corr. Images (Sess 1)', substruct('.','val', '{}',{2}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('()',{1}, '.','files'));
 matlabbatch{5}.spm.spatial.normalise.write.woptions.bb = [-78 -112 -70
                                                           78 76 85];
@@ -100,5 +104,5 @@ matlabbatch{6}.spm.spatial.smooth.dtype = 0;
 matlabbatch{6}.spm.spatial.smooth.im = 0;
 matlabbatch{6}.spm.spatial.smooth.prefix = 's';
 disp(['Completed preprocessing for ', sub]) % add a print statement telling you which subject has been processed
-save preprocessing_batch matlabbatch % save the setup into a matfile called preprocessing_batch.mat
+%save preprocessing_batch matlabbatch % save the setup into a matfile called preprocessing_batch.mat
 spm_jobman('run',matlabbatch) % execute the batch
