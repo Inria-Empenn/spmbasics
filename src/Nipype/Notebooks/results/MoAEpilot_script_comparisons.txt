@@ -1,0 +1,50 @@
+File pair: /home/matay/spmbasics/data/output/MoAEpilot_batch/sub-01/func/swarsub-01_task-auditory_bold.nii and /home/matay/spmbasics/data/output/MoAEpilot_script/sub-01/func/swarsub-01_task-auditory_bold.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+
+File pair: /home/matay/spmbasics/data/output/MoAEpilot_batch/sub-01/func/sub-01_task-auditory_bold.nii and /home/matay/spmbasics/data/output/MoAEpilot_script/sub-01/func/sub-01_task-auditory_bold.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+
+File pair: /home/matay/spmbasics/data/output/MoAEpilot_batch/sub-01/func/meansub-01_task-auditory_bold.nii and /home/matay/spmbasics/data/output/MoAEpilot_script/sub-01/func/meansub-01_task-auditory_bold.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+
+File pair: /home/matay/spmbasics/data/output/MoAEpilot_batch/sub-01/func/arsub-01_task-auditory_bold.nii and /home/matay/spmbasics/data/output/MoAEpilot_script/sub-01/func/arsub-01_task-auditory_bold.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+
+File pair: /home/matay/spmbasics/data/output/MoAEpilot_batch/sub-01/func/warsub-01_task-auditory_bold.nii and /home/matay/spmbasics/data/output/MoAEpilot_script/sub-01/func/warsub-01_task-auditory_bold.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+
+File pair: /home/matay/spmbasics/data/output/MoAEpilot_batch/sub-01/func/rsub-01_task-auditory_bold.nii and /home/matay/spmbasics/data/output/MoAEpilot_script/sub-01/func/rsub-01_task-auditory_bold.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+
+File pair: /home/matay/spmbasics/data/output/MoAEpilot_batch/sub-01/anat/c2sub-01_T1w.nii and /home/matay/spmbasics/data/output/MoAEpilot_script/sub-01/anat/c2sub-01_T1w.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+
+File pair: /home/matay/spmbasics/data/output/MoAEpilot_batch/sub-01/anat/c1sub-01_T1w.nii and /home/matay/spmbasics/data/output/MoAEpilot_script/sub-01/anat/c1sub-01_T1w.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+
+File pair: /home/matay/spmbasics/data/output/MoAEpilot_batch/sub-01/anat/sub-01_T1w.nii and /home/matay/spmbasics/data/output/MoAEpilot_script/sub-01/anat/sub-01_T1w.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+
+File pair: /home/matay/spmbasics/data/output/MoAEpilot_batch/sub-01/anat/c3sub-01_T1w.nii and /home/matay/spmbasics/data/output/MoAEpilot_script/sub-01/anat/c3sub-01_T1w.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+

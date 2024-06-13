@@ -102,533 +102,62 @@ def comparetxtfiles(input_file1, input_file2):
 #comparetxtfiles(f"{blockdata_dir}_init_shasums.txt", f"{batchblock_dir}_init_shasums.txt")
 #comparetxtfiles(f"{blockdata_dir}_init_shasums.txt", f"{scriptblock_dir}_init_shasums.txt")
 
-def calculate_compare_old(input_folder1, input_folder2):
-    '''
-    This function calculates and compares the files if only one sub directory is present.
-    '''
-    if not os.path.isdir(input_folder1):
-        raise Exception(f"Input folder {input_folder1} does not exist")
-    else :
-        if not os.path.isdir(input_folder2):
-         raise Exception(f"Input folder {input_folder2} does not exist")
-        
-    _, output_tail = os.path.split(f"{os.path.splitext(input_folder1)[0]}_comparisons.txt")    
-    output_filepath = os.path.join(results_dir, output_tail)
-    output_file = open(output_filepath, 'w')
-    
-    #with open(output_filepath, 'w') as f:
-        
-    mse = [] # to store mse
-    corr = []
-    shasums1 = []
-    shasums2 = []
-    shasums = []
-    # data_files ={}
-    file_extension = ['.nii', '.img']
-    for root1, dirs, files1 in os.walk(input_folder1):
-        for file1 in files1:
-            if any(file1.endswith(ext) for ext in file_extension):
-                file1_path = os.path.join(root1, file1)
-                with open (file1_path, 'rb') as f:
-                    sha1_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums1.append(sha1_sum)
-                data_file1 = nb.load(file1_path)
-                data_array1 = data_file1.get_fdata() # making an array of image
-    for root2, dirs2, files2 in os.walk(input_folder2):
-        for file2 in files2:
-            if any(file2.endswith(ext) for ext in file_extension):
-                file2_path = os.path.join(root2, file2)
-                with open (file2_path, 'rb') as f:
-                    sha2_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums2.append(sha2_sum)
-                data_file2 = nb.load(file2_path)
-                data_array2 = data_file2.get_fdata() # making an array of image            
-    if data_array1.size != data_array2.size:
-        raise Exception("input data must have the same size")
-    error =np.sum((data_array1.astype("float") - data_array2.astype("float")) ** 2)
-    error /= float(data_array1.shape[0] * data_array2.shape[1])
-    mse.append(error)
-    for error in mse:
-        output_file.write(f"The Mean Square Error (MSE) calculation of the {file1_path} and {file2_path}, is = {error}\n")
-    corr_coef = np.corrcoef(data_array1.flatten(), data_array2.flatten())[0, 1]
-    corr.append(corr_coef)
-    for corr_coef in corr:
-        output_file.write(f"The correlation coefficient of the {file1_path} and {file2_path}, is ={corr_coef}\n")
-                # data_files[file_path] = { "data_array": data_array}
-    if shasums1 == shasums2:
-        output_file.write(f"SHA256sums are identical for {file1_path} and {file2_path}\n")
-        shasums.append(output_file)
-    else:
-            output_file.write(f"SHA256sums are not identical for {file1_path} and {file2_path}\n")
-            shasums.append(output_file) 
-    return  output_filepath
-
-#calculate_compare_old(blockdata_dir, guiblock_dir)
-#calculate_compare_old(blockdata_dir, batchblock_dir)
-#
-
-def calculate_compare_twolvl(input_folder1, input_folder2):
-    '''
-    This function checks the 2 level deeper sub directories, of the input directories for example:
-    maindir->
-        subdir->
-              subdir->
-                   file(s)
-    searches for nifti files and loads them into memory. It calculates the Mean Square Error (MSE), correlation coefficients and  SHA256sums.
-    After calculating all these, compares them and writes the results to a text file.
-
-    Parameters:
-    input_folder1 (str): The first input directory
-    input_folder2 (str): The second input directory
-
-    '''
-    if not os.path.isdir(input_folder1):
-        raise Exception(f"Input folder {input_folder1} does not exist")
-    else :
-        if not os.path.isdir(input_folder2):
-         raise Exception(f"Input folder {input_folder2} does not exist")
-        
-    _, output_tail = os.path.split(f"{os.path.splitext(input_folder2)[0]}_comparisons.txt")    
-    output_filepath = os.path.join(results_dir, output_tail)
-    output_file = open(output_filepath, 'w')
-    
-    #with open(output_filepath, 'w') as f:
-        
-    mse = [] # to store mse
-    corr= []
-    mse2 = []
-    corr2 = []
-    shasums = []
-    shasums1 = []
-    shasums2 = []
-    shasums3 = []
-    shasums4 = []
-    # data_files ={}
-    file_extension = ['.nii']
-    subfolders1 = [os.path.join(input_folder1, d) for d in sorted(os.listdir(input_folder1)) if os.path.isdir(os.path.join(input_folder1, d))]
-    for subfolder1 in subfolders1:
-        subsubfolders1 = [os.path.join(subfolder1, d) for d in sorted(os.listdir(subfolder1)) if os.path.isdir(os.path.join(subfolder1, d))]
-        for root1, _, files1 in os.walk(subsubfolders1[0]):
-            for file1 in files1:
-                if any(file1.endswith(ext) for ext in file_extension):
-                    file1_path = os.path.join(root1, file1)
-                    with open (file1_path, 'rb') as f:
-                        sha1_sum = hashlib.sha256(f.read()).hexdigest()
-                        shasums1.append(sha1_sum)
-                    data_file1 = nb.load(file1_path)
-                    data_array1 = data_file1.get_fdata()
-        for root2, _, files2 in os.walk(subsubfolders1[1]):
-            for file2 in files2:
-                if any(file2.endswith(ext) for ext in file_extension):
-                    file2_path = os.path.join(root2, file2)
-                    with open (file2_path, 'rb') as f:
-                        sha2_sum = hashlib.sha256(f.read()).hexdigest()
-                        shasums2.append(sha2_sum)
-                    data_file2 = nb.load(file2_path)
-                    data_array2 = data_file2.get_fdata()
-    subfolders2 = [os.path.join(input_folder2, d) for d in sorted(os.listdir(input_folder2)) if os.path.isdir(os.path.join(input_folder2, d))]
-    for subfolder2 in subfolders2:
-        subsubfolders2 = [os.path.join(subfolder2, d) for d in sorted(os.listdir(subfolder2)) if os.path.isdir(os.path.join(subfolder2, d))]
-        for root3, _, files3 in os.walk(subsubfolders2[0]):
-            for file3 in files3:
-                if any(file3.endswith(ext) for ext in file_extension):
-                    file3_path = os.path.join(root3, file3)
-                    with open (file3_path, 'rb') as f:
-                        sha3_sum = hashlib.sha256(f.read()).hexdigest()
-                        shasums3.append(sha3_sum)
-                    data_file3 = nb.load(file3_path)
-                    data_array3 = data_file3.get_fdata()
-        for root4, _, files4 in os.walk(subsubfolders2[1]):
-            for file4 in files4:
-                if any(file4.endswith(ext) for ext in file_extension):
-                    file4_path = os.path.join(root4, file4)
-                    with open (file4_path, 'rb') as f:
-                        sha4_sum = hashlib.sha256(f.read()).hexdigest()
-                        shasums4.append(sha4_sum)
-                    data_file4 = nb.load(file4_path)
-                    data_array4 = data_file4.get_fdata()
-    if data_array1.size != data_array3.size:
-        raise Exception("input data must have the same size")
-    error =np.sum((data_array1.astype("float") - data_array3.astype("float")) ** 2)
-    error /= float(data_array1.shape[0] * data_array3.shape[1])
-    mse.append(error)
-    for error in mse:
-        output_file.write(f"The Mean Square Error (MSE) calculation of the {file1_path} and {file3_path}, is = {error}\n")
-    corr_coef = np.corrcoef(data_array1.flatten(), data_array3.flatten())[0, 1]
-    corr.append(corr_coef)
-    for corr_coef in corr:
-        output_file.write(f"The correlation coefficient of the {file1_path} and {file3_path}, is ={corr_coef}\n")
-    if shasums1 == shasums3: 
-        output_file.write(f"SHA256sums are identical for {file1_path} and {file3_path}\n")
-        shasums.append(output_file)
-    else:
-        output_file.write(f"SHA256sums are not identical for {file1_path} and {file3_path}\n")
-        shasums.append(output_file)
-    if data_array2.size != data_array4.size:
-        raise Exception("input data must have the same size")
-    error2 =np.sum((data_array2.astype("float") - data_array4.astype("float")) ** 2)
-    error2 /= float(data_array2.shape[0] * data_array4.shape[1])    
-    mse2.append(error2)
-    for error2 in mse2:
-        output_file.write(f"The Mean Square Error (MSE) calculation of the {file2_path} and {file4_path}, is = {error2}\n")
-    corr_coef2 = np.corrcoef(data_array2.flatten(), data_array4.flatten())[0, 1]
-    corr2.append(corr_coef2)
-    for corr_coef2 in corr:
-        output_file.write(f"The correlation coefficient of the {file2_path} and {file4_path}, is ={corr_coef2}\n")
-    if shasums2 == shasums4:        
-        output_file.write(f"SHA256sums are identical for {file2_path} and {file4_path}\n")
-        shasums.append(output_file)
-    else:
-        output_file.write(f"SHA256sums are not identical for {file2_path} and {file4_path}\n")
-        shasums.append(output_file)    
-    return  output_filepath  
-#calculate_compare_twolvl(blockdata_dir, guiblock_dir)
-calculate_compare_twolvl(blockdata_dir, batchblock_dir)
-calculate_compare_twolvl(blockdata_dir, scriptblock_dir)
-
-def calculate_compare_nipype2lvl(input_folder1, input_folder2):
-    '''
-    This function checks the 2 level deeper sub directories, of the input directories for example:
-    maindir->
-        subdir->
-              subdir->
-                   file(s)
-    searches for nifti files and loads them into memory. It calculates the Mean Square Error (MSE), correlation coefficients and  SHA256sums.
-    After calculating all these, compares them and writes the results to a text file.
-
-    Parameters:
-    input_folder1 (str): The first input directory
-    input_folder2 (str): The second input directory
-
-    '''
-    if not os.path.isdir(input_folder1):
-        raise Exception(f"Input folder {input_folder1} does not exist")
-    else :
-        if not os.path.isdir(input_folder2):
-         raise Exception(f"Input folder {input_folder2} does not exist")
-        
-    _, output_tail = os.path.split(f"{os.path.splitext(input_folder2)[0]}_comparisons.txt")    
-    output_filepath = os.path.join(results_dir, output_tail)
-    output_file = open(output_filepath, 'w')
-    
-    #with open(output_filepath, 'w') as f:
-        
-    mse = [] # to store mse
-    corr= []
-    mse2 = []
-    corr2 = []
-    shasums = []
-    shasums1 = []
-    shasums2 = []
-    shasums3 = []
-    shasums4 = []
-    # data_files ={}
-    file_extension = ['.nii']
-    nipype_anat = ['_T1w.nii']
-    nipype_func = ['_bold.nii']
-    subfolders1 = [os.path.join(input_folder1, d) for d in sorted(os.listdir(input_folder1)) if os.path.isdir(os.path.join(input_folder1, d))]
-    for subfolder1 in subfolders1:
-        subsubfolders1 = [os.path.join(subfolder1, d) for d in sorted(os.listdir(subfolder1)) if os.path.isdir(os.path.join(subfolder1, d))]
-        for root1, _, files1 in os.walk(subsubfolders1[0]):
-            for file1 in files1:
-                if any(file1.endswith(ext) for ext in file_extension):
-                    file1_path = os.path.join(root1, file1)
-                    with open (file1_path, 'rb') as f:
-                        sha1_sum = hashlib.sha256(f.read()).hexdigest()
-                        shasums1.append(sha1_sum)
-                    data_file1 = nb.load(file1_path)
-                    data_array1 = data_file1.get_fdata()
-        for root2, _, files2 in os.walk(subsubfolders1[1]):
-            for file2 in files2:
-                if any(file2.endswith(ext) for ext in file_extension):
-                    file2_path = os.path.join(root2, file2)
-                    with open (file2_path, 'rb') as f:
-                        sha2_sum = hashlib.sha256(f.read()).hexdigest()
-                        shasums2.append(sha2_sum)
-                    data_file2 = nb.load(file2_path)
-                    data_array2 = data_file2.get_fdata()
-    for root3, _, files3 in os.walk(input_folder2):
-        for file3 in files3:
-            if any(file3.endswith(ext) for ext in nipype_anat):
-                file3_path = os.path.join(root3, file3)
-                with open (file3_path, 'rb') as f:
-                    sha3_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums3.append(sha3_sum)
-                data_file3 = nb.load(file3_path)
-                data_array3 = data_file3.get_fdata()
-    for root4, _, files4 in os.walk(input_folder2):                
-        for file4 in files4:
-            if any(file4.endswith(ext) for ext in nipype_func):
-                file4_path = os.path.join(root4, file4)
-                with open (file4_path, 'rb') as f:
-                    sha4_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums4.append(sha4_sum)
-                data_file4 = nb.load(file4_path)
-                data_array4 = data_file4.get_fdata()
-    if data_array1.size != data_array3.size:
-        raise Exception("input data must have the same size")
-    error =np.sum((data_array1.astype("float") - data_array3.astype("float")) ** 2)
-    error /= float(data_array1.shape[0] * data_array3.shape[1])
-    mse.append(error)
-    for error in mse:
-        output_file.write(f"The Mean Square Error (MSE) calculation of the {file1_path} and {file3_path}, is = {error}\n")
-    corr_coef = np.corrcoef(data_array1.flatten(), data_array3.flatten())[0, 1]
-    corr.append(corr_coef)
-    for corr_coef in corr:
-        output_file.write(f"The correlation coefficient of the {file1_path} and {file3_path}, is ={corr_coef}\n")
-    if shasums1 == shasums3: 
-        output_file.write(f"SHA256sums are identical for {file1_path} and {file3_path}\n")
-        shasums.append(output_file)
-    else:
-        output_file.write(f"SHA256sums are not identical for {file1_path} and {file3_path}\n")
-        shasums.append(output_file)
-    if data_array2.size != data_array4.size:
-        raise Exception("input data must have the same size")
-    error2 =np.sum((data_array2.astype("float") - data_array4.astype("float")) ** 2)
-    error2 /= float(data_array2.shape[0] * data_array4.shape[1])    
-    mse2.append(error2)
-    for error2 in mse2:
-        output_file.write(f"The Mean Square Error (MSE) calculation of the {file2_path} and {file4_path}, is = {error2}\n")
-    corr_coef2 = np.corrcoef(data_array2.flatten(), data_array4.flatten())[0, 1]
-    corr2.append(corr_coef2)
-    for corr_coef2 in corr:
-        output_file.write(f"The correlation coefficient of the {file2_path} and {file4_path}, is ={corr_coef2}\n")
-    if shasums2 == shasums4:        
-        output_file.write(f"SHA256sums are identical for {file2_path} and {file4_path}\n")
-        shasums.append(output_file)
-    else:
-        output_file.write(f"SHA256sums are not identical for {file2_path} and {file4_path}\n")
-        shasums.append(output_file)    
-    return  output_filepath 
-
-#calculate_compare_nipype2lvl(blockdata_dir, nipype_block_dir)
-
 def calculate_compare(input_folder1, input_folder2):
-    '''
-    This function checks the 1 level deeper sub directories, of the input directories for example:
-    maindir->
-        subdir->
-                file(s)
-    searches for nifti files and loads them into memory. It calculates the Mean Square Error (MSE), correlation coefficients and  SHA256sums.
-    After calculating all these, compares them and writes the results to a text file.
-
-    Parameters:
-    input_folder1 (str): The first input directory
-    input_folder2 (str): The second input directory
-
-    '''
     if not os.path.isdir(input_folder1):
         raise Exception(f"Input folder {input_folder1} does not exist")
-    else :
-        if not os.path.isdir(input_folder2):
-         raise Exception(f"Input folder {input_folder2} does not exist")
-        
-    _, output_tail = os.path.split(f"{os.path.splitext(input_folder2)[0]}_comparisons.txt")    
-    output_filepath = os.path.join(results_dir, output_tail)
-    output_file = open(output_filepath, 'w')
-    
-    #with open(output_filepath, 'w') as f:
-        
-    mse = [] # to store mse
-    corr= []
-    mse2 = []
-    corr2 = []
-    shasums = []
-    shasums1 = []
-    shasums2 = []
-    shasums3 = []
-    shasums4 = []
-    # data_files ={}
-    file_extension = ['.nii', '.img']
-    subfolders1 = [os.path.join(input_folder1, d) for d in sorted(os.listdir(input_folder1)) if os.path.isdir(os.path.join(input_folder1, d))]
-    for root1, _, files1 in os.walk(subfolders1[0]):
-        for file1 in files1:
-            if any(file1.endswith(ext) for ext in file_extension):
-                file1_path = os.path.join(root1, file1)
-                with open (file1_path, 'rb') as f:
-                    sha1_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums1.append(sha1_sum)
-                data_file1 = nb.load(file1_path)
-                data_array1 = data_file1.get_fdata()
-    for root2, _, files2 in os.walk(subfolders1[1]):
-        for file2 in files2:
-            if any(file2.endswith(ext) for ext in file_extension):
-                file2_path = os.path.join(root2, file2)
-                with open (file2_path, 'rb') as f:
-                    sha2_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums2.append(sha2_sum)
-                data_file2 = nb.load(file2_path)
-                data_array2 = data_file2.get_fdata()
-    subfolders2 = [os.path.join(input_folder2, d) for d in sorted(os.listdir(input_folder2)) if os.path.isdir(os.path.join(input_folder2, d))]
-    for root3, _, files3 in os.walk(subfolders2[0]):
-        for file3 in files3:
-            if any(file3.endswith(ext) for ext in file_extension):
-                file3_path = os.path.join(root3, file3)
-                with open (file3_path, 'rb') as f:
-                    sha3_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums3.append(sha3_sum)
-                data_file3 = nb.load(file3_path)
-                data_array3 = data_file3.get_fdata()
-    for root4, _, files4 in os.walk(subfolders2[1]):
-        for file4 in files4:
-            if any(file4.endswith(ext) for ext in file_extension):
-                file4_path = os.path.join(root4, file4)
-                with open (file4_path, 'rb') as f:
-                    sha4_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums4.append(sha4_sum)
-                data_file4 = nb.load(file4_path)
-                data_array4 = data_file4.get_fdata()
-    if data_array1.size != data_array3.size:
-        raise Exception("input data must have the same size")
-    error =np.sum((data_array1.astype("float") - data_array3.astype("float")) ** 2)
-    error /= float(data_array1.shape[0] * data_array3.shape[1])
-    mse.append(error)
-    for error in mse:
-        output_file.write(f"The Mean Square Error (MSE) calculation of the {file1_path} and {file3_path}, is = {error}\n")
-    corr_coef = np.corrcoef(data_array1.flatten(), data_array3.flatten())[0, 1]
-    corr.append(corr_coef)
-    for corr_coef in corr:
-        output_file.write(f"The correlation coefficient of the {file1_path} and {file3_path}, is ={corr_coef}\n")
-    if shasums1 == shasums3: 
-        output_file.write(f"SHA256sums are identical for {file1_path} and {file3_path}\n")
-        shasums.append(output_file)
-    else:
-        output_file.write(f"SHA256sums are not identical for {file1_path} and {file3_path}\n")
-        shasums.append(output_file)
-    if data_array2.size != data_array4.size:
-        raise Exception("input data must have the same size")
-    error2 =np.sum((data_array2.astype("float") - data_array4.astype("float")) ** 2)
-    error2 /= float(data_array2.shape[0] * data_array4.shape[1])    
-    mse2.append(error2)
-    for error2 in mse2:
-        output_file.write(f"The Mean Square Error (MSE) calculation of the {file2_path} and {file4_path}, is = {error2}\n")
-    corr_coef2 = np.corrcoef(data_array2.flatten(), data_array4.flatten())[0, 1]
-    corr2.append(corr_coef2)
-    for corr_coef2 in corr:
-        output_file.write(f"The correlation coefficient of the {file2_path} and {file4_path}, is ={corr_coef2}\n")
-    if shasums2 == shasums4:        
-        output_file.write(f"SHA256sums are identical for {file2_path} and {file4_path}\n")
-        shasums.append(output_file)
-    else:
-        output_file.write(f"SHA256sums are not identical for {file2_path} and {file4_path}\n")
-        shasums.append(output_file)    
-    return  output_filepath 
+    if not os.path.isdir(input_folder2):
+        raise Exception(f"Input folder {input_folder2} does not exist")
 
+    #results_dir = "results"  # Replace this with the actual results directory path
+    os.makedirs(results_dir, exist_ok=True)
+    _, output_tail = os.path.split(f"{os.path.splitext(input_folder2)[0]}_comparisons.txt")
+    output_filepath = os.path.join(results_dir, output_tail)
+
+    def get_nifti_files(folder):
+        nifti_files = []
+        for root, _, files in os.walk(folder):
+            for file in files:
+                if file.endswith('.nii'):
+                    nifti_files.append(os.path.join(root, file))
+        return nifti_files
+
+    def calculate_sha256(filepath):
+        with open(filepath, 'rb') as f:
+            return hashlib.sha256(f.read()).hexdigest()
+
+    def load_nifti_data(filepath):
+        return nb.load(filepath).get_fdata()
+
+    nifti_files1 = get_nifti_files(input_folder1)
+    nifti_files2 = get_nifti_files(input_folder2)
+
+    if len(nifti_files1) != len(nifti_files2):
+        raise Exception("Mismatched number of files between input directories")
+
+    with open(output_filepath, 'w') as output_file:
+        for file1, file2 in zip(nifti_files1, nifti_files2):
+            data_array1 = load_nifti_data(file1)
+            print(data_array1.shape)
+            data_array2 = load_nifti_data(file2)
+            print(data_array2.shape)
+            #if data_array1.shape != data_array2.shape:
+               # raise Exception("Input data must have the same shape")
+
+            mse = np.mean((data_array1 - data_array2) ** 2)
+            corr_coef = np.corrcoef(data_array1.flatten(), data_array2.flatten())[0, 1]
+            sha1 = calculate_sha256(file1)
+            sha2 = calculate_sha256(file2)
+
+            output_file.write(f"File pair: {file1} and {file2}\n")
+            output_file.write(f"Mean Square Error (MSE): {mse}\n")
+            output_file.write(f"Correlation coefficient: {corr_coef}\n")
+            output_file.write(f"SHA256 sum {'matches' if sha1 == sha2 else 'does not match'}\n\n")
+
+    return output_filepath
+
+#calculate_compare(blockdata_dir, guiblock_dir)
+#calculate_compare(blockdata_dir, batchblock_dir)
+#calculate_compare(blockdata_dir, scriptblock_dir)
 #calculate_compare(eventdata_dir, eventgui_dir)
 #calculate_compare(eventdata_dir, eventbatch_dir)
 #calculate_compare(eventdata_dir, eventscript_dir)
-
-def calculate_compare_nipype(input_folder1, input_folder2):
-    '''
-    TODO make this to find certain strings in the file names instead of the file extensions for nipype
-    
-    This function checks the 1 level deeper sub directories, of the input directories for example:
-    maindir->
-        subdir->
-                file(s)
-    searches for nifti files and loads them into memory. It calculates the Mean Square Error (MSE), correlation coefficients and  SHA256sums.
-    After calculating all these, compares them and writes the results to a text file.
-
-    Parameters:
-    input_folder1 (str): The first input directory
-    input_folder2 (str): The second input directory
-
-    '''
-    if not os.path.isdir(input_folder1):
-        raise Exception(f"Input folder {input_folder1} does not exist")
-    else :
-        if not os.path.isdir(input_folder2):
-         raise Exception(f"Input folder {input_folder2} does not exist")
-        
-    _, output_tail = os.path.split(f"{os.path.splitext(input_folder2)[0]}_comparisons.txt")    
-    output_filepath = os.path.join(results_dir, output_tail)
-    output_file = open(output_filepath, 'w')
-    
-    #with open(output_filepath, 'w') as f:
-        
-    mse = [] # to store mse
-    corr= []
-    mse2 = []
-    corr2 = []
-    shasums = []
-    shasums1 = []
-    shasums2 = []
-    shasums3 = []
-    shasums4 = []
-    # data_files ={}
-    file_extension = ['.nii', '.img']
-    subfolders1 = [os.path.join(input_folder1, d) for d in sorted(os.listdir(input_folder1)) if os.path.isdir(os.path.join(input_folder1, d))]
-    for root1, _, files1 in os.walk(subfolders1[0]):
-        for file1 in files1:
-            if any(file1.endswith(ext) for ext in file_extension):
-                file1_path = os.path.join(root1, file1)
-                with open (file1_path, 'rb') as f:
-                    sha1_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums1.append(sha1_sum)
-                data_file1 = nb.load(file1_path)
-                data_array1 = data_file1.get_fdata()
-    for root2, _, files2 in os.walk(subfolders1[1]):
-        for file2 in files2:
-            if any(file2.endswith(ext) for ext in file_extension):
-                file2_path = os.path.join(root2, file2)
-                with open (file2_path, 'rb') as f:
-                    sha2_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums2.append(sha2_sum)
-                data_file2 = nb.load(file2_path)
-                data_array2 = data_file2.get_fdata()
-    subfolders2 = [os.path.join(input_folder2, d) for d in sorted(os.listdir(input_folder2)) if os.path.isdir(os.path.join(input_folder2, d))]
-    for root3, _, files3 in os.walk(subfolders2[0]):
-        for file3 in files3:
-            if any(file3.endswith(ext) for ext in file_extension):
-                file3_path = os.path.join(root3, file3)
-                with open (file3_path, 'rb') as f:
-                    sha3_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums3.append(sha3_sum)
-                data_file3 = nb.load(file3_path)
-                data_array3 = data_file3.get_fdata()
-    for root4, _, files4 in os.walk(subfolders2[1]):
-        for file4 in files4:
-            if any(file4.endswith(ext) for ext in file_extension):
-                file4_path = os.path.join(root4, file4)
-                with open (file4_path, 'rb') as f:
-                    sha4_sum = hashlib.sha256(f.read()).hexdigest()
-                    shasums4.append(sha4_sum)
-                data_file4 = nb.load(file4_path)
-                data_array4 = data_file4.get_fdata()
-    if data_array1.size != data_array3.size:
-        raise Exception("input data must have the same size")
-    error =np.sum((data_array1.astype("float") - data_array3.astype("float")) ** 2)
-    error /= float(data_array1.shape[0] * data_array3.shape[1])
-    mse.append(error)
-    for error in mse:
-        output_file.write(f"The Mean Square Error (MSE) calculation of the {file1_path} and {file3_path}, is = {error}\n")
-    corr_coef = np.corrcoef(data_array1.flatten(), data_array3.flatten())[0, 1]
-    corr.append(corr_coef)
-    for corr_coef in corr:
-        output_file.write(f"The correlation coefficient of the {file1_path} and {file3_path}, is ={corr_coef}\n")
-    if shasums1 == shasums3: 
-        output_file.write(f"SHA256sums are identical for {file1_path} and {file3_path}\n")
-        shasums.append(output_file)
-    else:
-        output_file.write(f"SHA256sums are not identical for {file1_path} and {file3_path}\n")
-        shasums.append(output_file)
-    if data_array2.size != data_array4.size:
-        raise Exception("input data must have the same size")
-    error2 =np.sum((data_array2.astype("float") - data_array4.astype("float")) ** 2)
-    error2 /= float(data_array2.shape[0] * data_array4.shape[1])    
-    mse2.append(error2)
-    for error2 in mse2:
-        output_file.write(f"The Mean Square Error (MSE) calculation of the {file2_path} and {file4_path}, is = {error2}\n")
-    corr_coef2 = np.corrcoef(data_array2.flatten(), data_array4.flatten())[0, 1]
-    corr2.append(corr_coef2)
-    for corr_coef2 in corr:
-        output_file.write(f"The correlation coefficient of the {file2_path} and {file4_path}, is ={corr_coef2}\n")
-    if shasums2 == shasums4:        
-        output_file.write(f"SHA256sums are identical for {file2_path} and {file4_path}\n")
-        shasums.append(output_file)
-    else:
-        output_file.write(f"SHA256sums are not identical for {file2_path} and {file4_path}\n")
-        shasums.append(output_file)    
-    return  output_filepath 
-
-#calculate_compare_nipype(eventscript_dir, nipype_event_dir)    
