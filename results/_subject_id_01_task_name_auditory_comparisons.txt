@@ -1,6 +1,10 @@
-The Mean Square Error (MSE) calculation of the /home/matay/spmbasics/data/MoAEpilot/sub-01/anat/c3sub-01_T1w.nii and /home/matay/spmbasics/data/output/nipype/block_preprocesss/_subject_id_01_task_name_auditory/c3sub-01_T1w.nii, is = 0.0
-The correlation coefficient of the /home/matay/spmbasics/data/MoAEpilot/sub-01/anat/c3sub-01_T1w.nii and /home/matay/spmbasics/data/output/nipype/block_preprocesss/_subject_id_01_task_name_auditory/c3sub-01_T1w.nii, is =1.0
-SHA256sums are identical for /home/matay/spmbasics/data/MoAEpilot/sub-01/anat/c3sub-01_T1w.nii and /home/matay/spmbasics/data/output/nipype/block_preprocesss/_subject_id_01_task_name_auditory/c3sub-01_T1w.nii
-The Mean Square Error (MSE) calculation of the /home/matay/spmbasics/data/MoAEpilot/sub-01/func/rsub-01_task-auditory_bold.nii and /home/matay/spmbasics/data/output/nipype/block_preprocesss/_subject_id_01_task_name_auditory/rsub-01_task-auditory_bold.nii, is = 0.0
-The correlation coefficient of the /home/matay/spmbasics/data/MoAEpilot/sub-01/func/rsub-01_task-auditory_bold.nii and /home/matay/spmbasics/data/output/nipype/block_preprocesss/_subject_id_01_task_name_auditory/rsub-01_task-auditory_bold.nii, is =1.0
-SHA256sums are identical for /home/matay/spmbasics/data/MoAEpilot/sub-01/func/rsub-01_task-auditory_bold.nii and /home/matay/spmbasics/data/output/nipype/block_preprocesss/_subject_id_01_task_name_auditory/rsub-01_task-auditory_bold.nii
+File pair: /home/matay/spmbasics/data/MoAEpilot/sub-01/func/swarsub-01_task-auditory_bold.nii and /home/matay/spmbasics/data/output/nipype/block_preprocesss/_subject_id_01_task_name_auditory/swarsub-01_task-auditory_bold.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+
+File pair: /home/matay/spmbasics/data/MoAEpilot/sub-01/func/sub-01_task-auditory_bold.nii and /home/matay/spmbasics/data/output/nipype/block_preprocesss/_subject_id_01_task_name_auditory/sub-01_task-auditory_bold.nii
+Mean Square Error (MSE): 0.0
+Correlation coefficient: 1.0
+SHA256 sum matches
+
